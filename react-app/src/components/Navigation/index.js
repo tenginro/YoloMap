@@ -9,15 +9,31 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <ul>
+    <ul className="navLine">
       <li>
-        <NavLink exact to="/">
-          <div className="logoLine">
-            <img className="logo" src={logo} alt="icon"></img>
-            Home
-          </div>
-        </NavLink>
+        {sessionUser ? (
+          <NavLink exact to="/">
+            <div className="logoLine">
+              <img className="logo" src={logo} alt="icon"></img>
+              <h1 className="projectName">YoloMap</h1>
+            </div>
+          </NavLink>
+        ) : (
+          <NavLink exact to="/places">
+            <div className="logoLine">
+              <img className="logo" src={logo} alt="icon"></img>
+              <h1 className="projectName">YoloMap</h1>
+            </div>
+          </NavLink>
+        )}
       </li>
+      {sessionUser && (
+        <input
+          className="searchInput"
+          onClick={() => alert("Feature Coming Soon...")}
+          placeholder="Search - feature coming soon"
+        ></input>
+      )}
       {isLoaded && (
         <li>
           <ProfileButton user={sessionUser} />

@@ -2,3 +2,11 @@
 * {
   font-family: "Asap", sans-serif;
 }
+
+button {
+  -webkit-filter: brightness(100%);
+}
+
+button:hover {
+  -webkit-filter: brightness(90%);
+}

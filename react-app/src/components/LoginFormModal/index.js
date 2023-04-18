@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+
+import logo from "../Navigation/logo.jpeg";
 import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -17,40 +21,75 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal();
     }
   };
 
+  const demoUserSubmitHandler = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(login("demo@aa.io", "password"))
+      .then(closeModal)
+      .then(() => history.push(`/pins`))
+      .catch(async (res) => {
+        const data = await res.json();
+
+        if (data && data.errors) setErrors(data.errors);
+      });
+  };
+
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
+    <div id="loginModal">
+      <h2>Log in to YoloMap</h2>
+
+      <form className="loginForm" onSubmit={handleSubmit}>
+        {errors.length ? (
+          <ul className="errorContainerLogIn">
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        ) : (
+          <div className="errorContainerLogIn">
+            <img className="logo" src={logo} alt="icon"></img>
+          </div>
+        )}
+        <div>
+          <label>
+            <input
+              className="loginModalInput"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              className="loginModalInput"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
+            />
+          </label>
+        </div>
+        <button className="loginModalButton" type="submit">
+          Log In
+        </button>
+        <button
+          className="demoUserButton"
+          onClick={demoUserSubmitHandler}
+          type="submit"
+        >
+          Demo User
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 
