@@ -1,5 +1,30 @@
 .profile-dropdown {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  top: 70px;
+  right: 110px;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  border-radius: 12px;
+  z-index: 10;
+  gap: 5px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.profile-dropdown li {
+  font-size: 16px;
+  padding: 0 5px;
+}
+
+.logoutLine {
+  cursor: pointer;
+}
+
+.logoutLine:hover {
+  background-color: lightgrey;
 }
 
 .hidden {
@@ -9,4 +34,45 @@
 .logo {
   height: 45px;
   width: 45px;
+}
+
+.navLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  margin-left: 50px;
+  margin-right: 100px;
+}
+
+.logoLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.loginSignUpButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: 20px;
+}
+
+.loginSignUpButtons button {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #01b636;
+  color: white;
+}
+
+.searchInput {
+  height: 35px;
+  width: 40%;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid rgb(133, 132, 132);
 }

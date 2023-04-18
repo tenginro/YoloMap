@@ -20,7 +20,7 @@ def seed_users():
     )
     user3 = User(
         username="UserThree",
-        email="usertwo@aa.io",
+        email="userthree@aa.io",
         budget=50000,
         profile_pic="https://cvhrma.org/wp-content/uploads/2015/07/default-profile-photo.jpg",
         password="password",

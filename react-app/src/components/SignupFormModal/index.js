@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+
+import logo from "../Navigation/logo.jpeg";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -21,6 +23,7 @@ function SignupFormModal() {
       const data = await dispatch(
         signUp(username, email, password, budget, profilePic)
       );
+      console.log("data", data);
       if (data) {
         setErrors(data);
       } else {
@@ -34,44 +37,56 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div id="signupModal">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
+      {errors.length ? (
+        <ul className="errorContainerSignup">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
+      ) : (
+        <div className="errorContainerSignup">
+          <img className="logo" src={logo} alt="icon"></img>
+        </div>
+      )}
+      <form className="signupForm" onSubmit={handleSubmit}>
         <label>
-          Email
+          Email:{"  "}
           <input
+            className="signupModalInput"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             required
           />
         </label>
         <label>
-          Username
+          Username:{"  "}
           <input
+            className="signupModalInput"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
             required
           />
         </label>
         <label>
-          Profile Picture
+          Profile Picture:{"  "}
           <input
+            className="signupModalInput"
             type="text"
             value={profilePic}
             onChange={(e) => setProfilePic(e.target.value)}
-            required
+            placeholder="Profile Picture"
           />
         </label>
         <label>
-          Budget
+          Budget Amount:{"  "}
           <input
+            className="signupModalInput"
             type="text"
             value={budget}
             onChange={(e) => setBudget(e.target.value)}
@@ -79,26 +94,30 @@ function SignupFormModal() {
           />
         </label>
         <label>
-          Password
+          Password:{"  "}
           <input
+            className="signupModalInput"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
             required
           />
         </label>
         <label>
-          Confirm Password
+          Confirm Password:{"  "}
           <input
+            className="signupModalInput"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm Password"
             required
           />
         </label>
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
