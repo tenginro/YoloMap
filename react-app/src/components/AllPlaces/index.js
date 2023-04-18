@@ -23,7 +23,7 @@ export default function AllPlaces() {
   return (
     <div className="allPinsPage">
       <div className="filters" onClick={(e) => alert("Feature coming soon")}>
-        <div>Categories</div>
+        <h2>Categories</h2>
         <label>
           <input type="checkbox"></input> Restaurant
         </label>
@@ -41,12 +41,13 @@ export default function AllPlaces() {
         </label>
       </div>
       <div className="places">
+        <h2>All places</h2>
         {placesArr?.map((place) => (
           <PlaceIndexItem key={place.id} place={place} />
         ))}
       </div>
       <div className="map" onClick={(e) => alert("Feature coming soon")}>
-        Map
+        <h2>Map</h2>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@
   gap: 5px;
   padding: 20px;
   align-items: flex-start;
+  background-color: white;
 }
 
 .profile-dropdown li {
@@ -42,8 +43,11 @@
   justify-content: space-between;
   align-items: center;
   list-style-type: none;
-  margin-left: 50px;
-  margin-right: 100px;
+  padding-left: 50px;
+  padding-right: 100px;
+  /* position: sticky; */
+  top: 0px;
+  background-color: white;
 }
 
 .logoLine {

@@ -39,8 +39,10 @@ export const thunkGetAllPlaces = () => async (dispatch) => {
 
 export const thunkGetPlaceDetail = (id) => async (dispatch) => {
   const response = await fetch(`/api/places/${id}`);
+
   if (response.ok) {
     const place = await response.json();
+    console.log(place);
     await dispatch(actionLoadOnePlace(place));
     return place;
   }
@@ -70,6 +72,14 @@ const placeReducer = (state = initialState, action) => {
         allPlaces[p.id] = p;
       });
       return { ...state, allPlaces: { ...allPlaces } };
+    case LOAD_Place:
+      return { ...state, singlePlace: { ...action.place } };
+    case LOAD_User_Places:
+      const allUserPlaces = {};
+      action.places.forEach((p) => {
+        allUserPlaces[p.id] = p;
+      });
+      return { ...state, allPlaces: { ...allUserPlaces } };
     case CLEAR_Places:
       return { ...state, allPlaces: {} };
     case CLEAR_Place:

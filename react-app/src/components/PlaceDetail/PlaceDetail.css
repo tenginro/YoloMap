@@ -1,0 +1,36 @@
+.placeDetailPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.placeDetailPage h3 {
+  font-weight: bold;
+}
+
+.secondPart {
+  display: flex;
+  flex-direction: row;
+  column-gap: 300px;
+}
+.locationHours {
+  display: flex;
+  flex-direction: column;
+}
+.locationLine {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+.placeDetailPage img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.mapInPlaceDetail {
+  width: 315px;
+  height: 150px;
+  box-sizing: border-box;
+  background-color: lightgreen;
+}

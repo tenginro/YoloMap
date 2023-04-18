@@ -47,6 +47,7 @@ function ProfileButton({ user }) {
           <ul className={ulClassName} ref={ulRef}>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li>{`$${user.budget / 1000},000`}</li>
             <li className="logoutLine" onClick={handleLogout}>
               <i className="fas fa-solid fa-right-from-bracket"></i>
               Log Out

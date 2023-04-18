@@ -17,6 +17,11 @@
   width: 600px;
   border-bottom: 1px solid lightgray;
   padding: 10px;
+  color: black;
+}
+
+.placeIndexItem h3 {
+  font-weight: bold;
 }
 
 .placeIndexItem:hover {
@@ -27,6 +32,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  row-gap: 10px;
 }
 .filters {
   display: flex;

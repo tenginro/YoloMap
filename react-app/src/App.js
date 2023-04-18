@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllPlaces from "./components/AllPlaces";
+import PlaceDetail from "./components/PlaceDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,12 @@ function App() {
         <Switch>
           <Route exact path="/places">
             <AllPlaces />
+          </Route>
+          <Route exact path="/places/:placeId">
+            <PlaceDetail />
+          </Route>
+          <Route>
+            <h1>404: Page not found</h1>
           </Route>
         </Switch>
       )}

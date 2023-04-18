@@ -12,7 +12,7 @@ def get_all_places():
 
 
 @place_routes.route("/<int:id>")
-def get_one_place():
+def get_one_place(id):
     place = Place.query.get(id)
     return {**place.to_dict()}
 

@@ -12,11 +12,14 @@ const PlaceIndexItem = ({ place }) => {
           ></img>
         </div>
         <div className="placeRightPart">
-          <div>{place.name}</div>
-          <div>{place.description}</div>
-          <div>
-            {place.city}, {place.state}
+          <h3>{place.name}</h3>
+          <div className="placeRightPartSub">
+            <div>{place.address}</div>
+            <div>
+              {place.city}, {place.state}
+            </div>
           </div>
+          <div>{place.description}</div>
         </div>
       </div>
     </NavLink>
