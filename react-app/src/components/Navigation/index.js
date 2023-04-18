@@ -12,14 +12,14 @@ function Navigation({ isLoaded }) {
     <ul className="navLine">
       <li>
         {sessionUser ? (
-          <NavLink exact to="/">
+          <NavLink exact to="/places">
             <div className="logoLine">
               <img className="logo" src={logo} alt="icon"></img>
               <h1 className="projectName">YoloMap</h1>
             </div>
           </NavLink>
         ) : (
-          <NavLink exact to="/places">
+          <NavLink exact to="/">
             <div className="logoLine">
               <img className="logo" src={logo} alt="icon"></img>
               <h1 className="projectName">YoloMap</h1>
