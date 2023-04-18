@@ -1,0 +1,46 @@
+.allPinsPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.places {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 500px;
+}
+
+.placeIndexItem {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  width: 600px;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+}
+
+.placeIndexItem:hover {
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+.placeRightPart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.places img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.map {
+  box-sizing: border-box;
+  background-color: lightgreen;
+  width: 400px;
+}

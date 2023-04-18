@@ -10,3 +10,7 @@ button {
 button:hover {
   -webkit-filter: brightness(90%);
 }
+
+a {
+  text-decoration: none;
+}
