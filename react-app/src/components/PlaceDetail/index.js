@@ -25,8 +25,16 @@ export default function PlaceDetail() {
 
   return (
     <div className="placeDetailPage">
-      <div>
-        <img src={place.cover_pic} alt="placeCoverPic" title={place.name}></img>
+      <div
+        className="backgroundPart"
+        style={{
+          backgroundImage: `url(${place.cover_pic})`,
+          height: "300px",
+          width: "100%",
+          backgroundSize: "300px 300px",
+          backgroundRepeat: "repeat-x",
+        }}
+      >
         <h2>{place.name}</h2>
       </div>
       <div className="secondPart">

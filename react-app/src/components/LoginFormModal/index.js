@@ -30,7 +30,7 @@ function LoginFormModal() {
     setErrors([]);
     return dispatch(login("demo@aa.io", "password"))
       .then(closeModal)
-      .then(() => history.push(`/pins`))
+      .then(() => history.push(`/places`))
       .catch(async (res) => {
         const data = await res.json();
 
