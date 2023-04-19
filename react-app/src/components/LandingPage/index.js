@@ -36,6 +36,7 @@ export default function LandingPage() {
           paddingLeft: "100px",
           fontWeight: "900",
           zIndex: 2,
+          textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)",
         }}
       >
         <div>You only live once. </div>
