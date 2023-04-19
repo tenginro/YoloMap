@@ -60,7 +60,6 @@ export const thunkGetPlaceDetail = (id) => async (dispatch) => {
 
   if (response.ok) {
     const place = await response.json();
-    console.log(place);
     await dispatch(actionLoadOnePlace(place));
     return place;
   }
@@ -75,6 +74,58 @@ export const thunkGetUserPlaces = () => async (dispatch) => {
     return places;
   }
   return await response.json();
+};
+
+export const thunkCreatePlace = (place) => async (dispatch) => {
+  const response = await fetch("/api/places/new", {
+    method: "POST",
+    body: place,
+  });
+
+  if (response.ok) {
+    const newPlace = await response.json();
+    await dispatch(actionCreatePlace(newPlace));
+    return newPlace;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      const errorsArr = data.errors;
+      let errorsObj = {};
+      errorsArr.forEach((err) => {
+        const [key, value] = err.split(": ");
+        errorsObj[key] = value;
+      });
+      return { errors: errorsObj };
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+
+export const thunkUpdatePlace = (place, placeId) => async (dispatch) => {
+  const response = await fetch(`/api/places/${placeId}/edit`, {
+    method: "PATCH",
+    body: place,
+  });
+
+  if (response.ok) {
+    const updatedPin = await response.json();
+    await dispatch(actionUpdatePlace(updatedPin));
+    return updatedPin;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      const errorsArr = data.errors;
+      let errorsObj = {};
+      errorsArr.forEach((err) => {
+        const [key, value] = err.split(": ");
+        errorsObj[key] = value;
+      });
+      return { errors: errorsObj };
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
 };
 
 export const thunkDeletePlace = (place) => async (dispatch) => {
@@ -109,6 +160,16 @@ const placeReducer = (state = initialState, action) => {
         allUserPlaces[p.id] = p;
       });
       return { ...state, allPlaces: { ...allUserPlaces } };
+    case CREATE_PLACE:
+      return {
+        ...state,
+        allPlaces: { ...state.allPlaces, [action.place.id]: action.place },
+      };
+    case UPDATE_PLACE:
+      return {
+        ...state,
+        allPlaces: { ...state.allPlaces, [action.place.id]: action.place },
+      };
     case DELETE_PLACE:
       const newState = { ...state };
       delete newState.allPlaces[action.id];

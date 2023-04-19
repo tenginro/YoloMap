@@ -28,10 +28,10 @@ export default function DeletePlaceModal({ place }) {
   };
 
   return (
-    <>
+    <div className="deletePlaceModal">
       <h2>Confirm Delete</h2>
       <h3>Are you sure you want to remove this place from the listings?</h3>
-      <div className="deleteSpotModalButton">
+      <div className="deletePlaceModalButton">
         <button className="yesButton" type="button" onClick={onClick}>
           Yes (Delete place)
         </button>
@@ -39,6 +39,6 @@ export default function DeletePlaceModal({ place }) {
           No (Keep place){" "}
         </button>
       </div>
-    </>
+    </div>
   );
 }

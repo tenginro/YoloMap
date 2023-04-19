@@ -10,7 +10,7 @@ class PlaceForm(FlaskForm):
     city = StringField("city", validators=[DataRequired()])
     state = StringField("state", validators=[DataRequired()])
     website = StringField("website")
-    phone = StringField("phone", validator=[Length(max=20)])
+    phone = StringField("phone", validators=[Length(max=20)])
     hours = StringField("hours")
     category = SelectField(
         "category", choices=["Art", "Restaurant", "Bar", "Travel", "Bakery"]

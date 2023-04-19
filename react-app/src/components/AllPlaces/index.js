@@ -25,7 +25,7 @@ export default function AllPlaces() {
       <div className="filters" onClick={(e) => alert("Feature coming soon")}>
         <h2>Categories</h2>
         <label>
-          <input type="checkbox"></input> Restaurant
+          <input type="checkbox"></input> Art
         </label>
         <label>
           <input type="checkbox"></input> Bakery
@@ -34,7 +34,7 @@ export default function AllPlaces() {
           <input type="checkbox"></input> Bar
         </label>
         <label>
-          <input type="checkbox"></input> Art
+          <input type="checkbox"></input> Restaurant
         </label>
         <label>
           <input type="checkbox"></input> Travel

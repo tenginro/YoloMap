@@ -32,10 +32,10 @@ export default function UserProfile() {
         <div>Email: {user.email}</div>
         <div>Budget: {Math.round(user.budget / 1000)},000</div>
       </div>
-      <NavLink exact to="places/new">
+      <NavLink exact to="/places/new">
         Create a new place you want to go
       </NavLink>
-      <NavLink exact to="products/new">
+      <NavLink exact to="/products/new">
         Create a new product you want to get
       </NavLink>
       <div className="places">

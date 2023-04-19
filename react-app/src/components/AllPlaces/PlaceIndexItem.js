@@ -8,6 +8,10 @@ const PlaceIndexItem = ({ place }) => {
           <img
             src={place.cover_pic}
             alt="placeCoverPic"
+            onError={(e) => {
+              this.src =
+                "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
+            }}
             title={place.name}
           ></img>
         </div>
