@@ -57,11 +57,11 @@ export default function CreatePlace() {
 
   return (
     <div className="placeForm">
-      <h2>Create the place you want to go</h2>
-      <form onSubmit={handleSubmit} id="createPlaceForm">
+      <form onSubmit={handleSubmit} id="PlaceForm">
+        <h2>Create the place you want to go</h2>
         <label>
           <div className="inputLabel">
-            Name
+            Name: {"  "}
             {errorMessage?.name && (
               <div className="errors">{errorMessage.name}</div>
             )}
@@ -77,7 +77,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Description
+            Description: {"  "}
             {errorMessage?.description && (
               <div className="errors">{errorMessage.description}</div>
             )}
@@ -92,7 +92,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Address
+            Address: {"  "}
             {errorMessage?.address && (
               <div className="errors">{errorMessage.address}</div>
             )}
@@ -108,7 +108,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            City
+            City: {"  "}
             {errorMessage?.city && (
               <div className="errors">{errorMessage.city}</div>
             )}
@@ -124,7 +124,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            State
+            State: {"  "}
             {errorMessage?.state && (
               <div className="errors">{errorMessage.state}</div>
             )}
@@ -140,7 +140,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Website
+            Website: {"  "}
             {errorMessage?.website && (
               <div className="errors">{errorMessage.website}</div>
             )}
@@ -155,7 +155,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Phone
+            Phone: {"  "}
             {errorMessage?.phone && (
               <div className="errors">{errorMessage.phone}</div>
             )}
@@ -170,7 +170,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Hours
+            Hours: {"  "}
             {errorMessage?.hours && (
               <div className="errors">{errorMessage.hours}</div>
             )}
@@ -184,12 +184,12 @@ export default function CreatePlace() {
         </label>
 
         <div className="categoryLabel">
-          <label htmlFor="categorySelect">
-            Choose a category{" "}
+          <div className="inputLabel">
+            Choose a category: {"  "}
             {errorMessage?.category && (
               <div className="errors">{errorMessage.category}</div>
             )}
-          </label>
+          </div>
           <select
             id="categorySelect"
             onChange={(e) => setCategory(e.target.value)}
@@ -222,7 +222,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Latitude
+            Latitude:{"  "}
             {errorMessage?.lat && (
               <div className="errors">{errorMessage.lat}</div>
             )}
@@ -237,7 +237,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Longitude
+            Longitude:{"  "}
             {errorMessage?.lng && (
               <div className="errors">{errorMessage.lng}</div>
             )}
@@ -250,8 +250,8 @@ export default function CreatePlace() {
           ></input>
         </label>
 
-        <div className="createButtonContainer">
-          <button className="createPlaceButton">Create Place</button>
+        <div className="placeFormButtonContainer">
+          <button className="placeFormButton">Create Place</button>
         </div>
       </form>
     </div>

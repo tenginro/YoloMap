@@ -1,3 +1,49 @@
 .errors {
   color: red;
 }
+
+.placeForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#PlaceForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 5px;
+  font-size: 15px;
+  width: 450px;
+}
+#PlaceForm input {
+  width: 380px;
+  height: 18px;
+}
+#PlaceForm select {
+  width: 200px;
+  height: 20px;
+}
+#categorySelect {
+  margin-top: 3px;
+}
+#PlaceForm .placeFormButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#PlaceForm button {
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: #01b636;
+  color: white;
+}
+#PlaceForm .inputLabel {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+}
