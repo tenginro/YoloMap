@@ -8,21 +8,21 @@ def seed_users():
         username="Demo",
         email="demo@aa.io",
         budget=50000,
-        profile_pic="https://cvhrma.org/wp-content/uploads/2015/07/default-profile-photo.jpg",
+        profile_pic="https://cdn.statusqueen.com/dpimages/thumbnail/cute_dp_image-3100.jpg",
         password="password",
     )
     user2 = User(
         username="UserTwo",
         email="usertwo@aa.io",
         budget=50000,
-        profile_pic="https://cvhrma.org/wp-content/uploads/2015/07/default-profile-photo.jpg",
+        profile_pic="https://funkylife.in/wp-content/uploads/2023/01/whatsapp-dp-by-funkylife-561-1.jpg",
         password="password",
     )
     user3 = User(
         username="UserThree",
         email="userthree@aa.io",
         budget=50000,
-        profile_pic="https://cvhrma.org/wp-content/uploads/2015/07/default-profile-photo.jpg",
+        profile_pic="https://funylife.in/wp-content/uploads/2022/12/41_Whatsapp-Dp-images-FunyLife.in_-1024x1024.jpg",
         password="password",
     )
 
