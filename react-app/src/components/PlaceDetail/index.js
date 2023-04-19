@@ -54,8 +54,8 @@ export default function PlaceDetail() {
               </div>
             </div>
             <div>
-              {place.hours.split("; ").map((el) => (
-                <div>{el}</div>
+              {place.hours.split("; ").map((el, index) => (
+                <div key={index}>{el}</div>
               ))}
             </div>
           </div>

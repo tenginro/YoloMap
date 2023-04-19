@@ -13,18 +13,13 @@
 }
 .backgroundPart h2 {
   font-weight: bolder;
-  margin-left: 5px;
-  font-size: 50px;
+  margin-left: 50px;
+  font-size: 60px;
   width: max-content;
   color: white;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-.backgroundImgText h2 {
-  color: black;
-  position: relative;
-  bottom: 0;
-  z-index: 3;
-}
 .placeDetailPage h3 {
   font-weight: bold;
 }

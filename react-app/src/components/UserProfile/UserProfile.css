@@ -1,0 +1,27 @@
+.userProfilePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.userProfilePic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userProfilePic img {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+}
+
+.userProfilePic div {
+  font-weight: 900;
+}
+
+.deletePlaceButton {
+  list-style-type: none;
+  margin-left: 20px;
+}

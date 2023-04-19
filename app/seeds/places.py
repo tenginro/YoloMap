@@ -11,11 +11,10 @@ def seed_places():
         city="Cambridge",
         state="MA",
         description="lobster rolls",
-        website="",
         phone="(617) 876-0451",
         hours="Mon-Sat: 11AM-6PM; Sun: 11AM-4PM",
         category="Restaurant",
-        cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/qrCNLCmiEJ289w28wztofw/o.jpg",
+        cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/B35STt7pv-BN8mh0BIAXTg/o.jpg",
         lat=42.362574,
         lng=-71.1164871,
     )
@@ -30,7 +29,7 @@ def seed_places():
         phone="(781) 849-1970",
         hours="Mon-Sat: 8AM-6PM; Sun: 8AM-4PM",
         category="Bakery",
-        cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/vdnB8qLcQamSt3uIA5QmaQ/o.jpg",
+        cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/M3kNwTZIEDFLc-cIfvKxuA/o.jpg",
         lat=42.2258022,
         lng=-71.0361444,
     )

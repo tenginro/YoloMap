@@ -23,7 +23,7 @@ function SignupFormModal() {
       const data = await dispatch(
         signUp(username, email, password, budget, profilePic)
       );
-      console.log("data", data);
+
       if (data) {
         setErrors(data);
       } else {
