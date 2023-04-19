@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { thunkGetUserPlaces } from "../../store/place";
+import { actionClearPlaces, thunkGetUserPlaces } from "../../store/place";
 import UserPlaceIndexItem from "./UserPlaceIndexItem";
 import "./UserProfile.css";
 
@@ -14,6 +14,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     dispatch(thunkGetUserPlaces());
+    return () => dispatch(actionClearPlaces());
   }, [dispatch]);
 
   if (!placesObj)

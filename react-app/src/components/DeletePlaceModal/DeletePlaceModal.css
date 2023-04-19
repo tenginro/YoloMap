@@ -1,0 +1,21 @@
+.deleteSpotModalButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.yesButton {
+  background-color: #0052ff;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  border-color: white;
+}
+
+.noButton {
+  background-color: pink;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  border-color: white;
+}

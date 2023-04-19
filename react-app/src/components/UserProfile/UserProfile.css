@@ -20,3 +20,8 @@
 .userProfilePic div {
   font-weight: 900;
 }
+
+.deletePlaceButton {
+  list-style-type: none;
+  margin-left: 20px;
+}
