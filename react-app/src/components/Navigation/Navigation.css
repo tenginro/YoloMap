@@ -10,14 +10,15 @@
   border-radius: 12px;
   z-index: 10;
   gap: 5px;
-  padding: 25px;
+  padding: 10px;
   align-items: flex-start;
   background-color: white;
 }
 
-.profile-dropdown li {
-  font-size: 16px;
-  padding: 0 5px;
+.profile-dropdown div {
+  font-size: 15px;
+  padding: 2px 5px;
+  width: 105px;
 }
 
 .logoutLine {

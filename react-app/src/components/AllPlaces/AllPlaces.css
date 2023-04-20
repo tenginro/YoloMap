@@ -49,16 +49,3 @@
   font-size: small;
   overflow-y: auto;
 }
-
-/* .gm-style-iw + button {
-  display: none;
-} */
-
-/* .gm-style .gm-style-iw + div {
-  display: none;
-  visibility: hidden;
-  opacity: 0;
-} */
-.map {
-  margin-top: 20px;
-}

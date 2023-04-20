@@ -49,7 +49,7 @@ const MapPageInDetail = ({ place }) => {
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={containerStyle}
-            zoom={10}
+            zoom={14}
             center={currentPosition}
             onUnmount={onUnmount}
           >

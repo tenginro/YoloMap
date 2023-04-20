@@ -47,9 +47,7 @@ export default function AllPlaces() {
           <PlaceIndexItem key={place.id} place={place} />
         ))}
       </div>
-      <div className="map">
-        {placesArr?.length ? <MapPage placesArr={placesArr} /> : <MapPage />}
-      </div>
+      {placesArr?.length ? <MapPage placesArr={placesArr} /> : <MapPage />}
     </div>
   );
 }
