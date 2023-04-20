@@ -61,7 +61,7 @@ export default function CreatePlace() {
         <h2>Create the place you want to go</h2>
         <label>
           <div className="inputLabel">
-            Name: {"  "}
+            Name: *{"  "}
             {errorMessage?.name && (
               <div className="errors">{errorMessage.name}</div>
             )}
@@ -77,7 +77,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Description: {"  "}
+            Description: (optional){"  "}
             {errorMessage?.description && (
               <div className="errors">{errorMessage.description}</div>
             )}
@@ -85,14 +85,14 @@ export default function CreatePlace() {
           <input
             type="text"
             value={description}
-            placeholder="please provide a short description"
+            placeholder="description"
             onChange={(e) => setDescription(e.target.value)}
           ></input>
         </label>
 
         <label>
           <div className="inputLabel">
-            Address: {"  "}
+            Address: *{"  "}
             {errorMessage?.address && (
               <div className="errors">{errorMessage.address}</div>
             )}
@@ -108,7 +108,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            City: {"  "}
+            City: *{"  "}
             {errorMessage?.city && (
               <div className="errors">{errorMessage.city}</div>
             )}
@@ -124,7 +124,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            State: {"  "}
+            State: *{"  "}
             {errorMessage?.state && (
               <div className="errors">{errorMessage.state}</div>
             )}
@@ -140,7 +140,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Website: {"  "}
+            Website: (optional){"  "}
             {errorMessage?.website && (
               <div className="errors">{errorMessage.website}</div>
             )}
@@ -155,7 +155,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Phone: {"  "}
+            Phone: (optional){"  "}
             {errorMessage?.phone && (
               <div className="errors">{errorMessage.phone}</div>
             )}
@@ -170,7 +170,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Hours: {"  "}
+            Hours: (optional){"  "}
             {errorMessage?.hours && (
               <div className="errors">{errorMessage.hours}</div>
             )}
@@ -185,7 +185,7 @@ export default function CreatePlace() {
 
         <div className="categoryLabel">
           <div className="inputLabel">
-            Choose a category: {"  "}
+            Choose a category: *{"  "}
             {errorMessage?.category && (
               <div className="errors">{errorMessage.category}</div>
             )}
@@ -207,7 +207,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Cover Picture
+            Cover Picture: (optional)
             {errorMessage?.cover_pic && (
               <div className="errors">{errorMessage.cover_pic}</div>
             )}
@@ -222,7 +222,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Latitude:{"  "}
+            Latitude: (optional){"  "}
             {errorMessage?.lat && (
               <div className="errors">{errorMessage.lat}</div>
             )}
@@ -237,7 +237,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Longitude:{"  "}
+            Longitude: (optional){"  "}
             {errorMessage?.lng && (
               <div className="errors">{errorMessage.lng}</div>
             )}
@@ -249,7 +249,7 @@ export default function CreatePlace() {
             onChange={(e) => setLng(e.target.value)}
           ></input>
         </label>
-
+        <div>* - required field</div>
         <div className="placeFormButtonContainer">
           <button className="placeFormButton">Create Place</button>
         </div>

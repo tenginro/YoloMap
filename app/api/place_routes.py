@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from ..models import Place, User, db
+from ..models import Place, db
 from ..forms import PlaceForm
 
 place_routes = Blueprint("places", __name__)
