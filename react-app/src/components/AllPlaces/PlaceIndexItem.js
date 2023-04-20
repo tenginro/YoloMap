@@ -23,7 +23,7 @@ const PlaceIndexItem = ({ place }) => {
               {place.city}, {place.state}
             </div>
           </div>
-          <div>{place.description}</div>
+          <div className="descriptionAllPins">{place.description}</div>
         </div>
       </div>
     </NavLink>

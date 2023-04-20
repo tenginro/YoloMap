@@ -23,5 +23,28 @@
 
 .deletePlaceButton {
   list-style-type: none;
-  margin-left: 20px;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  background-color: #989898;
+  border-color: #989898;
+}
+
+.updatePlaceButton {
+  background-color: #3bd16f;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  border-color: #3bd16f;
+}
+
+.userProfileIndexItemPage {
+  display: flex;
+  flex-direction: row;
+}
+.userPlaceButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 30px;
 }

@@ -44,9 +44,16 @@
   height: 250px;
   border-radius: 5px;
 }
-
+.descriptionAllPins {
+  height: 100px;
+  font-size: small;
+  overflow-y: auto;
+}
 .map {
   box-sizing: border-box;
   background-color: lightgreen;
   width: 400px;
+  height: 100vh;
+  position: sticky;
+  right: 0;
 }

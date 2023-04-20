@@ -38,7 +38,21 @@ const UserPlaceIndexItem = ({ place }) => {
   };
 
   return (
-    <div>
+    <div className="userProfileIndexItemPage">
+      <div className="userPlaceButtons">
+        <button onClick={onClickUpdate} className="updatePlaceButton">
+          <NavLink exact to={`/places/${place.id}/edit`} place={place}>
+            Update
+          </NavLink>
+        </button>
+        <button className="deletePlaceButton">
+          <OpenModalMenuItem
+            itemText="Delete"
+            onItemClick={closeMenu}
+            modalComponent={<DeletePlaceModal place={place} />}
+          />
+        </button>
+      </div>
       <NavLink to={`/places/${place.id}`}>
         <div className="placeIndexItem">
           <div className="placeLeftPart">
@@ -60,24 +74,10 @@ const UserPlaceIndexItem = ({ place }) => {
                 {place.city}, {place.state}
               </div>
             </div>
-            <div>{place.description}</div>
+            <div className="descriptionAllPins">{place.description}</div>
           </div>
         </div>
       </NavLink>
-      <div className="userPlaceButtons">
-        <button onClick={onClickUpdate} className="updatePlaceButton">
-          <NavLink exact to={`/places/${place.id}/edit`} place={place}>
-            Update
-          </NavLink>
-        </button>
-        <button className="deletePlaceButton">
-          <OpenModalMenuItem
-            itemText="Delete"
-            onItemClick={closeMenu}
-            modalComponent={<DeletePlaceModal place={place} />}
-          />
-        </button>
-      </div>
     </div>
   );
 };
