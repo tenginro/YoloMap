@@ -28,6 +28,17 @@ const MapPage = ({ placesArr }) => {
     right: 0,
   };
 
+  const icon = {
+    path: "M 8 0 L 10.472 6.472 L 17.472 7.472 L 12.472 12.472 L 13.472 19.472 L 8 16 L 2.528 19.472 L 3.528 12.472 L -1.472 7.472 L 5.528 6.472 Z",
+    fillColor: "#01b636",
+    fillOpacity: 1,
+    // border color
+    strokeColor: "#74E39A",
+    strokeWeight: 1,
+    // size of the marker
+    scale: 1.5,
+  };
+
   const [map, setMap] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState(null);
 
@@ -49,7 +60,7 @@ const MapPage = ({ placesArr }) => {
             <Marker
               position={currentPosition}
               title="Current"
-              icon={<i className="fas fa-regular fa-star"></i>}
+              icon={icon}
               streetView={false}
             ></Marker>
             {placesArr?.length &&
@@ -58,7 +69,7 @@ const MapPage = ({ placesArr }) => {
                   key={place.id}
                   position={{ lat: +place.lat, lng: +place.lng }}
                   title={place.name}
-                  icon={<i className="fas fa-solid fa-location-dot"></i>}
+                  icon={icon}
                   streetView={false}
                   style={{ cursor: "pointer" }}
                   onMouseOver={() => setSelectedPlace(place)}
