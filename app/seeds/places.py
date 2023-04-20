@@ -29,7 +29,7 @@ def seed_places():
         phone="(781) 849-1970",
         hours="Mon-Sat: 8AM-6PM; Sun: 8AM-4PM",
         category="Bakery",
-        cover_pic="https://lh3.googleusercontent.com/p/AF1QipNxfdwk72X_7UnAPclweD6Wfg_kuGZL5E62U71z=s1360-w1360-h1020",
+        cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/9-RHkYNqR5hlv38Df2vX9Q/o.jpg",
         lat=42.2258022,
         lng=-71.0361444,
     )

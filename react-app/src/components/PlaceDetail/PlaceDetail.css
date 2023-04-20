@@ -44,10 +44,3 @@
   height: 350px;
   border-radius: 5px;
 }
-
-.mapInPlaceDetail {
-  width: 315px;
-  height: 150px;
-  box-sizing: border-box;
-  background-color: lightgreen;
-}
