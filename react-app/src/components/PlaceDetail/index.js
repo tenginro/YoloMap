@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { actionClearPlace, thunkGetPlaceDetail } from "../../store/place";
 
 import "./PlaceDetail.css";
+import MapPageInDetail from "./Map";
 
 export default function PlaceDetail() {
   const { placeId } = useParams();
@@ -46,7 +47,7 @@ export default function PlaceDetail() {
                 className="mapInPlaceDetail"
                 onClick={(e) => alert("Feature coming soon")}
               >
-                Map
+                <MapPageInDetail place={place} />
               </div>
               <div>{place.address}</div>
               <div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllPlaces } from "../../store/place";
 import PlaceIndexItem from "./PlaceIndexItem";
 import "./AllPlaces.css";
+import MapPage from "./Map";
 
 export default function AllPlaces() {
   const dispatch = useDispatch();
@@ -46,8 +47,8 @@ export default function AllPlaces() {
           <PlaceIndexItem key={place.id} place={place} />
         ))}
       </div>
-      <div className="map" onClick={(e) => alert("Feature coming soon")}>
-        <h2>Map</h2>
+      <div className="map">
+        {placesArr?.length ? <MapPage placesArr={placesArr} /> : <MapPage />}
       </div>
     </div>
   );
