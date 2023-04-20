@@ -22,13 +22,14 @@ const MapPage = ({ placesArr }) => {
   });
 
   const containerStyle = {
-    width: "400px",
-    height: "100%",
+    width: "420px",
+    height: "900px",
     position: "sticky",
     right: 0,
   };
 
   const icon = {
+    // M - move to a point; L - draw a line from current point to a new point; Z - close the current path
     path: "M 8 0 L 10.472 6.472 L 17.472 7.472 L 12.472 12.472 L 13.472 19.472 L 8 16 L 2.528 19.472 L 3.528 12.472 L -1.472 7.472 L 5.528 6.472 Z",
     fillColor: "#01b636",
     fillOpacity: 1,
@@ -49,7 +50,7 @@ const MapPage = ({ placesArr }) => {
   return (
     // Important! Always set the container height explicitly
     <div className="map_page__container">
-      <div style={{ height: "800px", width: "400px" }}>
+      <div style={{ height: "900px", width: "420px" }}>
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={containerStyle}
