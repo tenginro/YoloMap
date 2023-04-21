@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllPlaces } from "../../store/place";
 import PlaceIndexItem from "./PlaceIndexItem";
@@ -9,6 +9,8 @@ export default function AllPlaces() {
   const dispatch = useDispatch();
   const placesObj = useSelector((state) => state.places.allPlaces);
   const placesArr = Object.values(placesObj);
+  const [selectedPlaceFromAllPlaces, setSelectedPlaceFromAllPlaces] =
+    useState(null);
 
   useEffect(() => {
     dispatch(thunkGetAllPlaces());
@@ -44,10 +46,23 @@ export default function AllPlaces() {
       <div className="places">
         <h2>All places</h2>
         {placesArr?.map((place) => (
-          <PlaceIndexItem key={place.id} place={place} />
+          <div
+            key={place.id}
+            onMouseOver={() => setSelectedPlaceFromAllPlaces(place)}
+            onMouseOut={() => setSelectedPlaceFromAllPlaces(null)}
+          >
+            <PlaceIndexItem key={place.id} place={place} />
+          </div>
         ))}
       </div>
-      {placesArr?.length ? <MapPage placesArr={placesArr} /> : <MapPage />}
+      {placesArr?.length ? (
+        <MapPage
+          placesArr={placesArr}
+          selectedPlaceFromAllPlaces={selectedPlaceFromAllPlaces}
+        />
+      ) : (
+        <MapPage />
+      )}
     </div>
   );
 }

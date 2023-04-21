@@ -90,23 +90,17 @@ def update_product(id):
         form["csrf_token"].data = request.cookies["csrf_token"]
 
         if form.validate_on_submit():
-            image = form.data["cover_pic"]
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-            if "url" not in upload:
-                return {"message": "not able to upload to AWS"}
-
-            url = upload["url"]
-
             product.name = form.data["name"]
             product.description = form.data["description"]
-            product.cover_pic = url
             product.price = form.data["price"]
 
             db.session.commit()
 
             updated_product = Product.query.get(id)
-            return {**updated_product.to_dict()}
+            return {
+                **updated_product.to_dict(),
+                "place": Place.query.get(product.placeId).to_dict(),
+            }
 
         if form.errors:
             return {"errors": validation_errors_to_error_messages(form.errors)}, 400

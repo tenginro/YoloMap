@@ -24,15 +24,24 @@ const MapPageInDetail = ({ place }) => {
     height: "150px",
   };
 
-  const icon = {
+  const icon1 = {
     // M - move to a point; L - draw a line from current point to a new point; Z - close the current path
     path: "M 8 0 L 10.472 6.472 L 17.472 7.472 L 12.472 12.472 L 13.472 19.472 L 8 16 L 2.528 19.472 L 3.528 12.472 L -1.472 7.472 L 5.528 6.472 Z",
-    fillColor: place.lat ? "#01b636" : "pink",
+    fillColor: "#01b636",
     fillOpacity: 1,
     // border color
-    strokeColor: place.lat ? "#74E39A" : "red",
+    strokeColor: "#74E39A",
     strokeWeight: 1,
     // size of the marker
+    scale: 1.5,
+  };
+
+  const icon2 = {
+    path: "M 8 0 L 10.472 6.472 L 17.472 7.472 L 12.472 12.472 L 13.472 19.472 L 8 16 L 2.528 19.472 L 3.528 12.472 L -1.472 7.472 L 5.528 6.472 Z",
+    fillColor: "#ffc0cb",
+    fillOpacity: 1,
+    strokeColor: "#ff0000",
+    strokeWeight: 1,
     scale: 1.5,
   };
 
@@ -57,7 +66,7 @@ const MapPageInDetail = ({ place }) => {
             <Marker
               position={currentPosition}
               title={place.name}
-              icon={icon}
+              icon={place.lat && place.lng ? icon1 : icon2}
               streetView={false}
             ></Marker>
           </GoogleMap>

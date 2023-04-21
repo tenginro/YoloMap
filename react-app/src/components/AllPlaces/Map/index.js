@@ -7,15 +7,23 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-const MapPage = ({ placesArr }) => {
+const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
+  const history = useHistory();
+  const [map, setMap] = useState(null);
+
+  console.log("selectedPlaceFromAllPlaces", selectedPlaceFromAllPlaces);
+  const [selectedPlace, setSelectedPlace] = useState(
+    selectedPlaceFromAllPlaces
+  );
+
+  console.log("selectedPlace", selectedPlace);
+
   //This sets the center of the map. This must be set BEFORE the map loads
   const [currentPosition, setCurrentPosition] = useState({
     lat: 42.3770029,
     lng: -71.1188488,
   });
-  const history = useHistory();
 
-  // This is the equivalent to a script tag
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
@@ -51,9 +59,6 @@ const MapPage = ({ placesArr }) => {
     // size of the marker
     scale: 1.5,
   };
-
-  const [map, setMap] = useState(null);
-  const [selectedPlace, setSelectedPlace] = useState(null);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -97,7 +102,7 @@ const MapPage = ({ placesArr }) => {
                   onMouseOut={() => setSelectedPlace(null)}
                   onClick={() => history.push(`/places/${place.id}`)}
                 >
-                  {selectedPlace === place && (
+                  {selectedPlace?.id === place.id && (
                     <InfoWindow
                       position={{ lat: +place.lat, lng: +place.lng }}
                       // options={{ closeBox: false }}

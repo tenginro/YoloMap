@@ -44,10 +44,20 @@ function ProfileButton({ user }) {
     <>
       {user ? (
         <>
-          <a href="https://github.com/tenginro">
+          <a
+            href="https://github.com/tenginro"
+            // open a new window
+            target="_blank"
+            // rel attribute sets the relationship between your page and the linked URL. Setting it to noopener noreferrer is to prevent a type of phishing known as tabnabbing (which persuades users to submit their login details and passwords to popular websites by impersonating those sites and convincing the user that the site is genuine.).
+            rel="noreferrer noopener"
+          >
             <i className="fa-brands fa-github fa-2x"></i>
           </a>
-          <a href="https://www.linkedin.com/in/luotengzhong/">
+          <a
+            href="https://www.linkedin.com/in/luotengzhong/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <i className="fa-brands fa-linkedin fa-2x"></i>
           </a>
           <div className="profileIcon" onClick={openMenu}>
@@ -69,10 +79,18 @@ function ProfileButton({ user }) {
         </>
       ) : (
         <div className="loginSignUpButtons">
-          <a href="https://github.com/tenginro">
+          <a
+            href="https://github.com/tenginro"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <i className="fa-brands fa-github fa-2x"></i>
           </a>
-          <a href="https://www.linkedin.com/in/luotengzhong/">
+          <a
+            href="https://www.linkedin.com/in/luotengzhong/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <i className="fa-brands fa-linkedin fa-2x"></i>
           </a>
           <OpenModalButton
