@@ -84,7 +84,7 @@ function SignupFormModal() {
           />
         </label>
         <label>
-          Budget Amount:{"  "}
+          Budget Amount: ${"  "}
           <input
             className="signupModalInput"
             type="text"
