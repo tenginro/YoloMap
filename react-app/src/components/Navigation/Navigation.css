@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  top: 70px;
-  right: 110px;
+  top: 75px;
+  right: 100px;
   border: 1px solid rgb(221, 221, 221);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   border-radius: 12px;
@@ -16,9 +16,9 @@
 }
 
 .profile-dropdown div {
-  font-size: 15px;
-  padding: 2px 5px;
-  width: 105px;
+  font-size: 18px;
+  padding: 0 10px;
+  width: 130px;
 }
 
 .logoutLine {
@@ -46,7 +46,6 @@
   list-style-type: none;
   padding-left: 50px;
   padding-right: 100px;
-  /* position: sticky; */
   top: 0px;
   background-color: white;
 }
@@ -68,8 +67,8 @@
 
 .loginSignUpButtons button {
   font-size: 20px;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 7px;
+  border-radius: 5px;
   border: none;
   background-color: #01b636;
   color: white;
@@ -103,4 +102,12 @@
 
 .fa-user-circle {
   cursor: pointer;
+}
+
+.navButtons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 50px;
+  align-items: center;
+  justify-content: space-around;
 }

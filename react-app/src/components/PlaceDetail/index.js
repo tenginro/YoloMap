@@ -11,13 +11,11 @@ import {
 } from "../../store/product";
 import ProductIndexItem from "./ProductIndexItem";
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
 import CreateProductModal from "../CreateProductModal";
 
 export default function PlaceDetail() {
   const { placeId } = useParams();
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const place = useSelector((state) => state.places.singlePlace);
   const productsObj = useSelector((state) => state.products.allProducts);
   const productsArr = Object.values(productsObj);

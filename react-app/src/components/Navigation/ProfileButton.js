@@ -44,6 +44,12 @@ function ProfileButton({ user }) {
     <>
       {user ? (
         <>
+          <a href="https://github.com/tenginro">
+            <i className="fa-brands fa-github fa-2x"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/luotengzhong/">
+            <i className="fa-brands fa-linkedin fa-2x"></i>
+          </a>
           <div className="profileIcon" onClick={openMenu}>
             <i className="fas fa-user-circle fa-2x" title={user.username} />
           </div>
@@ -63,6 +69,12 @@ function ProfileButton({ user }) {
         </>
       ) : (
         <div className="loginSignUpButtons">
+          <a href="https://github.com/tenginro">
+            <i className="fa-brands fa-github fa-2x"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/luotengzhong/">
+            <i className="fa-brands fa-linkedin fa-2x"></i>
+          </a>
           <OpenModalButton
             buttonText="Log In"
             onItemClick={closeMenu}
