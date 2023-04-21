@@ -9,8 +9,8 @@ import {
 const MapPageInDetail = ({ place }) => {
   //This sets the center of the map. This must be set BEFORE the map loads
   const [currentPosition, setCurrentPosition] = useState({
-    lat: +place.lat,
-    lng: +place.lng,
+    lat: +place.lat || 42.3770029,
+    lng: +place.lng || -71.1188488,
   });
 
   // This is the equivalent to a script tag
@@ -22,6 +22,18 @@ const MapPageInDetail = ({ place }) => {
   const containerStyle = {
     width: "315px",
     height: "150px",
+  };
+
+  const icon = {
+    // M - move to a point; L - draw a line from current point to a new point; Z - close the current path
+    path: "M 8 0 L 10.472 6.472 L 17.472 7.472 L 12.472 12.472 L 13.472 19.472 L 8 16 L 2.528 19.472 L 3.528 12.472 L -1.472 7.472 L 5.528 6.472 Z",
+    fillColor: place.lat ? "#01b636" : "pink",
+    fillOpacity: 1,
+    // border color
+    strokeColor: place.lat ? "#74E39A" : "red",
+    strokeWeight: 1,
+    // size of the marker
+    scale: 1.5,
   };
 
   const [map, setMap] = useState(null);
@@ -38,14 +50,14 @@ const MapPageInDetail = ({ place }) => {
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={containerStyle}
-            zoom={10}
+            zoom={14}
             center={currentPosition}
             onUnmount={onUnmount}
           >
             <Marker
               position={currentPosition}
-              title="place.name"
-              icon={<i className="fas fa-regular fa-star"></i>}
+              title={place.name}
+              icon={icon}
               streetView={false}
             ></Marker>
           </GoogleMap>

@@ -47,19 +47,19 @@ function ProfileButton({ user }) {
           <div className="profileIcon" onClick={openMenu}>
             <i className="fas fa-user-circle fa-2x" title={user.username} />
           </div>
-          <ul className={ulClassName} ref={ulRef}>
-            <li>{`Budget: $${Math.round(user.budget / 1000)},000`}</li>
-            <li
+          <div className={ulClassName} ref={ulRef}>
+            <div>{`Budget: $${Math.round(user.budget / 1000)},000`}</div>
+            <div
               className="viewProfileLine"
               onClick={(e) => history.push("/current")}
             >
               View my profile
-            </li>
-            <li className="logoutLine" onClick={handleLogout}>
+            </div>
+            <div className="logoutLine" onClick={handleLogout}>
               <i className="fas fa-solid fa-right-from-bracket"></i>
               Log Out
-            </li>
-          </ul>
+            </div>
+          </div>
         </>
       ) : (
         <div className="loginSignUpButtons">

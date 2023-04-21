@@ -21,7 +21,7 @@
   font-weight: 900;
 }
 
-.deletePlaceButton {
+.deleteButtonItem {
   list-style-type: none;
   color: white;
   border-radius: 8px;
@@ -30,12 +30,13 @@
   border-color: #989898;
 }
 
-.updatePlaceButton {
+.updateButtonItem {
   background-color: #3bd16f;
   color: white;
   border-radius: 8px;
   font-size: 20px;
   border-color: #3bd16f;
+  list-style-type: none;
 }
 
 .userProfileIndexItemPage {
@@ -47,4 +48,45 @@
   flex-direction: column;
   justify-content: center;
   row-gap: 30px;
+}
+
+#placesAndProducts {
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  column-gap: 30px;
+}
+
+#placesAndProducts .places {
+  width: 700px;
+}
+
+#placesAndProducts .products {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.productIndexInUserProfile {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.productIndexInUserProfile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.userProductButtons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+.toGreen.link {
+  color: #01b636;
+  font-size: 18px;
+  text-decoration: underline;
 }

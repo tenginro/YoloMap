@@ -1,0 +1,28 @@
+.deleteProductModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.deleteProductModalButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  column-gap: 20px;
+}
+
+.yesButton {
+  background-color: #989898;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.noButton {
+  background-color: #3bd16f;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+}

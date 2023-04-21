@@ -40,12 +40,12 @@ const UserPlaceIndexItem = ({ place }) => {
   return (
     <div className="userProfileIndexItemPage">
       <div className="userPlaceButtons">
-        <button onClick={onClickUpdate} className="updatePlaceButton">
+        <button onClick={onClickUpdate} className="updateButtonItem">
           <NavLink exact to={`/places/${place.id}/edit`} place={place}>
             Update
           </NavLink>
         </button>
-        <button className="deletePlaceButton">
+        <button className="deleteButtonItem">
           <OpenModalMenuItem
             itemText="Delete"
             onItemClick={closeMenu}

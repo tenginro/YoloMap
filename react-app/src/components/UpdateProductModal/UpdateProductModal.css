@@ -1,0 +1,46 @@
+#updateProductModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#updateProductModal .inputLabel {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+}
+.updateProductForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.updateProductForm button {
+  margin-top: 10px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 8px;
+  border: none;
+  background-color: #01b636;
+  color: white;
+}
+
+.updateProductForm input {
+  width: 380px;
+  height: 18px;
+}
+
+#coverPicProductInput {
+  height: 22px;
+}
+
+.errors {
+  color: red;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
