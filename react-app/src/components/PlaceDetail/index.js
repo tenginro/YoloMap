@@ -59,18 +59,17 @@ export default function PlaceDetail() {
           <h3>Location & Hours</h3>
           <div className="locationLine">
             <div className="locationPart">
-              <div
-                className="mapInPlaceDetail"
-                onClick={(e) => alert("Feature coming soon")}
-              >
+              <div className="mapInPlaceDetail">
                 <MapPageInDetail place={place} />
               </div>
-              <div>{place.address}</div>
               <div>
-                {place.city}, {place.state}
+                <div>{place.address}</div>
+                <div>
+                  {place.city}, {place.state}
+                </div>
               </div>
             </div>
-            <div>
+            <div className="hoursInfoContainer">
               {place.hours.split("; ").map((el, index) => (
                 <div key={index}>{el}</div>
               ))}
@@ -79,8 +78,22 @@ export default function PlaceDetail() {
         </div>
         <div>
           <h3>Contacts</h3>
-          <div>{place.website ? place.website : "No website"}</div>
-          <div>{place.phone ? place.phone : "No phone number"}</div>
+          <div className="websiteAndPhone">
+            <div className="placeWebsite">
+              {place.website ? (
+                <a href={place.website}>
+                  {place.website}{" "}
+                  <i className="fas fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              ) : (
+                "No website"
+              )}
+            </div>
+            <div className="phoneContact">
+              {place.phone ? place.phone : "No phone number"}{" "}
+              <i className="fas fa-solid fa-square-phone"></i>
+            </div>
+          </div>
         </div>
       </div>
       <div>

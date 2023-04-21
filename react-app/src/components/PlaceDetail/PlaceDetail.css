@@ -37,7 +37,7 @@
 .secondPart {
   display: flex;
   flex-direction: row;
-  column-gap: 300px;
+  column-gap: 200px;
 }
 
 .locationHours {
@@ -48,6 +48,11 @@
   display: flex;
   flex-direction: row;
   column-gap: 20px;
+}
+.locationPart {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
 .placeDetailPage img {
   width: 350px;
@@ -92,4 +97,25 @@
   background-color: white;
   color: #01b636;
   text-decoration: underline;
+}
+
+.websiteAndPhone {
+  border: 1px solid lightgray;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.placeWebsite {
+  width: 300px;
+  word-break: break-all;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.phoneContact {
+  padding-top: 10px;
+}
+
+.hoursInfoContainer {
+  width: 200px;
 }

@@ -48,7 +48,7 @@ def seed_products():
         placeId=5,
         name="General Admission Ticket",
         description="one day",
-        cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/DtW76OIGv5Y3_JMATH50Nw/o.jpg",
+        cover_pic="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/530000/530919-fenway-kenmore.jpg",
         price=27,
     )
     product7 = Product(
