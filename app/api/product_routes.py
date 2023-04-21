@@ -1,8 +1,9 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from ..models import Place, User, db, Product
+from ..models import Place, db, Product
 from ..forms import ProductForm
+from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
 product_routes = Blueprint("products", __name__)
 
@@ -48,12 +49,20 @@ def create_product():
     if form.validate_on_submit():
         place = Place.query.get(form.data["placeId"])
 
+        image = form.data["cover_pic"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            return {"message": "not able to upload to AWS"}
+
+        url = upload["url"]
+
         new_product = Product(
             creatorId=user["id"],
             placeId=place["id"],
             name=form.data["name"],
             description=form.data["description"],
-            cover_pic=form.data["cover_pic"],
+            cover_pic=url,
             price=form.data["price"],
         )
         db.session.add(new_product)
@@ -77,9 +86,17 @@ def update_product(id):
         form["csrf_token"].data = request.cookies["csrf_token"]
 
         if form.validate_on_submit():
+            image = form.data["cover_pic"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if "url" not in upload:
+                return {"message": "not able to upload to AWS"}
+
+            url = upload["url"]
+
             product.name = form.data["name"]
             product.description = form.data["description"]
-            product.cover_pic = form.data["cover_pic"]
+            product.cover_pic = url
             product.price = form.data["price"]
 
             db.session.commit()

@@ -5,6 +5,7 @@
 
 button {
   -webkit-filter: brightness(100%);
+  cursor: pointer;
 }
 
 button:hover {

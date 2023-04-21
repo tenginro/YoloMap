@@ -1,8 +1,31 @@
 const LOAD_PLACE_PRODUCTS = "products/load_place_all";
+const CLEAR_PLACE_PRODUCTS = "products/clear_place_all";
+const CREATE_PRODUCT = "products/create";
+const UPDATE_PRODUCT = "products/update";
+const DELETE_PRODUCT = "products/delete";
 
 export const actionLoadPlaceAllProducts = (products) => ({
   type: LOAD_PLACE_PRODUCTS,
   products,
+});
+
+export const actionClearPlaceAllProducts = () => ({
+  type: CLEAR_PLACE_PRODUCTS,
+});
+
+export const actionCreateProduct = (product) => ({
+  type: CREATE_PRODUCT,
+  product,
+});
+
+export const actionUpdateProduct = (product) => ({
+  type: UPDATE_PRODUCT,
+  product,
+});
+
+export const actionDeleteProduct = (id) => ({
+  type: DELETE_PRODUCT,
+  id,
 });
 
 export const thunkGetAllProductsForPlace = (placeId) => async (dispatch) => {
@@ -10,10 +33,71 @@ export const thunkGetAllProductsForPlace = (placeId) => async (dispatch) => {
   if (response.ok) {
     const allProducts = await response.json();
     const allProductsForPlace = allProducts.filter(
-      (el) => el.placeId === placeId
+      (el) => el.placeId === +placeId
     );
     await dispatch(actionLoadPlaceAllProducts(allProductsForPlace));
     return allProductsForPlace;
+  }
+  return await response.json();
+};
+
+export const thunkCreateProduct = (product, placeId) => async (dispatch) => {
+  const response = await fetch(`/api/products/new`, {
+    method: "POST",
+    body: product,
+  });
+  if (response.ok) {
+    const newProduct = await response.json();
+    await dispatch(actionCreateProduct(newProduct));
+    return newProduct;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      const errorsArr = data.errors;
+      let errorsObj = {};
+      errorsArr.forEach((err) => {
+        const [key, value] = err.split(": ");
+        errorsObj[key] = value;
+      });
+      return { errors: errorsObj };
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+
+export const thunkUpdateProduct = (product, productId) => async (dispatch) => {
+  const response = await fetch(`/api/products/${productId}/edit`, {
+    method: "PATCH",
+    body: product,
+  });
+  if (response.ok) {
+    const updatedProduct = await response.json();
+    await dispatch(actionCreateProduct(updatedProduct));
+    return updatedProduct;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      const errorsArr = data.errors;
+      let errorsObj = {};
+      errorsArr.forEach((err) => {
+        const [key, value] = err.split(": ");
+        errorsObj[key] = value;
+      });
+      return { errors: errorsObj };
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+
+export const thunkDelateProduct = (product) => async (dispatch) => {
+  const response = await fetch(`/api/products/${product.id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    await dispatch(actionDeleteProduct(product.id));
+    return await response.json();
   }
   return await response.json();
 };
@@ -31,6 +115,28 @@ const productReducer = (state = initialState, action) => {
         all[p.id] = p;
       });
       return { ...state, allProducts: { ...all } };
+    case CREATE_PRODUCT:
+      return {
+        ...state,
+        allProducts: {
+          ...state.allProducts,
+          [action.product.id]: action.product,
+        },
+      };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+        allProducts: {
+          ...state.allProducts,
+          [action.product.id]: action.product,
+        },
+      };
+    case DELETE_PRODUCT:
+      const newState = { ...state };
+      delete newState.allProducts[action.id];
+      return newState;
+    case CLEAR_PLACE_PRODUCTS:
+      return { ...state, allProducts: {} };
     default:
       return state;
   }

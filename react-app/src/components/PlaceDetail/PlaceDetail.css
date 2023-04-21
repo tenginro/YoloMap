@@ -4,6 +4,16 @@
   align-items: center;
 }
 
+.placeDetailPage h2 {
+  font-weight: 900;
+}
+.placeDetailPage h3 {
+  font-weight: 800;
+}
+.placeDetailPage h4 {
+  font-weight: 700;
+}
+
 .backgroundPart {
   display: flex;
   flex-direction: row;
@@ -43,4 +53,25 @@
   width: 350px;
   height: 350px;
   border-radius: 5px;
+}
+
+.productsListing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 20px;
+}
+
+.productIndex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 600px;
+  column-gap: 10px;
+}
+
+.productIndex img {
+  width: 120px;
+  height: 120px;
 }
