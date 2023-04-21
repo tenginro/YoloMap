@@ -81,7 +81,11 @@ export default function PlaceDetail() {
           <div className="websiteAndPhone">
             <div className="placeWebsite">
               {place.website ? (
-                <a href={place.website}>
+                <a
+                  href={place.website}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   {place.website}{" "}
                   <i className="fas fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
