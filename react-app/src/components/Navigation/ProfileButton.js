@@ -1,35 +1,55 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
+import { thunkGetUserCart } from "../../store/cart";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const cartItemsobj = useSelector((state) => state.cart);
   const [showMenu, setShowMenu] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  // create a reference to a DOM element or a component.
   const ulRef = useRef();
 
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
+  const openCart = () => {
+    if (showCart) return;
+    setShowCart(true);
+  };
 
   useEffect(() => {
     if (!showMenu) return;
-
     const closeMenu = (e) => {
       if (!ulRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
-
     document.addEventListener("click", closeMenu);
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
+
+  useEffect(() => {
+    if (!showCart) return;
+    const closeCart = (e) => {
+      if (!ulRef.current?.contains(e.target)) {
+        setShowCart(false);
+      }
+    };
+    document.addEventListener("click", closeCart);
+    return () => document.removeEventListener("click", closeCart);
+  }, [showCart]);
+
+  useEffect(() => {
+    dispatch(thunkGetUserCart());
+  }, [dispatch]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -38,7 +58,9 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const cartClassName = "cart-sidebar" + (showCart ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
+  const closeCart = () => setShowCart(false);
 
   return (
     <>
@@ -76,8 +98,11 @@ function ProfileButton({ user }) {
               Log Out
             </div>
           </div>
-          <div>
+          <div className="cartIcon" onClick={openCart}>
             <i className="fa-solid fa-cart-shopping fa-2x"></i>
+          </div>
+          <div className={cartClassName} ref={ulRef}>
+            <div>Products in your cart</div>
           </div>
         </>
       ) : (
