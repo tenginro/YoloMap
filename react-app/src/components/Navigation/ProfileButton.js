@@ -76,6 +76,9 @@ function ProfileButton({ user }) {
               Log Out
             </div>
           </div>
+          <div>
+            <i className="fa-solid fa-cart-shopping fa-2x"></i>
+          </div>
         </>
       ) : (
         <div className="loginSignUpButtons">
