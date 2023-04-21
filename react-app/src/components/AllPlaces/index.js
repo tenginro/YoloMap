@@ -37,6 +37,9 @@ export default function AllPlaces() {
           <input type="checkbox"></input> Bar
         </label>
         <label>
+          <input type="checkbox"></input> Coffee/Tea
+        </label>
+        <label>
           <input type="checkbox"></input> Restaurant
         </label>
         <label>

@@ -66,31 +66,33 @@ export default function UserProfile() {
           </div>
           {productsArr?.map((product) => (
             <div key={product.id} className="productIndexInUserProfile">
-              <img src={product.cover_pic} alt="productCoverPic"></img>
-              <div>
-                <h4>
-                  {product.name} <div>in {product?.place?.name}</div>
-                </h4>
-                <div>{product.description}</div>
-                <div>${product.price}</div>
-                <div className="userProductButtons">
-                  <button className="updateButtonItem">
-                    <OpenModalMenuItem
-                      itemText="Update"
-                      modalComponent={
-                        <UpdateProductModal
-                          product={product}
-                          placeId={product.placeId}
-                        />
-                      }
-                    />
-                  </button>
-                  <button className="deleteButtonItem">
-                    <OpenModalMenuItem
-                      itemText="Delete"
-                      modalComponent={<DeleteProductModal product={product} />}
-                    />
-                  </button>
+              <div className="userProductButtons">
+                <button className="updateButtonItem">
+                  <OpenModalMenuItem
+                    itemText="Update"
+                    modalComponent={
+                      <UpdateProductModal
+                        product={product}
+                        placeId={product.placeId}
+                      />
+                    }
+                  />
+                </button>
+                <button className="deleteButtonItem">
+                  <OpenModalMenuItem
+                    itemText="Delete"
+                    modalComponent={<DeleteProductModal product={product} />}
+                  />
+                </button>
+              </div>
+              <div className="productInformation">
+                <img src={product.cover_pic} alt="productCoverPic"></img>
+                <div>
+                  <h4>
+                    {product.name} <div>in {product?.place?.name}</div>
+                  </h4>
+                  <div>{product.description}</div>
+                  <div>${product.price}</div>
                 </div>
               </div>
             </div>

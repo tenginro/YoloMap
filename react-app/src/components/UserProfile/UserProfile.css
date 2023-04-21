@@ -24,7 +24,7 @@
 .deleteButtonItem {
   list-style-type: none;
   color: white;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 20px;
   background-color: #989898;
   border-color: #989898;
@@ -33,7 +33,7 @@
 .updateButtonItem {
   background-color: #3bd16f;
   color: white;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 20px;
   border-color: #3bd16f;
   list-style-type: none;
@@ -41,13 +41,14 @@
 
 .userProfileIndexItemPage {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
+
 .userPlaceButtons {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 30px;
+  flex-direction: row;
+  justify-content: flex-start;
+  column-gap: 30px;
 }
 
 #placesAndProducts {
@@ -58,19 +59,21 @@
 }
 
 #placesAndProducts .places {
-  width: 700px;
+  width: 65%;
 }
 
 #placesAndProducts .products {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 10px;
 }
 
 .productIndexInUserProfile {
   display: flex;
-  flex-direction: row;
-  column-gap: 10px;
+  flex-direction: column;
+  row-gap: 10px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
 }
 
 .productIndexInUserProfile img {
@@ -82,7 +85,13 @@
 .userProductButtons {
   display: flex;
   flex-direction: row;
-  column-gap: 20px;
+  column-gap: 30px;
+}
+
+.productInformation {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 }
 
 .toGreen.link {

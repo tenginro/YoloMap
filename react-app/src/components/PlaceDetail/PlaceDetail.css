@@ -72,8 +72,8 @@
 }
 
 .productIndex img {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
 }
 
 .addProductContainer {
@@ -87,7 +87,7 @@
 .addProductContainer button {
   font-size: 18px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 4px;
   border: none;
   background-color: white;
   color: #01b636;
