@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { useModal } from "../../context/Modal";
-import { thunkCreateProduct, thunkUpdateProduct } from "../../store/product";
+import {
+  thunkCreateProduct,
+  thunkGetUserProducts,
+  thunkUpdateProduct,
+} from "../../store/product";
+import "./UpdateProductModal.css";
 
 export default function UpdateProductModal({ product, placeId }) {
   const dispatch = useDispatch();
@@ -30,7 +35,7 @@ export default function UpdateProductModal({ product, placeId }) {
     setImageLoading(true);
 
     let response = await dispatch(thunkUpdateProduct(formData, product.id));
-
+    console.log("response back from thunk", response);
     if (response.errors) {
       setImageLoading(false);
       setErrorMessage(response.errors);
@@ -43,10 +48,10 @@ export default function UpdateProductModal({ product, placeId }) {
   };
 
   return (
-    <div id="createProductModal">
+    <div id="updateProductModal">
       <h2>Update a product</h2>
       <form
-        className="createProductForm"
+        className="updateProductForm"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -109,6 +114,7 @@ export default function UpdateProductModal({ product, placeId }) {
             type="file"
             accept="image/*"
             onChange={(e) => setCoverPic(e.target.files[0])}
+            required
           />
         </label>
 

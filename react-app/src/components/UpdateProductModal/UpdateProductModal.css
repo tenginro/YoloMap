@@ -1,32 +1,32 @@
-#createProductModal {
+#updateProductModal {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-#createProductModal .inputLabel {
+#updateProductModal .inputLabel {
   display: flex;
   flex-direction: row;
   column-gap: 5px;
 }
-.createProductForm {
+.updateProductForm {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
 }
 
-.createProductForm button {
+.updateProductForm button {
   margin-top: 10px;
   font-size: 15px;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   background-color: #01b636;
   color: white;
 }
 
-.createProductForm input {
+.updateProductForm input {
   width: 380px;
   height: 18px;
 }

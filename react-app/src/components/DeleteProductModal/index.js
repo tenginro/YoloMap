@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { useModal } from "../../context/Modal";
-import { thunkDelateProduct } from "../../store/product";
+import { thunkDelateProduct, thunkGetUserProducts } from "../../store/product";
 import "./DeleteProductModal.css";
 
 export default function DeleteProductModal({ product }) {
@@ -16,6 +16,7 @@ export default function DeleteProductModal({ product }) {
     e.preventDefault();
     await dispatch(thunkDelateProduct(product))
       .then(closeModal)
+      .then(() => dispatch(thunkGetUserProducts()))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {

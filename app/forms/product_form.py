@@ -16,13 +16,12 @@ class ProductForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
     description = StringField("description")
     cover_pic = FileField(
-        "cover_pic", validators=[Optional(), FileAllowed(list(ALLOWED_EXTENSIONS))]
+        "cover_pic", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))]
     )
     price = IntegerField(
         "price",
         validators=[
-            DataRequired(),
-            NumberRange(min=0, message="Please provide a valid price."),
+            NumberRange(min=1, message="Please provide a valid price."),
         ],
     )
     placeId = IntegerField("placeId", validators=[DataRequired()])

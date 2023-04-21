@@ -42,27 +42,34 @@ export default function UserProfile() {
         <div>Email: {user.email}</div>
         <div>Budget: {Math.round(user.budget / 1000)},000</div>
       </div>
-      <NavLink exact to="/places/new">
-        Create a new place you want to go
-      </NavLink>
-      <NavLink exact to="/products/new">
-        Create a new product you want to get
-      </NavLink>
+
       <div id="placesAndProducts">
         <div className="places">
-          <h2>All places you created</h2>
+          <div>
+            <h2>All places you created </h2>
+            <NavLink exact to="/places/new">
+              <div className="toGreen link">
+                Create a new place you want to go
+              </div>
+            </NavLink>
+          </div>
           {placesArr?.map((place) => (
             <UserPlaceIndexItem key={place.id} place={place} />
           ))}
         </div>
         <div className="products">
-          <h2>All products you created</h2>
+          <div>
+            <h2>All products you created</h2>
+            <div className="toChangeSize">
+              To create a product, go to the place detail page
+            </div>
+          </div>
           {productsArr?.map((product) => (
             <div key={product.id} className="productIndexInUserProfile">
               <img src={product.cover_pic} alt="productCoverPic"></img>
               <div>
                 <h4>
-                  {product.name} in {product?.place.name}
+                  {product.name} <div>in {product?.place?.name}</div>
                 </h4>
                 <div>{product.description}</div>
                 <div>${product.price}</div>

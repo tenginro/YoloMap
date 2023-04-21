@@ -25,7 +25,7 @@ export default function CreateProductModal({ placeId }) {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("price", price);
+    formData.append("price", Math.round(price));
     formData.append("placeId", placeId);
     formData.append("cover_pic", cover_pic);
     setImageLoading(true);

@@ -87,6 +87,7 @@ export const thunkUpdateProduct = (product, productId) => async (dispatch) => {
     method: "PATCH",
     body: product,
   });
+
   if (response.ok) {
     const updatedProduct = await response.json();
     await dispatch(actionCreateProduct(updatedProduct));
@@ -100,6 +101,7 @@ export const thunkUpdateProduct = (product, productId) => async (dispatch) => {
         const [key, value] = err.split(": ");
         errorsObj[key] = value;
       });
+      console.log("errorsObj", errorsObj);
       return { errors: errorsObj };
     }
   } else {

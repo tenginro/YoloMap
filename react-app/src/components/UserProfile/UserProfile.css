@@ -76,10 +76,17 @@
 .productIndexInUserProfile img {
   width: 150px;
   height: 150px;
+  border-radius: 5px;
 }
 
 .userProductButtons {
   display: flex;
   flex-direction: row;
   column-gap: 20px;
+}
+
+.toGreen.link {
+  color: #01b636;
+  font-size: 18px;
+  text-decoration: underline;
 }
