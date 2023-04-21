@@ -102,7 +102,7 @@ def seed_places():
         city="Orlando",
         state="FL",
         description="WDW is made up of four theme parks: Magic Kingdom, Epcot, Disney's Hollywood Studios, and Disney's Animal Kingdom. ",
-        website="https://disneyworld.disney.go.com/?CMP=OKC-80007798_GM_WDW_destination_waltdisneyworldresort_NA",
+        website="https://disneyworld.disney.go.com/",
         phone="(407) 939-5277",
         hours="Open 24 hours",
         category="Travel",
