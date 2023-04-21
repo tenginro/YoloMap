@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
   GoogleMap,
@@ -11,12 +11,13 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
   const history = useHistory();
   const [map, setMap] = useState(null);
 
-  console.log("selectedPlaceFromAllPlaces", selectedPlaceFromAllPlaces);
   const [selectedPlace, setSelectedPlace] = useState(
     selectedPlaceFromAllPlaces
   );
 
-  console.log("selectedPlace", selectedPlace);
+  useEffect(() => {
+    setSelectedPlace(selectedPlaceFromAllPlaces);
+  }, [selectedPlaceFromAllPlaces]);
 
   //This sets the center of the map. This must be set BEFORE the map loads
   const [currentPosition, setCurrentPosition] = useState({
@@ -102,21 +103,23 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
                   onMouseOut={() => setSelectedPlace(null)}
                   onClick={() => history.push(`/places/${place.id}`)}
                 >
-                  {selectedPlace?.id === place.id && (
-                    <InfoWindow
-                      position={{ lat: +place.lat, lng: +place.lng }}
-                      // options={{ closeBox: false }}
-                    >
-                      <div>
-                        <img
-                          src={place.cover_pic}
-                          alt={place.name}
-                          style={{ height: "120px", width: "120px" }}
-                        />
-                        <div>{place.name}</div>
-                      </div>
-                    </InfoWindow>
-                  )}
+                  {selectedPlace?.id === place.id &&
+                    selectedPlace.lat &&
+                    selectedPlace.lng && (
+                      <InfoWindow
+                        position={{ lat: +place.lat, lng: +place.lng }}
+                        // options={{ closeBox: false }}
+                      >
+                        <div>
+                          <img
+                            src={place.cover_pic}
+                            alt={place.name}
+                            style={{ height: "120px", width: "120px" }}
+                          />
+                          <div>{place.name}</div>
+                        </div>
+                      </InfoWindow>
+                    )}
                 </Marker>
               ))}
           </GoogleMap>
