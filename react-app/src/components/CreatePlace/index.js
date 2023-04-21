@@ -5,9 +5,6 @@ import { thunkCreatePlace } from "../../store/place";
 
 import "./CreatePlace.css";
 
-const defaultProfilePic =
-  "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
-
 export default function CreatePlace() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -22,8 +19,9 @@ export default function CreatePlace() {
   const [hours, setHours] = useState("");
   const [category, setCategory] = useState("");
   const [cover_pic, setCover_Pic] = useState("");
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
 
   const [errorMessage, setErrorMessage] = useState({});
 
@@ -41,15 +39,17 @@ export default function CreatePlace() {
     formData.append("phone", phone);
     formData.append("hours", hours);
     formData.append("category", category);
-    formData.append("cover_pic", cover_pic || defaultProfilePic);
-    formData.append("lat", lat);
-    formData.append("lng", lng);
+    formData.append("cover_pic", cover_pic);
+    if (lat) formData.append("lat", lat);
+    if (lng) formData.append("lng", lng);
 
     let response = await dispatch(thunkCreatePlace(formData));
 
     if (response.errors) {
+      setImageLoading(false);
       setErrorMessage(response.errors);
     } else {
+      setImageLoading(false);
       setErrorMessage({});
       return history.push(`/places/${response.id}`);
     }
@@ -82,12 +82,13 @@ export default function CreatePlace() {
               <div className="errors">{errorMessage.description}</div>
             )}
           </div>
-          <input
+          <textarea
+            className="descriptionInputArea"
             type="text"
             value={description}
             placeholder="description"
             onChange={(e) => setDescription(e.target.value)}
-          ></input>
+          ></textarea>
         </label>
 
         <label>
@@ -207,16 +208,17 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Cover Picture: (optional)
+            Cover Picture: *{"  "}
             {errorMessage?.cover_pic && (
               <div className="errors">{errorMessage.cover_pic}</div>
             )}
           </div>
           <input
-            type="text"
-            value={cover_pic}
-            placeholder="picture"
-            onChange={(e) => setCover_Pic(e.target.value)}
+            id="coverPicPlaceInput"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setCover_Pic(e.target.files[0])}
+            required
           ></input>
         </label>
 

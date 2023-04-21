@@ -35,7 +35,7 @@ function Navigation({ isLoaded }) {
         ></input>
       )}
       {isLoaded && (
-        <li>
+        <li className="navButtons">
           <ProfileButton user={sessionUser} />
         </li>
       )}

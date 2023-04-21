@@ -3,11 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { useModal } from "../../context/Modal";
-import {
-  thunkCreateProduct,
-  thunkGetUserProducts,
-  thunkUpdateProduct,
-} from "../../store/product";
+import { thunkUpdateProduct } from "../../store/product";
 import "./UpdateProductModal.css";
 
 export default function UpdateProductModal({ product, placeId }) {
@@ -16,9 +12,7 @@ export default function UpdateProductModal({ product, placeId }) {
 
   const [name, setName] = useState(product.name);
   const [description, setDescription] = useState(product.description);
-  const [cover_pic, setCoverPic] = useState(product.cover_pic);
   const [price, setPrice] = useState(product.price);
-  const [imageLoading, setImageLoading] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState({});
   const { closeModal } = useModal();
@@ -31,16 +25,11 @@ export default function UpdateProductModal({ product, placeId }) {
     formData.append("description", description);
     formData.append("price", Math.round(price));
     formData.append("placeId", placeId);
-    formData.append("cover_pic", cover_pic);
-    setImageLoading(true);
 
     let response = await dispatch(thunkUpdateProduct(formData, product.id));
-    console.log("response back from thunk", response);
     if (response.errors) {
-      setImageLoading(false);
       setErrorMessage(response.errors);
     } else {
-      setImageLoading(false);
       setErrorMessage({});
       closeModal();
       return history.push(`/current`);
@@ -100,22 +89,6 @@ export default function UpdateProductModal({ product, placeId }) {
             onChange={(e) => setPrice(e.target.value)}
             required
           ></input>
-        </label>
-
-        <label>
-          <div className="inputLabel">
-            Cover Picture: *
-            {errorMessage?.cover_pic && (
-              <div className="errors">{errorMessage.cover_pic}</div>
-            )}
-          </div>
-          <input
-            id="coverPicProductInput"
-            type="file"
-            accept="image/*"
-            onChange={(e) => setCoverPic(e.target.files[0])}
-            required
-          />
         </label>
 
         <div className="buttonContainer">

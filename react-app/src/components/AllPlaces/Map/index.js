@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
   GoogleMap,
@@ -7,15 +7,24 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-const MapPage = ({ placesArr }) => {
+const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
+  const history = useHistory();
+  const [map, setMap] = useState(null);
+
+  const [selectedPlace, setSelectedPlace] = useState(
+    selectedPlaceFromAllPlaces
+  );
+
+  useEffect(() => {
+    setSelectedPlace(selectedPlaceFromAllPlaces);
+  }, [selectedPlaceFromAllPlaces]);
+
   //This sets the center of the map. This must be set BEFORE the map loads
   const [currentPosition, setCurrentPosition] = useState({
     lat: 42.3770029,
     lng: -71.1188488,
   });
-  const history = useHistory();
 
-  // This is the equivalent to a script tag
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
@@ -51,9 +60,6 @@ const MapPage = ({ placesArr }) => {
     // size of the marker
     scale: 1.5,
   };
-
-  const [map, setMap] = useState(null);
-  const [selectedPlace, setSelectedPlace] = useState(null);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -97,21 +103,23 @@ const MapPage = ({ placesArr }) => {
                   onMouseOut={() => setSelectedPlace(null)}
                   onClick={() => history.push(`/places/${place.id}`)}
                 >
-                  {selectedPlace === place && (
-                    <InfoWindow
-                      position={{ lat: +place.lat, lng: +place.lng }}
-                      // options={{ closeBox: false }}
-                    >
-                      <div>
-                        <img
-                          src={place.cover_pic}
-                          alt={place.name}
-                          style={{ height: "120px", width: "120px" }}
-                        />
-                        <div>{place.name}</div>
-                      </div>
-                    </InfoWindow>
-                  )}
+                  {selectedPlace?.id === place.id &&
+                    selectedPlace.lat &&
+                    selectedPlace.lng && (
+                      <InfoWindow
+                        position={{ lat: +place.lat, lng: +place.lng }}
+                        // options={{ closeBox: false }}
+                      >
+                        <div>
+                          <img
+                            src={place.cover_pic}
+                            alt={place.name}
+                            style={{ height: "120px", width: "120px" }}
+                          />
+                          <div>{place.name}</div>
+                        </div>
+                      </InfoWindow>
+                    )}
                 </Marker>
               ))}
           </GoogleMap>

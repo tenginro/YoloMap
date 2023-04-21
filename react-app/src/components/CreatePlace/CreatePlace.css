@@ -42,9 +42,18 @@
   background-color: #01b636;
   color: white;
 }
+#PlaceForm .descriptionInputArea {
+  height: 40px;
+  width: 380px;
+  overflow-y: auto;
+}
 
 #PlaceForm .inputLabel {
   display: flex;
   flex-direction: row;
   column-gap: 5px;
+}
+
+#PlaceForm #coverPicPlaceInput {
+  height: 22px;
 }

@@ -22,7 +22,7 @@ export default function UpdatePlaceForm({ place }) {
   const [phone, setPhone] = useState(place.phone || "");
   const [hours, setHours] = useState(place.hours || "");
   const [category, setCategory] = useState(place.category);
-  const [cover_pic, setCover_Pic] = useState(place.cover_pic);
+  // const [cover_pic, setCover_Pic] = useState(place.cover_pic);
   const [lat, setLat] = useState(place.lat || 0);
   const [lng, setLng] = useState(place.lng || 0);
 
@@ -44,7 +44,7 @@ export default function UpdatePlaceForm({ place }) {
     formData.append("phone", phone);
     formData.append("hours", hours);
     formData.append("category", category);
-    formData.append("cover_pic", cover_pic || defaultProfilePic);
+    // formData.append("cover_pic", cover_pic || defaultProfilePic);
     formData.append("lat", lat);
     formData.append("lng", lng);
 
@@ -54,12 +54,12 @@ export default function UpdatePlaceForm({ place }) {
       setErrorMessage(response.errors);
     } else {
       setErrorMessage({});
-      return history.push(`/places/${response.id}`);
+      return history.push(`/current`);
     }
   };
 
   return (
-    <div className="placeForm">
+    <div className="placeFormContainer">
       <form onSubmit={handleSubmit} id="PlaceForm">
         <h2>Update the place</h2>
         <label>
@@ -85,12 +85,13 @@ export default function UpdatePlaceForm({ place }) {
               <div className="errors">{errorMessage.description}</div>
             )}
           </div>
-          <input
+          <textarea
+            className="descriptionInputArea"
             type="text"
             value={description}
             placeholder="please provide a short description"
             onChange={(e) => setDescription(e.target.value)}
-          ></input>
+          ></textarea>
         </label>
 
         <label>
@@ -208,7 +209,7 @@ export default function UpdatePlaceForm({ place }) {
           </select>
         </div>
 
-        <label>
+        {/* <label>
           <div className="inputLabel">
             Cover Picture: (optional){"  "}
             {errorMessage?.cover_pic && (
@@ -221,7 +222,7 @@ export default function UpdatePlaceForm({ place }) {
             placeholder="picture"
             onChange={(e) => setCover_Pic(e.target.value)}
           ></input>
-        </label>
+        </label> */}
 
         <label>
           <div className="inputLabel">

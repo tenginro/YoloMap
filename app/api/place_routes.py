@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 
 from ..models import Place, db
 from ..forms import PlaceForm
+from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
 place_routes = Blueprint("places", __name__)
 
@@ -46,6 +47,14 @@ def create_place():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
+        image = form.data["cover_pic"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            return {"message": "not able to upload to AWS"}
+
+        url = upload["url"]
+
         new_place = Place(
             creatorId=user["id"],
             name=form.data["name"],
@@ -57,7 +66,7 @@ def create_place():
             phone=form.data["phone"],
             hours=form.data["hours"],
             category=form.data["category"],
-            cover_pic=form.data["cover_pic"],
+            cover_pic=url,
             lat=form.data["lat"],
             lng=form.data["lng"],
         )
@@ -91,7 +100,7 @@ def update_place(id):
             place.phone = form.data["phone"]
             place.hours = form.data["hours"]
             place.category = form.data["category"]
-            place.cover_pic = form.data["cover_pic"]
+            # place.cover_pic = form.data["cover_pic"]
             place.lat = form.data["lat"]
             place.lng = form.data["lng"]
 
