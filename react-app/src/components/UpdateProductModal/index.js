@@ -3,18 +3,17 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { useModal } from "../../context/Modal";
-import { thunkCreateProduct } from "../../store/product";
-import "./CreateProductModal.css";
+import { thunkCreateProduct, thunkUpdateProduct } from "../../store/product";
 
-export default function CreateProductModal({ placeId }) {
+export default function UpdateProductModal({ product, placeId }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [cover_pic, setCoverPic] = useState(null);
+  const [name, setName] = useState(product.name);
+  const [description, setDescription] = useState(product.description);
+  const [cover_pic, setCoverPic] = useState(product.cover_pic);
+  const [price, setPrice] = useState(product.price);
   const [imageLoading, setImageLoading] = useState(false);
-  const [price, setPrice] = useState(0);
 
   const [errorMessage, setErrorMessage] = useState({});
   const { closeModal } = useModal();
@@ -25,12 +24,12 @@ export default function CreateProductModal({ placeId }) {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("price", price);
+    formData.append("price", Math.round(price));
     formData.append("placeId", placeId);
     formData.append("cover_pic", cover_pic);
     setImageLoading(true);
 
-    let response = await dispatch(thunkCreateProduct(formData, placeId));
+    let response = await dispatch(thunkUpdateProduct(formData, product.id));
 
     if (response.errors) {
       setImageLoading(false);
@@ -39,13 +38,13 @@ export default function CreateProductModal({ placeId }) {
       setImageLoading(false);
       setErrorMessage({});
       closeModal();
-      return history.push(`/places/${placeId}`);
+      return history.push(`/current`);
     }
   };
 
   return (
     <div id="createProductModal">
-      <h2>Create a product</h2>
+      <h2>Update a product</h2>
       <form
         className="createProductForm"
         onSubmit={handleSubmit}
@@ -108,15 +107,13 @@ export default function CreateProductModal({ placeId }) {
           <input
             id="coverPicProductInput"
             type="file"
-            //   "accept" attribute restricts the types of files that can be selected to only images
             accept="image/*"
             onChange={(e) => setCoverPic(e.target.files[0])}
-            required
           />
         </label>
 
         <div className="buttonContainer">
-          <button>Create Product</button>
+          <button>Update Product</button>
         </div>
       </form>
     </div>

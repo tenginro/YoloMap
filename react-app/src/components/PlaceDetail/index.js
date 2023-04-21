@@ -6,7 +6,7 @@ import { actionClearPlace, thunkGetPlaceDetail } from "../../store/place";
 import "./PlaceDetail.css";
 import MapPageInDetail from "./Map";
 import {
-  actionClearPlaceAllProducts,
+  actionClearProducts,
   thunkGetAllProductsForPlace,
 } from "../../store/product";
 import ProductIndexItem from "./ProductIndexItem";
@@ -29,7 +29,7 @@ export default function PlaceDetail() {
     dispatch(thunkGetAllProductsForPlace(placeId));
     return () => {
       dispatch(actionClearPlace());
-      dispatch(actionClearPlaceAllProducts());
+      dispatch(actionClearProducts());
     };
   }, [dispatch, placeId]);
 
@@ -86,14 +86,16 @@ export default function PlaceDetail() {
         </div>
       </div>
       <div>
-        <h3>
-          Products
-          <OpenModalButton
-            buttonText="Add a product"
-            onItemClick={closeMenu}
-            modalComponent={<CreateProductModal placeId={placeId} />}
-          />
-        </h3>
+        <div className="addProductContainer">
+          <h3>Products</h3>
+          <div>
+            <OpenModalButton
+              buttonText="Want to add a new product?"
+              onItemClick={closeMenu}
+              modalComponent={<CreateProductModal placeId={placeId} />}
+            />
+          </div>
+        </div>
         <div className="productsListing">
           {productsArr?.map((product) => (
             <ProductIndexItem key={product.id} product={product} />

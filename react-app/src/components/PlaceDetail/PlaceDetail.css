@@ -75,3 +75,21 @@
   width: 120px;
   height: 120px;
 }
+
+.addProductContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 10px;
+}
+
+.addProductContainer button {
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  color: #01b636;
+  text-decoration: underline;
+}

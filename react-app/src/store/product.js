@@ -1,5 +1,6 @@
 const LOAD_PLACE_PRODUCTS = "products/load_place_all";
-const CLEAR_PLACE_PRODUCTS = "products/clear_place_all";
+const LOAD_USER_PRODUCTS = "products/load_user_all";
+const CLEAR_PRODUCTS = "products/clear_place_all";
 const CREATE_PRODUCT = "products/create";
 const UPDATE_PRODUCT = "products/update";
 const DELETE_PRODUCT = "products/delete";
@@ -9,8 +10,13 @@ export const actionLoadPlaceAllProducts = (products) => ({
   products,
 });
 
-export const actionClearPlaceAllProducts = () => ({
-  type: CLEAR_PLACE_PRODUCTS,
+export const actionLoadUserProducts = (products) => ({
+  type: LOAD_USER_PRODUCTS,
+  products,
+});
+
+export const actionClearProducts = () => ({
+  type: CLEAR_PRODUCTS,
 });
 
 export const actionCreateProduct = (product) => ({
@@ -37,6 +43,16 @@ export const thunkGetAllProductsForPlace = (placeId) => async (dispatch) => {
     );
     await dispatch(actionLoadPlaceAllProducts(allProductsForPlace));
     return allProductsForPlace;
+  }
+  return await response.json();
+};
+
+export const thunkGetUserProducts = () => async (dispatch) => {
+  const response = await fetch("/api/products/current");
+  if (response.ok) {
+    const products = await response.json();
+    await dispatch(actionLoadUserProducts(products));
+    return products;
   }
   return await response.json();
 };
@@ -115,6 +131,12 @@ const productReducer = (state = initialState, action) => {
         all[p.id] = p;
       });
       return { ...state, allProducts: { ...all } };
+    case LOAD_USER_PRODUCTS:
+      const products = {};
+      action.products.forEach((p) => {
+        products[p.id] = p;
+      });
+      return { ...state, allProducts: { ...products } };
     case CREATE_PRODUCT:
       return {
         ...state,
@@ -135,7 +157,7 @@ const productReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState.allProducts[action.id];
       return newState;
-    case CLEAR_PLACE_PRODUCTS:
+    case CLEAR_PRODUCTS:
       return { ...state, allProducts: {} };
     default:
       return state;

@@ -36,7 +36,11 @@ def get_one_product(id):
 def get_user_products():
     user = current_user.to_dict()
     products = Product.query.filter(Product.creatorId == user["id"])
-    return [{**product.to_dict()} for product in products]
+
+    return [
+        {**product.to_dict(), "place": Place.query.get(product.placeId).to_dict()}
+        for product in products
+    ]
 
 
 @product_routes.route("/new", methods=["POST"])
@@ -59,7 +63,7 @@ def create_product():
 
         new_product = Product(
             creatorId=user["id"],
-            placeId=place["id"],
+            placeId=place.id,
             name=form.data["name"],
             description=form.data["description"],
             cover_pic=url,

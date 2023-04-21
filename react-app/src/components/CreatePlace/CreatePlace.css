@@ -2,7 +2,7 @@
   color: red;
 }
 
-.placeForm {
+.placeFormContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,6 +42,7 @@
   background-color: #01b636;
   color: white;
 }
+
 #PlaceForm .inputLabel {
   display: flex;
   flex-direction: row;

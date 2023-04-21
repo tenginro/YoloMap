@@ -56,7 +56,7 @@ export default function CreatePlace() {
   };
 
   return (
-    <div className="placeForm">
+    <div className="placeFormContainer">
       <form onSubmit={handleSubmit} id="PlaceForm">
         <h2>Create the place you want to go</h2>
         <label>
