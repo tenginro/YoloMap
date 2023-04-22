@@ -3,4 +3,53 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 48px;
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border-top: 1px solid lightgray; */
+}
+
+.categoriesContainer h3 {
+  font-size: 28px;
+  letter-spacing: -0.4px;
+  line-height: 36px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  color: rgba(45, 46, 47, 1);
+}
+
+.allCateContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.eachCateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid lightgrey;
+  padding: 40px;
+  width: 200px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.eachCateContainer div {
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 24px;
+  color: rgba(45, 46, 47, 1);
+  text-align: center;
+  padding-top: 20px;
+}
+
+.eachCateContainer:hover {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 }
