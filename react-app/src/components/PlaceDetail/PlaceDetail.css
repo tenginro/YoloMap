@@ -22,7 +22,7 @@
   height: 300px;
 }
 .backgroundPart h2 {
-  font-weight: bolder;
+  font-weight: 800;
   margin-left: 50px;
   font-size: 60px;
   width: max-content;
@@ -31,7 +31,7 @@
 }
 
 .placeDetailPage h3 {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .secondPart {
