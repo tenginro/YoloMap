@@ -68,21 +68,17 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (user) => async (dispatch) => {
-  console.log("hitting the thunk", user);
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     body: user,
   });
-  console.log("response from backend", response);
 
   if (response.ok) {
     const data = await response.json();
-    console.log("data from backend", data);
     dispatch(setUser(data));
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
-    console.log("bad response from backend", data);
     if (data.errors) {
       return data.errors;
     }

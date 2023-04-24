@@ -45,3 +45,7 @@
   width: 180px;
   cursor: pointer;
 }
+
+#signupProfilePicInput {
+  width: 200px;
+}

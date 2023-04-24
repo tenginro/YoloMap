@@ -46,7 +46,6 @@ export const thunkAddToCart = (formData) => async (dispatch) => {
 };
 
 export const thunkDelateCart = (cartId) => async (dispatch) => {
-  console.log(cartId);
   const response = await fetch(`/api/cart/${cartId}/remove`, {
     method: "DELETE",
   });
