@@ -27,8 +27,10 @@ function SignupFormModal() {
       formData.append("email", email);
       formData.append("password", password);
       formData.append("budget", budget);
-      formData.append("profile_pic", profile_pic);
-      setImageLoading(true);
+      if (profile_pic) {
+        formData.append("profile_pic", profile_pic);
+        setImageLoading(true);
+      }
 
       const data = await dispatch(signUp(formData));
 
@@ -60,7 +62,11 @@ function SignupFormModal() {
           <img className="logo" src={logo} alt="icon"></img>
         </div>
       )}
-      <form className="signupForm" onSubmit={handleSubmit}>
+      <form
+        className="signupForm"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <label>
           Email*:{"  "}
           <input

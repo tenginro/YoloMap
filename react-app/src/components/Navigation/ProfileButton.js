@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/session";
+import { logout, thunkUpdateBudget } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
-import { thunkDelateCart, thunkGetUserCart } from "../../store/cart";
+import {
+  actionClearCart,
+  thunkDelateCart,
+  thunkGetUserCart,
+} from "../../store/cart";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -61,6 +65,11 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
+  const totalPrice = cartItemArr?.reduce(
+    (sumPrice, el) => (sumPrice = sumPrice + el.product.price),
+    0
+  );
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const cartClassName = "cart-sidebar" + (showCart ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
@@ -90,7 +99,7 @@ function ProfileButton({ user }) {
             <i className="fas fa-user-circle fa-2x" title={user.username} />
           </div>
           <div className={ulClassName} ref={ulRef}>
-            <div>{`Budget: $${Math.round(user.budget / 1000)},000`}</div>
+            <div>Budget: ${user.budget}</div>
             <div
               className="viewProfileLine"
               onClick={(e) => history.push("/current")}
@@ -106,7 +115,10 @@ function ProfileButton({ user }) {
             <i className="fa-solid fa-cart-shopping fa-2x"></i>
           </div>
           <div className={cartClassName} ref={ulRef}>
-            <h3>Products in your cart</h3>
+            <h3>
+              <div>Products in your cart</div>
+              <div>{`Budget: $${Math.round(user.budget)}`}</div>
+            </h3>
             {cartItemArr?.map((el) => (
               <div key={el.id} className="productInCart">
                 <img src={el.product.cover_pic} alt="productCoverPic"></img>
@@ -126,16 +138,31 @@ function ProfileButton({ user }) {
               </div>
             ))}
             <div id="purchaseButtonContainer">
-              <div>
-                Total price: $
-                {cartItemArr?.reduce(
-                  (sumPrice, el) => (sumPrice = sumPrice + el.product.price),
-                  0
-                ) || 0}
-              </div>
-              <button onClick={() => alert("Feature coming soon")}>
+              <div>Total price: ${totalPrice}</div>
+              <button
+                onClick={async (e) => {
+                  e.preventDefault();
+                  if (totalPrice < user.budget) {
+                    const newBudget = user.budget - totalPrice;
+                    const formData = new FormData();
+                    formData.append("budget", Math.round(newBudget));
+
+                    await dispatch(thunkUpdateBudget(formData)).then(() =>
+                      dispatch(actionClearCart())
+                    );
+                    return history.push(`/current`);
+                  } else {
+                    alert("Over Budget!!! Please make a better plan!");
+                  }
+                }}
+              >
                 Purchase
               </button>
+            </div>
+            <div id="overBudgetAlert">
+              {totalPrice > user.budget
+                ? "Over Budget!!! Please make a better plan!"
+                : null}
             </div>
           </div>
         </>

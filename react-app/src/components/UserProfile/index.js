@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import { actionClearPlaces, thunkGetUserPlaces } from "../../store/place";
 import UserPlaceIndexItem from "./UserPlaceIndexItem";
@@ -9,6 +9,8 @@ import { actionClearProducts, thunkGetUserProducts } from "../../store/product";
 import OpenModalMenuItem from "../OpenModalMenuItem";
 import DeleteProductModal from "../DeleteProductModal";
 import UpdateProductModal from "../UpdateProductModal";
+import { thunkUpdateBudget } from "../../store/session";
+import UpdateBudget from "../UpdateBudgetModal";
 
 const defaultProfilePic =
   "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png";
@@ -18,6 +20,7 @@ const defaultPic =
 
 export default function UserProfile() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const placesObj = useSelector((state) => state.places.allPlaces);
   const placesArr = Object.values(placesObj);
@@ -49,7 +52,15 @@ export default function UserProfile() {
         ></img>
         <div>Username: {user.username}</div>
         <div>Email: {user.email}</div>
-        <div>Budget: ${Math.round(user.budget / 1000)},000</div>
+        <div>
+          Budget: ${user.budget}
+          <button className="updateBudgetButton">
+            <OpenModalMenuItem
+              itemText="Update"
+              modalComponent={<UpdateBudget />}
+            />
+          </button>
+        </div>
       </div>
 
       <div id="placesAndProducts">
@@ -95,10 +106,22 @@ export default function UserProfile() {
                 </button>
               </div>
               <div className="productInformation">
-                <img src={product.cover_pic || defaultPic} alt="productCoverPic"></img>
+                <img
+                  src={product.cover_pic || defaultPic}
+                  alt="productCoverPic"
+                ></img>
                 <div>
                   <h4>
-                    {product.name} <div>in {product?.place?.name}</div>
+                    <div>{product.name}</div>
+                    <div
+                      className="placeForProduct"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        history.push(`/places/${product.place.id}`);
+                      }}
+                    >
+                      in {product?.place?.name}
+                    </div>
                   </h4>
                   <div>{product.description}</div>
                   <div>${product.price}</div>

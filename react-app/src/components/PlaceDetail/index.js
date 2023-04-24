@@ -20,6 +20,11 @@ export default function PlaceDetail() {
   const productsObj = useSelector((state) => state.products.allProducts);
   const productsArr = Object.values(productsObj);
 
+  const formattedPhone = `(${place?.phone?.slice(0, 3)}) ${place?.phone?.slice(
+    3,
+    6
+  )}-${place?.phone?.slice(6)}`;
+
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
@@ -55,47 +60,53 @@ export default function PlaceDetail() {
         <h2>{place.name}</h2>
       </div>
       <div className="secondPart">
-        <div className="locationHours">
-          <h3>Location & Hours</h3>
-          <div className="locationLine">
-            <div className="locationPart">
-              <div className="mapInPlaceDetail">
-                <MapPageInDetail place={place} />
-              </div>
-              <div>
-                <div>{place.address}</div>
+        <div className="descriptionContainerInPlaceDetail">
+          <h3>Description</h3>
+          <div className="descriptionInPlaceDetail">{place.description}</div>
+        </div>
+        <div className="secondSecondPart">
+          <div className="locationHours">
+            <h3>Location & Hours</h3>
+            <div className="locationLine">
+              <div className="locationPart">
+                <div className="mapInPlaceDetail">
+                  <MapPageInDetail place={place} />
+                </div>
                 <div>
-                  {place.city}, {place.state}
+                  <div>{place.address}</div>
+                  <div>
+                    {place.city}, {place.state}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="hoursInfoContainer">
-              {place.hours.split("; ").map((el, index) => (
-                <div key={index}>{el}</div>
-              ))}
+              <div className="hoursInfoContainer">
+                {place.hours.split("; ").map((el, index) => (
+                  <div key={index}>{el}</div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <h3>Contacts</h3>
-          <div className="websiteAndPhone">
-            <div className="placeWebsite">
-              {place.website ? (
-                <a
-                  href={place.website}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {place.website}{" "}
-                  <i className="fas fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              ) : (
-                "No website"
-              )}
-            </div>
-            <div className="phoneContact">
-              {place.phone ? place.phone : "No phone number"}{" "}
-              <i className="fas fa-solid fa-square-phone"></i>
+          <div>
+            <h3>Contacts</h3>
+            <div className="websiteAndPhone">
+              <div className="placeWebsite">
+                {place.website ? (
+                  <a
+                    href={place.website}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {place.website}{" "}
+                    <i className="fas fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                ) : (
+                  "No website"
+                )}
+              </div>
+              <div className="phoneContact">
+                {place.phone ? formattedPhone : "No phone number"}{" "}
+                <i className="fas fa-solid fa-square-phone"></i>
+              </div>
             </div>
           </div>
         </div>

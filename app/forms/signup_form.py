@@ -42,7 +42,7 @@ class SignUpForm(FlaskForm):
     password = PasswordField("password", validators=[DataRequired()])
     budget = IntegerField(
         "budget",
-        validators=[NumberRange(min=1, message="Please provide a valid number.")],
+        validators=[NumberRange(min=1, message="Not a valid integer value.")],
     )
     profile_pic = FileField(
         "profile_pic", validators=[Optional(), FileAllowed(list(ALLOWED_EXTENSIONS))]

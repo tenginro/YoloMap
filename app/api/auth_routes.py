@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
+from app.forms import LoginForm, SignUpForm, UpdateBudgetForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
@@ -64,24 +63,51 @@ def sign_up():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        image = form.data["profile_pic"]
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
-        if "url" not in upload:
-            return {"message": "not able to upload to AWS"}
-        url = upload["url"]
+        if form.data["profile_pic"]:
+            image = form.data["profile_pic"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if "url" not in upload:
+                return {"message": "not able to upload to AWS"}
+            url = upload["url"]
 
-        user = User(
-            username=form.data["username"],
-            email=form.data["email"],
-            password=form.data["password"],
-            profile_pic=url,
-            budget=form.data["budget"],
-        )
+            user = User(
+                username=form.data["username"],
+                email=form.data["email"],
+                password=form.data["password"],
+                profile_pic=url,
+                budget=form.data["budget"],
+            )
+        else:
+            user = User(
+                username=form.data["username"],
+                email=form.data["email"],
+                password=form.data["password"],
+                budget=form.data["budget"],
+            )
+
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+@auth_routes.route("/update", methods=["PATCH"])
+@login_required
+def update_profile():
+    curr_user = current_user.to_dict()
+    user = User.query.get(curr_user["id"])
+
+    form = UpdateBudgetForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        user.budget = form.data["budget"]
+
+        db.session.commit()
+        updated_user = User.query.get(user.id)
+        return updated_user.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 

@@ -80,7 +80,7 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={containerStyle}
-            zoom={10}
+            zoom={11}
             center={currentPosition}
             onUnmount={onUnmount}
           >
@@ -117,6 +117,10 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
                             style={{ height: "120px", width: "120px" }}
                           />
                           <div>{place.name}</div>
+                          <div>{place.address}</div>
+                          <div>
+                            {place.city}, {place.state}
+                          </div>
                         </div>
                       </InfoWindow>
                     )}

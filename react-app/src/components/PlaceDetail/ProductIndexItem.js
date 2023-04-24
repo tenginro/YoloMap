@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { thunkAddToCart, thunkGetUserCart } from "../../store/cart";
+import OpenModalMenuItem from "../OpenModalMenuItem";
+import AddCartConfirm from "./AddCartConfirm";
 
 export default function ProductIndexItem({ product }) {
   const user = useSelector((state) => state.session.user);
@@ -27,7 +29,10 @@ export default function ProductIndexItem({ product }) {
         <div>{product.description}</div>
         <div>${product.price}</div>
         <button className="CartButton" onClick={onClick}>
-          Add to Cart
+          <OpenModalMenuItem
+            itemText="Add to Cart"
+            modalComponent={<AddCartConfirm />}
+          />
         </button>
       </div>
     </div>

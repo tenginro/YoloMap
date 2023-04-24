@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+// const UPDATE_BUDGET = "session/UPDATE_BUDGET";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -10,6 +11,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 });
+
+// const actionUpdateBudget = (user) => ({
+//   type: UPDATE_BUDGET,
+//   user
+// });
 
 const initialState = { user: null };
 
@@ -81,6 +87,32 @@ export const signUp = (user) => async (dispatch) => {
     const data = await response.json();
     if (data.errors) {
       return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+
+export const thunkUpdateBudget = (user) => async (dispatch) => {
+  const response = await fetch("/api/auth/update", {
+    method: "PATCH",
+    body: user,
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      const errorsArr = data.errors;
+      let errorsObj = {};
+      errorsArr.forEach((err) => {
+        const [key, value] = err.split(" : ");
+        errorsObj[key] = value;
+      });
+      return errorsObj;
     }
   } else {
     return ["An error occurred. Please try again."];

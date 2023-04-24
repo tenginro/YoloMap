@@ -180,3 +180,9 @@
   border: none;
   border-radius: 4px;
 }
+
+#overBudgetAlert {
+  color: red;
+  margin: 0 auto;
+  height: 18px;
+}

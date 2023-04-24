@@ -47,5 +47,7 @@
 .descriptionAllPins {
   height: 50px;
   font-size: small;
+  width: 330px;
+  overflow-wrap: break-word;
   overflow-y: auto;
 }
