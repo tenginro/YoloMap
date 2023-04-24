@@ -10,6 +10,7 @@ import LandingPage from "./components/LandingPage";
 import UserProfile from "./components/UserProfile";
 import CreatePlace from "./components/CreatePlace";
 import UpdatePlaceWrapper from "./components/UpdatePlace";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

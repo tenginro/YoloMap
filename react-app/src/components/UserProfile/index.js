@@ -52,7 +52,7 @@ export default function UserProfile() {
         <div>Username: {user.username}</div>
         <div>Email: {user.email}</div>
         <div>
-          Budget: ${Math.round(user.budget / 1000)},000
+          Budget: ${user.budget}
           <button className="updateBudgetButton">
             <OpenModalMenuItem
               itemText="Update"

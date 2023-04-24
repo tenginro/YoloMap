@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/session";
+import { logout, thunkUpdateBudget } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
-import { thunkDelateCart, thunkGetUserCart } from "../../store/cart";
+import {
+  actionClearCart,
+  thunkDelateCart,
+  thunkGetUserCart,
+} from "../../store/cart";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -95,7 +99,7 @@ function ProfileButton({ user }) {
             <i className="fas fa-user-circle fa-2x" title={user.username} />
           </div>
           <div className={ulClassName} ref={ulRef}>
-            <div>{`Budget: $${Math.round(user.budget / 1000)},000`}</div>
+            <div>Budget: ${user.budget}</div>
             <div
               className="viewProfileLine"
               onClick={(e) => history.push("/current")}
@@ -135,13 +139,29 @@ function ProfileButton({ user }) {
             ))}
             <div id="purchaseButtonContainer">
               <div>Total price: ${totalPrice}</div>
-              <button onClick={() => alert("Feature coming soon")}>
+              <button
+                onClick={async (e) => {
+                  e.preventDefault();
+                  if (totalPrice < user.budget) {
+                    const newBudget = user.budget - totalPrice;
+                    const formData = new FormData();
+                    formData.append("budget", Math.round(newBudget));
+
+                    await dispatch(thunkUpdateBudget(formData)).then(() =>
+                      dispatch(actionClearCart())
+                    );
+                    return history.push(`/current`);
+                  } else {
+                    alert("Over Budget!!! Please make a better plan!");
+                  }
+                }}
+              >
                 Purchase
               </button>
             </div>
             <div id="overBudgetAlert">
               {totalPrice > user.budget
-                ? "Over Budget!!! Make a better plan!"
+                ? "Over Budget!!! Please make a better plan!"
                 : null}
             </div>
           </div>
