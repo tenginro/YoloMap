@@ -1,6 +1,15 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, EmailField, IntegerField, PasswordField
-from wtforms.validators import DataRequired, Email, ValidationError, NumberRange
+from wtforms.validators import (
+    DataRequired,
+    Email,
+    ValidationError,
+    NumberRange,
+    Optional,
+)
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+
+from app.aws_helpers import ALLOWED_EXTENSIONS
 from app.models import User
 
 
@@ -35,4 +44,6 @@ class SignUpForm(FlaskForm):
         "budget",
         validators=[NumberRange(min=1, message="Please provide a valid number.")],
     )
-    profile_pic = StringField("profile_pic")
+    profile_pic = FileField(
+        "profile_pic", validators=[Optional(), FileAllowed(list(ALLOWED_EXTENSIONS))]
+    )

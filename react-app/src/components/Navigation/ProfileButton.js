@@ -25,6 +25,7 @@ function ProfileButton({ user }) {
 
   const openCart = () => {
     if (showCart) return;
+    dispatch(thunkGetUserCart());
     setShowCart(true);
   };
 
@@ -50,9 +51,9 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeCart);
   }, [showCart]);
 
-  useEffect(() => {
-    dispatch(thunkGetUserCart());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(thunkGetUserCart());
+  // }, [dispatch]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -109,13 +110,12 @@ function ProfileButton({ user }) {
             {cartItemArr?.map((el) => (
               <div key={el.id} className="productInCart">
                 <img src={el.product.cover_pic} alt="productCoverPic"></img>
-                <div>{el.product.name}</div>
-                <div>${el.product.price}</div>
+                <div className="productNameInCart">{el.product.name}</div>
+                <div className="productPriceInCart">${el.product.price}</div>
                 <button
                   className="CartButton"
                   onClick={async (e) => {
                     e.preventDefault();
-                    console.log("el.id", el.id);
                     await dispatch(thunkDelateCart(el.id)).then(() =>
                       thunkGetUserCart()
                     );
@@ -125,7 +125,14 @@ function ProfileButton({ user }) {
                 </button>
               </div>
             ))}
-            <div>
+            <div id="purchaseButtonContainer">
+              <div>
+                Total price: $
+                {cartItemArr?.reduce(
+                  (sumPrice, el) => (sumPrice = sumPrice + el.product.price),
+                  0
+                ) || 0}
+              </div>
               <button onClick={() => alert("Feature coming soon")}>
                 Purchase
               </button>
