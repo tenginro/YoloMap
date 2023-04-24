@@ -1,148 +1,97 @@
-# Flask React Project
+# YoloMap
 
-This is the starter for the Flask React project.
+YoloMap is a clone of Yelp + additional features. You only live once so plan it better. YoloMap is a website to help you make plans within your budget.
+
+Check out [YoloMap](https://yolomap.onrender.com/)
+
+## Index
+
+[MVP Feature List](https://github.com/tenginro/YoloMap/wiki/Features) |
+[Database Scheme](https://github.com/tenginro/YoloMap/wiki/Database-Schema-and-Backend-Routes) |
+[User Stories](https://github.com/tenginro/YoloMap/wiki/User-Stories) |
+[Wire Frames](https://github.com/tenginro/YoloMap/wiki/Wireframes) |
+
+## Technologies Used
+
+<img src="https://img.shields.io/badge/Python-3.9-blue?style=for-the-badge&logo=python&logoColor=white" /><img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" /><img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /><img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /><img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" /><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /><img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" /><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /><img src="https://img.shields.io/badge/Render-41B883?style=for-the-badge&logo=render&logoColor=white)" />
+
+## Splash Page
+![Screenshot 2023-04-24 at 14 03 17](https://user-images.githubusercontent.com/108156588/234081442-4e9c39f9-28bc-4651-ad65-eec34990c0e0.png)
+![Screenshot 2023-04-24 at 14 14 58](https://user-images.githubusercontent.com/108156588/234081514-9b2ee038-9c9c-44dc-83d6-1fa174f22b77.png)
+
+## Places
+![Screenshot 2023-04-24 at 14 15 21](https://user-images.githubusercontent.com/108156588/234081585-c0c237ba-d851-4c3e-824d-cf57dd1c4fd7.png)
+
+## Place Detail Page with products
+![Screenshot 2023-04-24 at 14 15 46](https://user-images.githubusercontent.com/108156588/234081658-6bb78c01-6e31-40c6-b3c5-42cb94f960e9.png)
 
 ## Getting started
-1. Clone this repository (only this branch)
 
-2. Install dependencies
+1. Clone this repository:
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+   `https://github.com/tenginro/YoloMap.git`
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+2. Install denpendencies into the Backed and the Frontend by making a terminal for each one and then run the following:
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+   - `pipenv install -r requirements.txt && pip install email_validator && pipenv install boto3 ` in the root folder
+   - `npm install` in the react-app folder
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+3. Create a **.env** file using the **.envexample** provided
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+4. Set up your database with information from your .env and then run the following to create your database, migrate, and seed:
 
-   ```bash
-   pipenv shell
-   ```
+   - `npx dotenv sequelize db:create`
+   - `npx dotenv sequelize db:migrate`
+   - `npx dotenv sequelize db:seed:all`
 
-   ```bash
-   flask db upgrade
-   ```
+5. Start the app for both backend and frontend using:
 
-   ```bash
-   flask seed all
-   ```
+   - `flask run` in the root folder
+   - `npm start` in the react-app folder
 
-   ```bash
-   flask run
-   ```
+6. Now you can use the Demo User or Create an account
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+## Amazon Web Services S3
 
+- For setting up your AWS refer to this [guide](https://github.com/jdrichardsappacad/aws-s3-pern-demo)
 
-## Deployment through Render.com
+---
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+# Features
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+## Places
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+- Users can create a Place
+- Users can read/view other Places
+- Users can update their Places
+- Users can delete their Places
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+## Products
 
-### Part A: Configure the Start and Build Commands
+- Users can create Products on Places
+- users can read/view all of the Products on a Place
+- Users can delete their Product(s) on a Place
 
-Start by giving your application a name.
+## Cart
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+Logged-in Users can
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+- Add a product to their cart
+- Remove a product from their cart
+- Read all of their cartItems
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+## AWS
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+Logged-in Users can
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+- Upload an images of their profile cover picture to AWS S3
+- Upload an images of their place cover picture to AWS S3
+- Upload an images of their product cover picture to AWS S3
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+## Future Features
 
-Now, add your start command in the Start field:
+### Google Maps Api
 
-```shell
-# start script
-gunicorn app:app
-```
+Logged in Users can
 
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+- Locate places with Google Maps Api
