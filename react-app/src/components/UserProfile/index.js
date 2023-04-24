@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import { actionClearPlaces, thunkGetUserPlaces } from "../../store/place";
 import UserPlaceIndexItem from "./UserPlaceIndexItem";
@@ -20,6 +20,7 @@ const defaultPic =
 
 export default function UserProfile() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const placesObj = useSelector((state) => state.places.allPlaces);
   const placesArr = Object.values(placesObj);
@@ -111,7 +112,16 @@ export default function UserProfile() {
                 ></img>
                 <div>
                   <h4>
-                    {product.name} <div>in {product?.place?.name}</div>
+                    <div>{product.name}</div>
+                    <div
+                      className="placeForProduct"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        history.push(`/places/${product.place.id}`);
+                      }}
+                    >
+                      in {product?.place?.name}
+                    </div>
                   </h4>
                   <div>{product.description}</div>
                   <div>${product.price}</div>

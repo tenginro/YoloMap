@@ -225,7 +225,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Latitude: (optional){"  "}
+            Latitude*: {"  "}
             {errorMessage?.lat && (
               <div className="errors">{errorMessage.lat}</div>
             )}
@@ -235,12 +235,13 @@ export default function CreatePlace() {
             value={lat}
             placeholder="Latitude"
             onChange={(e) => setLat(e.target.value)}
+            required
           ></input>
         </label>
 
         <label>
           <div className="inputLabel">
-            Longitude: (optional){"  "}
+            Longitude*: {"  "}
             {errorMessage?.lng && (
               <div className="errors">{errorMessage.lng}</div>
             )}
@@ -250,6 +251,7 @@ export default function CreatePlace() {
             value={lng}
             placeholder="Longitude"
             onChange={(e) => setLng(e.target.value)}
+            required
           ></input>
         </label>
         <div>* - required field</div>

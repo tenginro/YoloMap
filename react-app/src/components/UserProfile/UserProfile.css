@@ -59,7 +59,7 @@
 }
 
 #placesAndProducts .places {
-  width: 65%;
+  width: 60%;
 }
 
 #placesAndProducts .products {
@@ -111,4 +111,10 @@
   border-color: #3bd16f;
   list-style-type: none;
   margin-left: 5px;
+}
+
+.placeForProduct {
+  color: #01b636;
+  cursor: pointer;
+  text-decoration: underline;
 }

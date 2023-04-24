@@ -63,20 +63,29 @@ def sign_up():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        image = form.data["profile_pic"]
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
-        if "url" not in upload:
-            return {"message": "not able to upload to AWS"}
-        url = upload["url"]
+        if form.data["profile_pic"]:
+            image = form.data["profile_pic"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if "url" not in upload:
+                return {"message": "not able to upload to AWS"}
+            url = upload["url"]
 
-        user = User(
-            username=form.data["username"],
-            email=form.data["email"],
-            password=form.data["password"],
-            profile_pic=url,
-            budget=form.data["budget"],
-        )
+            user = User(
+                username=form.data["username"],
+                email=form.data["email"],
+                password=form.data["password"],
+                profile_pic=url,
+                budget=form.data["budget"],
+            )
+        else:
+            user = User(
+                username=form.data["username"],
+                email=form.data["email"],
+                password=form.data["password"],
+                budget=form.data["budget"],
+            )
+
         db.session.add(user)
         db.session.commit()
         login_user(user)
