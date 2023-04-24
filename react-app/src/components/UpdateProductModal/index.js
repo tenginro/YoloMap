@@ -42,6 +42,7 @@ export default function UpdateProductModal({ product, placeId }) {
       <form
         className="updateProductForm"
         onSubmit={handleSubmit}
+        // when the form includes file uploads
         encType="multipart/form-data"
       >
         <label>

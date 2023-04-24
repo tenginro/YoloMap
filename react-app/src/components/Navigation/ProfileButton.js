@@ -61,6 +61,11 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
+  const totalPrice = cartItemArr?.reduce(
+    (sumPrice, el) => (sumPrice = sumPrice + el.product.price),
+    0
+  );
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const cartClassName = "cart-sidebar" + (showCart ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
@@ -106,7 +111,10 @@ function ProfileButton({ user }) {
             <i className="fa-solid fa-cart-shopping fa-2x"></i>
           </div>
           <div className={cartClassName} ref={ulRef}>
-            <h3>Products in your cart</h3>
+            <h3>
+              <div>Products in your cart</div>
+              <div>{`Budget: $${Math.round(user.budget)}`}</div>
+            </h3>
             {cartItemArr?.map((el) => (
               <div key={el.id} className="productInCart">
                 <img src={el.product.cover_pic} alt="productCoverPic"></img>
@@ -126,16 +134,15 @@ function ProfileButton({ user }) {
               </div>
             ))}
             <div id="purchaseButtonContainer">
-              <div>
-                Total price: $
-                {cartItemArr?.reduce(
-                  (sumPrice, el) => (sumPrice = sumPrice + el.product.price),
-                  0
-                ) || 0}
-              </div>
+              <div>Total price: ${totalPrice}</div>
               <button onClick={() => alert("Feature coming soon")}>
                 Purchase
               </button>
+            </div>
+            <div id="overBudgetAlert">
+              {totalPrice > user.budget
+                ? "Over Budget!!! Make a better plan!"
+                : null}
             </div>
           </div>
         </>

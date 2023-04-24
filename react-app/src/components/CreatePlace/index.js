@@ -61,7 +61,7 @@ export default function CreatePlace() {
         <h2>Create the place you want to go</h2>
         <label>
           <div className="inputLabel">
-            Name: *{"  "}
+            Name*: {"  "}
             {errorMessage?.name && (
               <div className="errors">{errorMessage.name}</div>
             )}
@@ -69,7 +69,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={name}
-            placeholder="name is required"
+            placeholder="Name is required"
             onChange={(e) => setName(e.target.value)}
             required
           ></input>
@@ -93,7 +93,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Address: *{"  "}
+            Address*: {"  "}
             {errorMessage?.address && (
               <div className="errors">{errorMessage.address}</div>
             )}
@@ -101,7 +101,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={address}
-            placeholder="address is required"
+            placeholder="Address is required"
             onChange={(e) => setAddress(e.target.value)}
             required
           ></input>
@@ -109,7 +109,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            City: *{"  "}
+            City*: {"  "}
             {errorMessage?.city && (
               <div className="errors">{errorMessage.city}</div>
             )}
@@ -117,7 +117,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={city}
-            placeholder="city is required"
+            placeholder="City is required"
             onChange={(e) => setCity(e.target.value)}
             required
           ></input>
@@ -125,7 +125,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            State: *{"  "}
+            State*: {"  "}
             {errorMessage?.state && (
               <div className="errors">{errorMessage.state}</div>
             )}
@@ -133,7 +133,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={state}
-            placeholder="state is required"
+            placeholder="State is required"
             onChange={(e) => setState(e.target.value)}
             required
           ></input>
@@ -149,7 +149,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={website}
-            placeholder="website"
+            placeholder="Website"
             onChange={(e) => setWebsite(e.target.value)}
           ></input>
         </label>
@@ -164,7 +164,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={phone}
-            placeholder="phone"
+            placeholder="Phone"
             onChange={(e) => setPhone(e.target.value)}
           ></input>
         </label>
@@ -179,14 +179,14 @@ export default function CreatePlace() {
           <input
             type="text"
             value={hours}
-            placeholder="open hours"
+            placeholder="Open hours"
             onChange={(e) => setHours(e.target.value)}
           ></input>
         </label>
 
         <div className="categoryLabel">
           <div className="inputLabel">
-            Choose a category: *{"  "}
+            Choose a category*: {"  "}
             {errorMessage?.category && (
               <div className="errors">{errorMessage.category}</div>
             )}
@@ -196,6 +196,7 @@ export default function CreatePlace() {
             onChange={(e) => setCategory(e.target.value)}
             value={category}
             name="category"
+            required
           >
             <option value="">--Please choose an option--</option>
             <option value="Art">Art</option>
@@ -208,7 +209,7 @@ export default function CreatePlace() {
 
         <label>
           <div className="inputLabel">
-            Cover Picture: *{"  "}
+            Cover Picture*: {"  "}
             {errorMessage?.cover_pic && (
               <div className="errors">{errorMessage.cover_pic}</div>
             )}
@@ -232,7 +233,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={lat}
-            placeholder="latitude"
+            placeholder="Latitude"
             onChange={(e) => setLat(e.target.value)}
           ></input>
         </label>
@@ -247,7 +248,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={lng}
-            placeholder="longitude"
+            placeholder="Longitude"
             onChange={(e) => setLng(e.target.value)}
           ></input>
         </label>
