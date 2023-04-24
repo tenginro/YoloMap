@@ -119,3 +119,16 @@
 .hoursInfoContainer {
   width: 200px;
 }
+
+.CartButton {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #38de6f;
+  color: white;
+  border: none;
+  font-size: 16px;
+}

@@ -15,8 +15,8 @@ def get_user_cart():
     return [
         {
             **item.to_dict(),
-            "product": Product.query.get(item.productId),
-            "user": User.query.get(item.creatorId),
+            "product": Product.query.get(item.productId).to_dict(),
+            "user": User.query.get(item.creatorId).to_dict(),
         }
         for item in cartItems
     ]
@@ -38,8 +38,8 @@ def add_to_cart():
         db.session.commit()
         return {
             **new_Cart.to_dict(),
-            "product": Product.query.get(new_Cart.productId),
-            "user": User.query.get(new_Cart.creatorId),
+            "product": Product.query.get(new_Cart.productId).to_dict(),
+            "user": User.query.get(new_Cart.creatorId).to_dict(),
         }
 
 

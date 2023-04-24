@@ -5,12 +5,14 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
-import { thunkGetUserCart } from "../../store/cart";
+import { thunkDelateCart, thunkGetUserCart } from "../../store/cart";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const cartItemsobj = useSelector((state) => state.cart);
+  const cartItemsObj = useSelector((state) => state.cart);
+  const cartItemArr = Object.values(cartItemsObj);
+
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
   // create a reference to a DOM element or a component.
@@ -20,6 +22,7 @@ function ProfileButton({ user }) {
     if (showMenu) return;
     setShowMenu(true);
   };
+
   const openCart = () => {
     if (showCart) return;
     setShowCart(true);
@@ -102,7 +105,31 @@ function ProfileButton({ user }) {
             <i className="fa-solid fa-cart-shopping fa-2x"></i>
           </div>
           <div className={cartClassName} ref={ulRef}>
-            <div>Products in your cart</div>
+            <h3>Products in your cart</h3>
+            {cartItemArr?.map((el) => (
+              <div key={el.id} className="productInCart">
+                <img src={el.product.cover_pic} alt="productCoverPic"></img>
+                <div>{el.product.name}</div>
+                <div>${el.product.price}</div>
+                <button
+                  className="CartButton"
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    console.log("el.id", el.id);
+                    await dispatch(thunkDelateCart(el.id)).then(() =>
+                      thunkGetUserCart()
+                    );
+                  }}
+                >
+                  Remove from Cart
+                </button>
+              </div>
+            ))}
+            <div>
+              <button onClick={() => alert("Feature coming soon")}>
+                Purchase
+              </button>
+            </div>
           </div>
         </>
       ) : (

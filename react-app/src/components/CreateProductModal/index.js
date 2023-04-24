@@ -111,6 +111,8 @@ export default function CreateProductModal({ placeId }) {
             //   "accept" attribute restricts the types of files that can be selected to only images
             accept="image/*"
             onChange={(e) => setCoverPic(e.target.files[0])}
+            // to allow multiple files upload, need to change to e.target.files above
+            // multiple
             required
           />
         </label>

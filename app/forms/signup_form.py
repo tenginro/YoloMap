@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, EmailField, IntegerField, PasswordField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, NumberRange
 from app.models import User
 
 
@@ -31,5 +31,8 @@ class SignUpForm(FlaskForm):
         ],
     )
     password = PasswordField("password", validators=[DataRequired()])
-    budget = IntegerField("budget", validators=[DataRequired()])
+    budget = IntegerField(
+        "budget",
+        validators=[NumberRange(min=1, message="Please provide a valid number.")],
+    )
     profile_pic = StringField("profile_pic")

@@ -10,6 +10,12 @@ import OpenModalMenuItem from "../OpenModalMenuItem";
 import DeleteProductModal from "../DeleteProductModal";
 import UpdateProductModal from "../UpdateProductModal";
 
+const defaultProfilePic =
+  "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png";
+
+const defaultPic =
+  "https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-10615.jpg?w=360";
+
 export default function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
@@ -37,10 +43,13 @@ export default function UserProfile() {
   return (
     <div className="userProfilePage">
       <div className="userProfilePic">
-        <img src={user.profile_pic} alt="profile pic"></img>
+        <img
+          src={user.profile_pic || defaultProfilePic}
+          alt="profile pic"
+        ></img>
         <div>Username: {user.username}</div>
         <div>Email: {user.email}</div>
-        <div>Budget: {Math.round(user.budget / 1000)},000</div>
+        <div>Budget: ${Math.round(user.budget / 1000)},000</div>
       </div>
 
       <div id="placesAndProducts">
@@ -86,7 +95,7 @@ export default function UserProfile() {
                 </button>
               </div>
               <div className="productInformation">
-                <img src={product.cover_pic} alt="productCoverPic"></img>
+                <img src={product.cover_pic || defaultPic} alt="productCoverPic"></img>
                 <div>
                   <h4>
                     {product.name} <div>in {product?.place?.name}</div>
