@@ -101,7 +101,6 @@ export const thunkUpdateProduct = (product, productId) => async (dispatch) => {
         const [key, value] = err.split(": ");
         errorsObj[key] = value;
       });
-      console.log("errorsObj", errorsObj);
       return { errors: errorsObj };
     }
   } else {
