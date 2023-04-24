@@ -10,7 +10,8 @@ function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [profilePic, setProfilePic] = useState("");
+  const [profile_pic, setProfilePic] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [budget, setBudget] = useState(0);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,14 +20,23 @@ function SignupFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (password === confirmPassword) {
-      const data = await dispatch(
-        signUp(username, email, password, budget, profilePic)
-      );
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("budget", budget);
+      formData.append("profile_pic", profile_pic);
+      setImageLoading(true);
+
+      const data = await dispatch(signUp(formData));
 
       if (data) {
+        setImageLoading(false);
         setErrors(data);
       } else {
+        setImageLoading(false);
         closeModal();
       }
     } else {
@@ -52,7 +62,7 @@ function SignupFormModal() {
       )}
       <form className="signupForm" onSubmit={handleSubmit}>
         <label>
-          Email:{"  "}
+          Email*:{"  "}
           <input
             className="signupModalInput"
             type="text"
@@ -63,7 +73,7 @@ function SignupFormModal() {
           />
         </label>
         <label>
-          Username:{"  "}
+          Username*:{"  "}
           <input
             className="signupModalInput"
             type="text"
@@ -76,15 +86,14 @@ function SignupFormModal() {
         <label>
           Profile Picture:{"  "}
           <input
-            className="signupModalInput"
-            type="text"
-            value={profilePic}
-            onChange={(e) => setProfilePic(e.target.value)}
-            placeholder="Profile Picture"
+            id="signupProfilePicInput"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setProfilePic(e.target.files[0])}
           />
         </label>
         <label>
-          Budget Amount: ${"  "}
+          Budget Amount*: ${"  "}
           <input
             className="signupModalInput"
             type="text"
@@ -94,7 +103,7 @@ function SignupFormModal() {
           />
         </label>
         <label>
-          Password:{"  "}
+          Password*:{"  "}
           <input
             className="signupModalInput"
             type="password"
@@ -105,7 +114,7 @@ function SignupFormModal() {
           />
         </label>
         <label>
-          Confirm Password:{"  "}
+          Confirm Password*:{"  "}
           <input
             className="signupModalInput"
             type="password"
@@ -115,6 +124,7 @@ function SignupFormModal() {
             required
           />
         </label>
+        <div>* - required field</div>
         <button type="submit">Sign Up</button>
       </form>
     </div>
