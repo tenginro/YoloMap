@@ -1,6 +1,7 @@
 const LOAD_USER_CART = "cart/user";
 const ADD_TO_CART = "cart/add";
 const REMOVE_FROM_CART = "cart/remove";
+const CLEAR_CART = "cart/clear";
 
 export const actionLoadUserCart = (cart) => ({
   type: LOAD_USER_CART,
@@ -17,11 +18,14 @@ export const actionRemoveFromCart = (id) => ({
   id,
 });
 
+export const actionClearCart = () => ({
+  type: CLEAR_CART,
+});
+
 export const thunkGetUserCart = () => async (dispatch) => {
   const response = await fetch("/api/cart/current");
   if (response.ok) {
     const cart = await response.json();
-    console.log("cart from backend", cart);
     await dispatch(actionLoadUserCart(cart));
     return cart;
   }
@@ -42,7 +46,8 @@ export const thunkAddToCart = (formData) => async (dispatch) => {
 };
 
 export const thunkDelateCart = (cartId) => async (dispatch) => {
-  const response = await fetch(`/api/cart/${cartId}`, {
+  console.log(cartId);
+  const response = await fetch(`/api/cart/${cartId}/remove`, {
     method: "DELETE",
   });
   if (response.ok) {
@@ -56,11 +61,9 @@ const cartReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_USER_CART:
       const cart = {};
-      console.log(action.cart);
       action.cart.forEach((c) => {
         cart[c.id] = c;
       });
-      console.log(cart);
       return { ...cart };
     case ADD_TO_CART:
       return {
@@ -71,6 +74,8 @@ const cartReducer = (state = {}, action) => {
       const newState = { ...state };
       delete newState[action.id];
       return newState;
+    case CLEAR_CART:
+      return {};
     default:
       return state;
   }
