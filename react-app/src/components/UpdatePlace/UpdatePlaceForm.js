@@ -60,11 +60,15 @@ export default function UpdatePlaceForm({ place }) {
 
   return (
     <div className="placeFormContainer">
-      <form onSubmit={handleSubmit} id="PlaceForm">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        id="PlaceForm"
+      >
         <h2>Update the place</h2>
         <label>
           <div className="inputLabel">
-            Name: *{"  "}
+            Name*: {"  "}
             {errorMessage?.name && (
               <div className="errors">{errorMessage.name}</div>
             )}
@@ -96,7 +100,7 @@ export default function UpdatePlaceForm({ place }) {
 
         <label>
           <div className="inputLabel">
-            Address: *{"  "}
+            Address*: {"  "}
             {errorMessage?.address && (
               <div className="errors">{errorMessage.address}</div>
             )}
@@ -112,7 +116,7 @@ export default function UpdatePlaceForm({ place }) {
 
         <label>
           <div className="inputLabel">
-            City: *{"  "}
+            City*: {"  "}
             {errorMessage?.city && (
               <div className="errors">{errorMessage.city}</div>
             )}
@@ -128,7 +132,7 @@ export default function UpdatePlaceForm({ place }) {
 
         <label>
           <div className="inputLabel">
-            State: *{"  "}
+            State*: {"  "}
             {errorMessage?.state && (
               <div className="errors">{errorMessage.state}</div>
             )}
@@ -189,7 +193,7 @@ export default function UpdatePlaceForm({ place }) {
 
         <div className="categoryLabel">
           <div className="inputLabel">
-            Choose a category: *{" "}
+            Choose a category*:{" "}
             {errorMessage?.category && (
               <div className="errors">{errorMessage.category}</div>
             )}
@@ -199,6 +203,7 @@ export default function UpdatePlaceForm({ place }) {
             onChange={(e) => setCategory(e.target.value)}
             value={category}
             name="category"
+            required
           >
             <option value="">--Please choose an option--</option>
             <option value="Art">Art</option>
@@ -208,21 +213,6 @@ export default function UpdatePlaceForm({ place }) {
             <option value="Travel">Travel</option>
           </select>
         </div>
-
-        {/* <label>
-          <div className="inputLabel">
-            Cover Picture: (optional){"  "}
-            {errorMessage?.cover_pic && (
-              <div className="errors">{errorMessage.cover_pic}</div>
-            )}
-          </div>
-          <input
-            type="text"
-            value={cover_pic}
-            placeholder="picture"
-            onChange={(e) => setCover_Pic(e.target.value)}
-          ></input>
-        </label> */}
 
         <label>
           <div className="inputLabel">
@@ -234,7 +224,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={lat}
-            placeholder="latitude"
+            placeholder="Latitude"
             onChange={(e) => setLat(e.target.value)}
           ></input>
         </label>
@@ -249,7 +239,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={lng}
-            placeholder="longitude"
+            placeholder="Longitude"
             onChange={(e) => setLng(e.target.value)}
           ></input>
         </label>

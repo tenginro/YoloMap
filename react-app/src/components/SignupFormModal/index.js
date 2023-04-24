@@ -60,7 +60,11 @@ function SignupFormModal() {
           <img className="logo" src={logo} alt="icon"></img>
         </div>
       )}
-      <form className="signupForm" onSubmit={handleSubmit}>
+      <form
+        className="signupForm"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <label>
           Email*:{"  "}
           <input

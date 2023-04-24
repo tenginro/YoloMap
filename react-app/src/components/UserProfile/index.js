@@ -9,6 +9,8 @@ import { actionClearProducts, thunkGetUserProducts } from "../../store/product";
 import OpenModalMenuItem from "../OpenModalMenuItem";
 import DeleteProductModal from "../DeleteProductModal";
 import UpdateProductModal from "../UpdateProductModal";
+import { thunkUpdateBudget } from "../../store/session";
+import UpdateBudget from "../UpdateBudgetModal";
 
 const defaultProfilePic =
   "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png";
@@ -49,7 +51,15 @@ export default function UserProfile() {
         ></img>
         <div>Username: {user.username}</div>
         <div>Email: {user.email}</div>
-        <div>Budget: ${Math.round(user.budget / 1000)},000</div>
+        <div>
+          Budget: ${Math.round(user.budget / 1000)},000
+          <button className="updateBudgetButton">
+            <OpenModalMenuItem
+              itemText="Update"
+              modalComponent={<UpdateBudget />}
+            />
+          </button>
+        </div>
       </div>
 
       <div id="placesAndProducts">
@@ -95,7 +105,10 @@ export default function UserProfile() {
                 </button>
               </div>
               <div className="productInformation">
-                <img src={product.cover_pic || defaultPic} alt="productCoverPic"></img>
+                <img
+                  src={product.cover_pic || defaultPic}
+                  alt="productCoverPic"
+                ></img>
                 <div>
                   <h4>
                     {product.name} <div>in {product?.place?.name}</div>
