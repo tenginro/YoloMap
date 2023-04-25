@@ -108,7 +108,7 @@
   color: white;
   border-radius: 4px;
   font-size: 14px;
-  border-color: #3bd16f;
+  border: none;
   list-style-type: none;
   margin-left: 5px;
 }

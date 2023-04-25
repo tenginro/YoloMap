@@ -137,6 +137,9 @@
 
 .hoursInfoContainer {
   width: 200px;
+  height: 200px;
+  overflow-wrap: break-word;
+  overflow-y: auto;
 }
 
 .CartButton {

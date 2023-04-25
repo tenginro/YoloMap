@@ -116,7 +116,9 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
                             alt={place.name}
                             style={{ height: "120px", width: "120px" }}
                           />
-                          <div>{place.name}</div>
+                          <div style={{ fontWeight: 500, fontSize: "14px" }}>
+                            {place.name}
+                          </div>
                           <div>{place.address}</div>
                           <div>
                             {place.city}, {place.state}
