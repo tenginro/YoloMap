@@ -86,7 +86,7 @@ export default function CreatePlace() {
             className="descriptionInputArea"
             type="text"
             value={description}
-            placeholder="description"
+            placeholder="Description"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </label>
@@ -179,7 +179,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={hours}
-            placeholder="Open hours"
+            placeholder="e.g. Mon-Fri: 9AM-11AM; Sat-Sun: All day"
             onChange={(e) => setHours(e.target.value)}
           ></input>
         </label>
@@ -233,7 +233,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={lat}
-            placeholder="Latitude"
+            placeholder="Latitude is between -90 and 90"
             onChange={(e) => setLat(e.target.value)}
             required
           ></input>
@@ -249,7 +249,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={lng}
-            placeholder="Longitude"
+            placeholder="Longitude is between -180 and 180"
             onChange={(e) => setLng(e.target.value)}
             required
           ></input>

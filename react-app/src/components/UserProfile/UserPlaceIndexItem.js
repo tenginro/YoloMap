@@ -6,31 +6,6 @@ import DeletePlaceModal from "../DeletePlaceModal";
 
 const UserPlaceIndexItem = ({ place }) => {
   const history = useHistory();
-  // const [showMenu, setShowMenu] = useState(false);
-  // const ulRef = useRef();
-
-  // const openMenu = (e) => {
-  //   e.stopPropagation();
-  //   if (showMenu) return;
-  //   setShowMenu(true);
-  // };
-
-  // useEffect(() => {
-  //   if (!showMenu) return;
-
-  //   const closeMenu = (e) => {
-  //     // you want the dropdown menu to close only if the click happened OUTSIDE the dropdown.
-  //     if (!ulRef.current.contains(e.target)) {
-  //       setShowMenu(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("click", closeMenu);
-
-  //   return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
-
-  // const closeMenu = () => setShowMenu(false);
 
   const onClickUpdate = (e) => {
     e.preventDefault();
@@ -42,7 +17,7 @@ const UserPlaceIndexItem = ({ place }) => {
       <div className="userPlaceButtons">
         <button onClick={onClickUpdate} className="updateButtonItem">
           <NavLink exact to={`/places/${place.id}/edit`} place={place}>
-            Update
+            <div style={{ color: "white" }}>Update</div>
           </NavLink>
         </button>
         <button className="deleteButtonItem">
@@ -74,7 +49,9 @@ const UserPlaceIndexItem = ({ place }) => {
                 {place.city}, {place.state}
               </div>
             </div>
-            <div className="descriptionAllPins">{place.description}</div>
+            <div className="descriptionAllPins">
+              {place.description || "No description yet"}
+            </div>
           </div>
         </div>
       </NavLink>

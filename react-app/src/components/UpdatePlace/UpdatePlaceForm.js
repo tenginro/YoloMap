@@ -76,7 +76,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={name}
-            placeholder="name is required"
+            placeholder="Name is required"
             onChange={(e) => setName(e.target.value)}
             required
           ></input>
@@ -93,7 +93,7 @@ export default function UpdatePlaceForm({ place }) {
             className="descriptionInputArea"
             type="text"
             value={description}
-            placeholder="please provide a short description"
+            placeholder="Description"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </label>
@@ -108,7 +108,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={address}
-            placeholder="address is required"
+            placeholder="Address is required"
             onChange={(e) => setAddress(e.target.value)}
             required
           ></input>
@@ -124,7 +124,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={city}
-            placeholder="city is required"
+            placeholder="City is required"
             onChange={(e) => setCity(e.target.value)}
             required
           ></input>
@@ -140,7 +140,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={state}
-            placeholder="state is required"
+            placeholder="State is required"
             onChange={(e) => setState(e.target.value)}
             required
           ></input>
@@ -156,7 +156,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={website}
-            placeholder="website"
+            placeholder="Website"
             onChange={(e) => setWebsite(e.target.value)}
           ></input>
         </label>
@@ -171,7 +171,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={phone}
-            placeholder="phone"
+            placeholder="Phone"
             onChange={(e) => setPhone(e.target.value)}
           ></input>
         </label>
@@ -186,7 +186,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={hours}
-            placeholder="open hours"
+            placeholder="e.g. Mon-Fri: 9AM-11AM; Sat-Sun: All day"
             onChange={(e) => setHours(e.target.value)}
           ></input>
         </label>
@@ -224,8 +224,9 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={lat}
-            placeholder="Latitude"
+            placeholder="Latitude is required"
             onChange={(e) => setLat(e.target.value)}
+            required
           ></input>
         </label>
 
@@ -239,8 +240,9 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={lng}
-            placeholder="Longitude"
+            placeholder="Longitude is required"
             onChange={(e) => setLng(e.target.value)}
+            required
           ></input>
         </label>
         <div>* - required field</div>

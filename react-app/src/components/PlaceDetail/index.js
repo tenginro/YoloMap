@@ -62,7 +62,9 @@ export default function PlaceDetail() {
       <div className="secondPart">
         <div className="descriptionContainerInPlaceDetail">
           <h3>Description</h3>
-          <div className="descriptionInPlaceDetail">{place.description}</div>
+          <div className="descriptionInPlaceDetail">
+            {place.description || "No description yet"}
+          </div>
         </div>
         <div className="secondSecondPart">
           <div className="locationHours">
