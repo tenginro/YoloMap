@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 
 import OpenModalMenuItem from "../OpenModalMenuItem";
@@ -6,31 +6,31 @@ import DeletePlaceModal from "../DeletePlaceModal";
 
 const UserPlaceIndexItem = ({ place }) => {
   const history = useHistory();
-  const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  // const [showMenu, setShowMenu] = useState(false);
+  // const ulRef = useRef();
 
-  const openMenu = (e) => {
-    e.stopPropagation();
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+  // const openMenu = (e) => {
+  //   e.stopPropagation();
+  //   if (showMenu) return;
+  //   setShowMenu(true);
+  // };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeMenu = (e) => {
-      // you want the dropdown menu to close only if the click happened OUTSIDE the dropdown.
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
+  //   const closeMenu = (e) => {
+  //     // you want the dropdown menu to close only if the click happened OUTSIDE the dropdown.
+  //     if (!ulRef.current.contains(e.target)) {
+  //       setShowMenu(false);
+  //     }
+  //   };
 
-    document.addEventListener("click", closeMenu);
+  //   document.addEventListener("click", closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
-  const closeMenu = () => setShowMenu(false);
+  // const closeMenu = () => setShowMenu(false);
 
   const onClickUpdate = (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const UserPlaceIndexItem = ({ place }) => {
         <button className="deleteButtonItem">
           <OpenModalMenuItem
             itemText="Delete"
-            onItemClick={closeMenu}
+            // onItemClick={closeMenu}
             modalComponent={<DeletePlaceModal place={place} />}
           />
         </button>
@@ -60,7 +60,7 @@ const UserPlaceIndexItem = ({ place }) => {
               src={place.cover_pic}
               alt="placeCoverPic"
               onError={(e) => {
-                this.src =
+                e.target.src =
                   "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
               }}
               title={place.name}

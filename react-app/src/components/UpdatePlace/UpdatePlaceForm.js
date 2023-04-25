@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { thunkUpdatePlace } from "../../store/place";
 
-const defaultProfilePic =
-  "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
+// const defaultProfilePic =
+//   "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
 
 export default function UpdatePlaceForm({ place }) {
   const placeId = place.id;

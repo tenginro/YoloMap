@@ -6,23 +6,21 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
 import {
-  actionClearCart,
   thunkClearCart,
   thunkDelateCart,
   thunkGetUserCart,
 } from "../../store/cart";
-import BetterPlanAlert from "./BetterPlanAlert";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const cartItemsObj = useSelector((state) => state.cart);
-  const cartItemArr = Object.values(cartItemsObj);
+  const ulRef = useRef();
 
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  // create a reference to a DOM element or a component.
-  const ulRef = useRef();
+
+  const cartItemsObj = useSelector((state) => state.cart);
+  const cartItemArr = Object.values(cartItemsObj);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -67,12 +65,11 @@ function ProfileButton({ user }) {
     (sumPrice, el) => (sumPrice = sumPrice + el.product.price),
     0
   );
-  const isDisabled = totalPrice >= user.budget;
+  const isDisabled = totalPrice >= user?.budget;
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const cartClassName = "cart-sidebar" + (showCart ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
-  const closeCart = () => setShowCart(false);
+  const closeTheMenu = () => setShowMenu(false);
 
   return (
     <>
@@ -184,12 +181,12 @@ function ProfileButton({ user }) {
           </a>
           <OpenModalButton
             buttonText="Log In"
-            onItemClick={closeMenu}
+            onItemClick={closeTheMenu}
             modalComponent={<LoginFormModal />}
           />
           <OpenModalButton
             buttonText="Sign Up"
-            onItemClick={closeMenu}
+            onItemClick={closeTheMenu}
             modalComponent={<SignupFormModal />}
           />
         </div>
