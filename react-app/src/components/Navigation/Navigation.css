@@ -173,8 +173,16 @@
   font-weight: 600;
 }
 
-#purchaseButtonContainer button {
+.purchaseButton {
   background-color: #38de6f;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.purchaseButton-disabled {
+  background-color: lightgrey;
   font-size: 20px;
   color: white;
   border: none;

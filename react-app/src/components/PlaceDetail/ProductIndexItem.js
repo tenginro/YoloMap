@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkAddToCart, thunkGetUserCart } from "../../store/cart";
 import OpenModalMenuItem from "../OpenModalMenuItem";
 import AddCartConfirm from "./AddCartConfirm";
+import BetterPlanAlert from "../Navigation/BetterPlanAlert";
 
 export default function ProductIndexItem({ product }) {
   const user = useSelector((state) => state.session.user);
@@ -16,8 +17,8 @@ export default function ProductIndexItem({ product }) {
       await dispatch(thunkAddToCart(formData)).then(() =>
         dispatch(thunkGetUserCart())
       );
-    } else {
-      alert("You do not have enough budget");
+      // } else {
+      //   alert("You do not have enough budget");
     }
   };
 
@@ -28,12 +29,21 @@ export default function ProductIndexItem({ product }) {
         <h4>{product.name}</h4>
         <div>{product.description}</div>
         <div>${product.price}</div>
-        <button className="CartButton" onClick={onClick}>
-          <OpenModalMenuItem
-            itemText="Add to Cart"
-            modalComponent={<AddCartConfirm />}
-          />
-        </button>
+        {user.budget - product.price > 0 ? (
+          <button className="CartButton" onClick={onClick}>
+            <OpenModalMenuItem
+              itemText="Add to Cart"
+              modalComponent={<AddCartConfirm />}
+            />
+          </button>
+        ) : (
+          <button className="CartButton" onClick={onClick}>
+            <OpenModalMenuItem
+              itemText="Add to Cart"
+              modalComponent={<BetterPlanAlert />}
+            />
+          </button>
+        )}
       </div>
     </div>
   );

@@ -18,13 +18,13 @@ def seed_reviews():
     review3 = Review(
         creatorId=1,
         productId=3,
-        review="This is one of the best places around for cakes.",
+        review="This is one of the best places around for milk tea.",
         rating=5,
     )
     review4 = Review(
         creatorId=2,
         productId=3,
-        review="Tiramisu is my favorite.",
+        review="Boba tea is my favorite.",
         rating=5,
     )
     review5 = Review(

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 
@@ -9,14 +9,13 @@ import { actionClearProducts, thunkGetUserProducts } from "../../store/product";
 import OpenModalMenuItem from "../OpenModalMenuItem";
 import DeleteProductModal from "../DeleteProductModal";
 import UpdateProductModal from "../UpdateProductModal";
-import { thunkUpdateBudget } from "../../store/session";
 import UpdateBudget from "../UpdateBudgetModal";
 
 const defaultProfilePic =
   "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png";
 
-const defaultPic =
-  "https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-10615.jpg?w=360";
+// const defaultPic =
+//   "https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-10615.jpg?w=360";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -106,10 +105,7 @@ export default function UserProfile() {
                 </button>
               </div>
               <div className="productInformation">
-                <img
-                  src={product.cover_pic || defaultPic}
-                  alt="productCoverPic"
-                ></img>
+                <img src={product.cover_pic} alt="productCoverPic"></img>
                 <div>
                   <h4>
                     <div>{product.name}</div>
