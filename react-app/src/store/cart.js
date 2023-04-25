@@ -56,6 +56,17 @@ export const thunkDelateCart = (cartId) => async (dispatch) => {
   return await response.json();
 };
 
+export const thunkClearCart = () => async (dispatch) => {
+  const response = await fetch(`/api/cart/current/clear`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    await dispatch(actionClearCart());
+    return await response.json();
+  }
+  return await response.json();
+};
+
 const cartReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_USER_CART:

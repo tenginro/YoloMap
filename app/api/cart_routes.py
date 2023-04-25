@@ -51,5 +51,18 @@ def remove_from_cart(id):
     if cartItem:
         db.session.delete(cartItem)
         db.session.commit()
-        return {"message": "Product removed from cart!"}
+        return {"message": "Product is removed from cart!"}
+    return {"message": "CartItem not found"}
+
+
+@cart_routes.route("/current/clear", methods=["DELETE"])
+@login_required
+def clear_cart():
+    user = current_user.to_dict()
+    allCartItems = Cart.query.filter(Cart.creatorId == user["id"]).all()
+
+    if len(allCartItems):
+        clear = [db.session.delete(cartItem) for cartItem in allCartItems]
+        db.session.commit()
+        return {"message": "Products are removed from cart!"}
     return {"message": "CartItem not found"}
