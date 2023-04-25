@@ -25,7 +25,7 @@ def seed_places():
         address="507 S Spring St",
         city="Los Angeles",
         state="CA",
-        description="milk tea, bubble tea",
+        description="It's a great place to hang out with friends, grab a quick pick-me-up, or simply indulge in a sweet treat. Many bubble tea stores also offer snacks and desserts to complement their drinks, creating a fun and relaxing atmosphere for customers to enjoy.",
         website="http://www.charedefine.com/",
         phone="2132668404",
         hours="11:30AM-7PM",

@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from ..models import Place, db, Product
+from ..models import Place, db, Product, Review, User
 from ..forms import ProductForm
 from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
@@ -22,13 +22,36 @@ def validation_errors_to_error_messages(validation_errors):
 @product_routes.route("/")
 def get_all_products():
     products = Product.query.all()
-    return [{**product.to_dict()} for product in products]
+    return [
+        {
+            **product.to_dict(),
+            "reviews": [
+                {
+                    **review.to_dict(),
+                    "reviewOwner": User.query.get(review.creatorId).to_dict(),
+                }
+                for review in Review.query.filter(Review.productId == product.id).all()
+            ],
+        }
+        for product in products
+    ]
 
 
 @product_routes.route("/<int:id>")
 def get_one_product(id):
     product = Product.query.get(id)
-    return {**product.to_dict()}
+    reviews = Review.query.filter(Review.productId == id).all()
+
+    return {
+        **product.to_dict(),
+        "reviews": [
+            {
+                **review.to_dict(),
+                "reviewOwner": User.query.get(review.creatorId).to_dict(),
+            }
+            for review in reviews
+        ],
+    }
 
 
 @product_routes.route("/current")
@@ -38,7 +61,17 @@ def get_user_products():
     products = Product.query.filter(Product.creatorId == user["id"])
 
     return [
-        {**product.to_dict(), "place": Place.query.get(product.placeId).to_dict()}
+        {
+            **product.to_dict(),
+            "place": Place.query.get(product.placeId).to_dict(),
+            "reviews": [
+                {
+                    **review.to_dict(),
+                    "reviewOwner": User.query.get(review.creatorId).to_dict(),
+                }
+                for review in Review.query.filter(Review.productId == product.id).all()
+            ],
+        }
         for product in products
     ]
 
@@ -100,6 +133,15 @@ def update_product(id):
             return {
                 **updated_product.to_dict(),
                 "place": Place.query.get(product.placeId).to_dict(),
+                "reviews": [
+                    {
+                        **review.to_dict(),
+                        "reviewOwner": User.query.get(review.creatorId).to_dict(),
+                    }
+                    for review in Review.query.filter(
+                        Review.productId == product.id
+                    ).all()
+                ],
             }
 
         if form.errors:
