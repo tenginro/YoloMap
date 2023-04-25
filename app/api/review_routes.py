@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from ..models import Place, db, Product, Review
+from ..models import Place, db, Product, Review, User
 from ..forms import ReviewForm
 from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
@@ -22,13 +22,22 @@ def validation_errors_to_error_messages(validation_errors):
 @review_routes.route("/")
 def get_all_reviews():
     reviews = Review.query.all()
-    return [{**review.to_dict()} for review in reviews]
+    return [
+        {
+            **review.to_dict(),
+            "reviewOwner": User.query.get(review.creatorId).to_dict(),
+        }
+        for review in reviews
+    ]
 
 
 @review_routes.route("/<int:id>")
 def get_one_review(id):
     review = Review.query.get(id)
-    return {**review.to_dict()}
+    return {
+        **review.to_dict(),
+        "reviewOwner": User.query.get(review.creatorId).to_dict(),
+    }
 
 
 @review_routes.route("/current")
@@ -51,18 +60,20 @@ def create_review():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        place = Place.query.get(form.data["placeId"])
+        product = Product.query.get(form.data["productId"])
 
         new_review = Review(
             creatorId=user["id"],
-            placeId=place.id,
-            name=form.data["name"],
-            description=form.data["description"],
-            price=form.data["price"],
+            productId=product.id,
+            review=form.data["review"],
+            rating=form.data["rating"],
         )
         db.session.add(new_review)
         db.session.commit()
-        return {**new_review.to_dict()}
+        return {
+            **new_review.to_dict(),
+            "reviewOwner": User.query.get(review.creatorId).to_dict(),
+        }
 
     if form.errors:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
@@ -81,16 +92,15 @@ def update_review(id):
         form["csrf_token"].data = request.cookies["csrf_token"]
 
         if form.validate_on_submit():
-            review.name = form.data["name"]
-            review.description = form.data["description"]
-            review.price = form.data["price"]
+            review.review = form.data["review"]
+            review.rating = form.data["rating"]
 
             db.session.commit()
 
             updated_review = Review.query.get(id)
             return {
                 **updated_review.to_dict(),
-                "place": Place.query.get(review.placeId).to_dict(),
+                "reviewOwner": User.query.get(review.creatorId).to_dict(),
             }
 
         if form.errors:
