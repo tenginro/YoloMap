@@ -27,7 +27,17 @@ export default function ProductIndexItem({ product }) {
       <img src={product.cover_pic} alt="productCoverPic"></img>
       <div>
         <h4>{product.name}</h4>
-        <div>{product.description}</div>
+        <div
+          style={{
+            width: "300px",
+            height: "30px",
+            overflowWrap: "break-word",
+            overflowY: "auto",
+            marginBottom: "5px",
+          }}
+        >
+          {product.description}
+        </div>
         <div>${product.price}</div>
         {user.budget - product.price > 0 ? (
           <button className="CartButton" onClick={onClick}>

@@ -181,7 +181,17 @@ export default function UserProfile() {
                         in {product?.place?.name}
                       </div>
                     </h4>
-                    <div>{product.description}</div>
+                    <div
+                      style={{
+                        width: "330px",
+                        height: "30px",
+                        overflowWrap: "break-word",
+                        overflowY: "auto",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {product.description}
+                    </div>
                     <div>${product.price}</div>
                   </div>
                 </div>
