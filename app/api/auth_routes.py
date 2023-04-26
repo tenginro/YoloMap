@@ -77,6 +77,8 @@ def sign_up():
                 password=form.data["password"],
                 profile_pic=url,
                 budget=form.data["budget"],
+                lat=form.data["lat"],
+                lng=form.data["lng"],
             )
         else:
             user = User(
@@ -84,6 +86,8 @@ def sign_up():
                 email=form.data["email"],
                 password=form.data["password"],
                 budget=form.data["budget"],
+                lat=form.data["lat"],
+                lng=form.data["lng"],
             )
 
         db.session.add(user)
