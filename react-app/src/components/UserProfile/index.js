@@ -45,20 +45,32 @@ export default function UserProfile() {
   return (
     <div className="userProfilePage">
       <div className="userProfilePic">
-        <img
-          src={user.profile_pic || defaultProfilePic}
-          alt="profile pic"
-        ></img>
-        <div>Username: {user.username}</div>
-        <div>Email: {user.email}</div>
-        <div>
-          Budget: ${user.budget}
-          <button className="updateBudgetButton">
-            <OpenModalMenuItem
-              itemText="Update"
-              modalComponent={<UpdateBudget />}
-            />
-          </button>
+        <div className="userProfileFirstPart">
+          <img
+            src={user.profile_pic || defaultProfilePic}
+            alt="profile pic"
+          ></img>
+          <div className="userProfileInfo">
+            <h1>Username: {user.username}</h1>
+            <h3>Email: {user.email}</h3>
+            <h3>
+              <i className="fa-solid fa-location-dot"></i>
+              {placesArr?.length
+                ? ` ${placesArr.length}  Places`
+                : " 0 Place"}{" "}
+              <i className="fa-solid fa-tags"></i>
+              {productsArr?.length
+                ? ` ${productsArr.length}  Products`
+                : " 0 Product"}{" "}
+              <i className="fa-solid fa-sack-dollar"></i> Budget: ${user.budget}
+              <button className="updateBudgetButton">
+                <OpenModalMenuItem
+                  itemText="Update"
+                  modalComponent={<UpdateBudget />}
+                />
+              </button>
+            </h3>
+          </div>
         </div>
       </div>
 

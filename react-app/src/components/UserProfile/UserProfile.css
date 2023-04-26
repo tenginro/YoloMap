@@ -6,15 +6,47 @@
 }
 .userProfilePic {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e6e6e6;
+  width: 100%;
+  min-width: 1020px;
+  padding-top: 15px;
+  height: 180px;
+  column-gap: 50px;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.userProfileFirstPart {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
 .userProfilePic img {
-  width: 200px;
-  height: 200px;
-  border-radius: 5px;
+  width: 217px;
+  height: 217px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  position: absolute;
+  bottom: -46px;
+}
+
+.userProfileInfo {
+  width: 465px;
+  vertical-align: bottom;
+  margin-left: 255px;
+  margin-right: 15px;
+  border-collapse: collapse;
+  border-spacing: 0 0;
+  box-sizing: border-box;
+  display: table-cell;
 }
 
 .userProfilePic div {
