@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { thunkDeletePlace, thunkGetUserPlaces } from "../../store/place";
 import { useModal } from "../../context/Modal";
 import "./DeletePlaceModal.css";
+import { thunkGetUserProducts } from "../../store/product";
 
 export default function DeletePlaceModal({ place }) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function DeletePlaceModal({ place }) {
     await dispatch(thunkDeletePlace(place))
       .then(closeModal)
       .then(() => dispatch(thunkGetUserPlaces()))
+      .then(() => dispatch(thunkGetUserProducts()))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {

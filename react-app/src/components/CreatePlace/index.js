@@ -5,6 +5,59 @@ import { thunkCreatePlace } from "../../store/place";
 
 import "./CreatePlace.css";
 
+const states_usa = [
+  "AL",
+  "AK",
+  "AZ",
+  "AR",
+  "CA",
+  "CO",
+  "CT",
+  "DE",
+  "FL",
+  "GA",
+  "HI",
+  "ID",
+  "IL",
+  "IN",
+  "IA",
+  "KS",
+  "KY",
+  "LA",
+  "ME",
+  "MD",
+  "MA",
+  "MI",
+  "MN",
+  "MS",
+  "MO",
+  "MT",
+  "NE",
+  "NV",
+  "NH",
+  "NJ",
+  "NM",
+  "NY",
+  "NC",
+  "ND",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "RI",
+  "SC",
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VT",
+  "VA",
+  "WA",
+  "WV",
+  "WI",
+  "WY",
+];
+
 export default function CreatePlace() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -106,39 +159,45 @@ export default function CreatePlace() {
             required
           ></input>
         </label>
-
-        <label>
-          <div className="inputLabel">
-            City*: {"  "}
-            {errorMessage?.city && (
-              <div className="errors">{errorMessage.city}</div>
-            )}
-          </div>
-          <input
-            type="text"
-            value={city}
-            placeholder="City is required"
-            onChange={(e) => setCity(e.target.value)}
-            required
-          ></input>
-        </label>
-
-        <label>
-          <div className="inputLabel">
-            State*: {"  "}
-            {errorMessage?.state && (
-              <div className="errors">{errorMessage.state}</div>
-            )}
-          </div>
-          <input
-            type="text"
-            value={state}
-            placeholder="State is required"
-            onChange={(e) => setState(e.target.value)}
-            required
-          ></input>
-        </label>
-
+        <div id="cityAndState">
+          <label>
+            <div className="inputLabel city">
+              City*: {"  "}
+              {errorMessage?.city && (
+                <div className="errors">{errorMessage.city}</div>
+              )}
+            </div>
+            <input
+              type="text"
+              value={city}
+              placeholder="City is required"
+              onChange={(e) => setCity(e.target.value)}
+              required
+            ></input>
+          </label>
+          <label>
+            <div className="inputLabel">
+              State*: {"  "}
+              {errorMessage?.state && (
+                <div className="errors">{errorMessage.state}</div>
+              )}
+            </div>
+            <select
+              id="stateSelect"
+              onChange={(e) => setState(e.target.value)}
+              value={state}
+              name="state"
+              required
+            >
+              <option value="">--Please select a state--</option>
+              {states_usa.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
         <label>
           <div className="inputLabel">
             Website: (optional){"  "}
@@ -198,7 +257,7 @@ export default function CreatePlace() {
             name="category"
             required
           >
-            <option value="">--Please choose an option--</option>
+            <option value="">--Please select a category--</option>
             <option value="Art">Art</option>
             <option value="Bakery">Bakery</option>
             <option value="Bar">Bar</option>

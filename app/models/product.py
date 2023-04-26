@@ -21,6 +21,11 @@ class Product(db.Model):
     cover_pic = db.Column(db.String(255))
     price = db.Column(db.Integer)
 
+    creator = db.relationship("User", back_populates="products")
+    place = db.relationship("Place", back_populates="products")
+
+    reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
+
     def to_dict(self):
         return {
             "id": self.id,

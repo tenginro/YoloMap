@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { NavLink, Route, Switch } from "react-router-dom";
 
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
@@ -11,6 +11,7 @@ import UserProfile from "./components/UserProfile";
 import CreatePlace from "./components/CreatePlace";
 import UpdatePlaceWrapper from "./components/UpdatePlace";
 import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function App() {
             <LandingPage />
           </Route>
           <Route>
-            <h2>404: Page not found</h2>
+            <NotFound />
           </Route>
         </Switch>
       )}

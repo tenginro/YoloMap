@@ -10,6 +10,8 @@ def seed_users():
         budget=50000,
         profile_pic="https://cdn.statusqueen.com/dpimages/thumbnail/cute_dp_image-3100.jpg",
         password="password",
+        lat=42.3770029,
+        lng=-71.1188488,
     )
     user2 = User(
         username="UserTwo",
@@ -17,6 +19,8 @@ def seed_users():
         budget=50000,
         profile_pic="https://funkylife.in/wp-content/uploads/2023/01/whatsapp-dp-by-funkylife-561-1.jpg",
         password="password",
+        lat=42.3970029,
+        lng=-71.1588488,
     )
     user3 = User(
         username="UserThree",
@@ -24,6 +28,8 @@ def seed_users():
         budget=50000,
         profile_pic="https://funylife.in/wp-content/uploads/2022/12/41_Whatsapp-Dp-images-FunyLife.in_-1024x1024.jpg",
         password="password",
+        lat=42.5770029,
+        lng=-71.6188488,
     )
 
     all_users = [demo, user2, user3]

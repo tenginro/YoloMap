@@ -6,9 +6,11 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+import { useSelector } from "react-redux";
 
 const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
   const history = useHistory();
+  const user = useSelector((state) => state.session.user);
   const [map, setMap] = useState(null);
 
   const [selectedPlace, setSelectedPlace] = useState(
@@ -21,8 +23,8 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
 
   //This sets the center of the map. This must be set BEFORE the map loads
   const [currentPosition, setCurrentPosition] = useState({
-    lat: 42.3770029,
-    lng: -71.1188488,
+    lat: +user?.lat || 42.3770029,
+    lng: +user?.lng || -71.1188488,
   });
 
   const { isLoaded } = useJsApiLoader({

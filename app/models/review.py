@@ -19,6 +19,13 @@ class Review(db.Model):
     review = db.Column(db.Text)
     rating = db.Column(db.Integer)
 
+    creator = db.relationship("User", back_populates="reviews")
+    product = db.relationship("Product", back_populates="reviews")
+
+    reviewImages = db.relationship(
+        "ReviewImage", back_populates="review", cascade="all, delete"
+    )
+
     def to_dict(self):
         return {
             "id": self.id,

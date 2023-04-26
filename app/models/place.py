@@ -24,6 +24,10 @@ class Place(db.Model):
     lat = db.Column(db.Numeric(10, 7))
     lng = db.Column(db.Numeric(10, 7))
 
+    creator = db.relationship("User", back_populates="places")
+
+    products = db.relationship("Product", back_populates="place", cascade="all, delete")
+
     def to_dict(self):
         return {
             "id": self.id,

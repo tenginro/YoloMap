@@ -56,6 +56,7 @@ function LoginFormModal() {
         )}
         <div>
           <label>
+            Email*:
             <input
               className="loginModalInput"
               type="text"
@@ -68,6 +69,7 @@ function LoginFormModal() {
         </div>
         <div>
           <label>
+            Password*:
             <input
               className="loginModalInput"
               type="password"
@@ -78,6 +80,7 @@ function LoginFormModal() {
             />
           </label>
         </div>
+        <div>* - required field</div>
         <button className="loginModalButton" type="submit">
           Log In
         </button>

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, IntegerField, PasswordField
+from wtforms import StringField, EmailField, IntegerField, PasswordField, FloatField
 from wtforms.validators import (
     DataRequired,
     Email,
@@ -46,4 +46,18 @@ class SignUpForm(FlaskForm):
     )
     profile_pic = FileField(
         "profile_pic", validators=[Optional(), FileAllowed(list(ALLOWED_EXTENSIONS))]
+    )
+    lat = FloatField(
+        "lat",
+        validators=[
+            DataRequired(message="Please provide a valid latitude."),
+            NumberRange(min=-90, max=90, message="Please provide a valid latitude."),
+        ],
+    )
+    lng = FloatField(
+        "lng",
+        validators=[
+            DataRequired(message="Please provide a valid longitude."),
+            NumberRange(min=-180, max=180, message="Please provide a valid longitude."),
+        ],
     )

@@ -1,0 +1,32 @@
+#notFoundPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 20px;
+  max-width: 1140px;
+  width: 100%;
+  margin-left: 15%;
+  padding-bottom: 100px;
+}
+
+#notFoundPage h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.4px;
+  padding-top: 40px;
+}
+
+.firstPartInNotFound {
+  margin-left: 100px;
+  width: 350px;
+}
+
+.firstPartInNotFound h4 {
+  font-size: 20px;
+}
+
+#notFoundPage img {
+  height: 520px;
+  width: 650px;
+}

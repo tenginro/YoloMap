@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 
@@ -14,9 +14,6 @@ import UpdateBudget from "../UpdateBudgetModal";
 const defaultProfilePic =
   "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png";
 
-// const defaultPic =
-//   "https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-10615.jpg?w=360";
-
 export default function UserProfile() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -25,6 +22,8 @@ export default function UserProfile() {
   const placesArr = Object.values(placesObj);
   const productsObj = useSelector((state) => state.products.allProducts);
   const productsArr = Object.values(productsObj);
+
+  const [selectedPage, setSelectedPage] = useState("places");
 
   useEffect(() => {
     dispatch(thunkGetUserPlaces());
@@ -45,86 +44,147 @@ export default function UserProfile() {
   return (
     <div className="userProfilePage">
       <div className="userProfilePic">
-        <img
-          src={user.profile_pic || defaultProfilePic}
-          alt="profile pic"
-        ></img>
-        <div>Username: {user.username}</div>
-        <div>Email: {user.email}</div>
-        <div>
-          Budget: ${user.budget}
-          <button className="updateBudgetButton">
-            <OpenModalMenuItem
-              itemText="Update"
-              modalComponent={<UpdateBudget />}
-            />
-          </button>
+        <div className="userProfileFirstPart">
+          <img
+            src={user.profile_pic || defaultProfilePic}
+            alt="profile pic"
+          ></img>
+          <div className="userProfileInfo">
+            <h1>Username: {user.username}</h1>
+            <h3>Email: {user.email}</h3>
+            <h3>
+              <i className="fa-solid fa-location-dot"></i>
+              {placesArr?.length
+                ? ` ${placesArr.length}  Places`
+                : " 0 Place"}{" "}
+              <i className="fa-solid fa-tags"></i>
+              {productsArr?.length
+                ? ` ${productsArr.length}  Products`
+                : " 0 Product"}{" "}
+              <i className="fa-solid fa-sack-dollar"></i> Budget: ${user.budget}
+              <button style={{ padding: "5px" }} className="updateBudgetButton">
+                <OpenModalMenuItem
+                  itemText="Update Budget"
+                  modalComponent={<UpdateBudget />}
+                />
+              </button>
+            </h3>
+          </div>
         </div>
       </div>
-
-      <div id="placesAndProducts">
-        <div className="places">
-          <div>
-            <h2>All places you created </h2>
-            <NavLink exact to="/places/new">
-              <div className="toGreen link">
-                Create a new place you want to go
-              </div>
-            </NavLink>
+      <div id="userProfileSecondPart">
+        <div id="userProfileMenu">
+          <h2>{user.username}'s Profile</h2>
+          <div className="menuOption" onClick={() => setSelectedPage("places")}>
+            {" "}
+            <i className="fa-solid fa-location-dot"></i> <div> Places</div>
           </div>
-          {placesArr?.map((place) => (
-            <UserPlaceIndexItem key={place.id} place={place} />
-          ))}
+          <div
+            className="menuOption"
+            onClick={() => setSelectedPage("products")}
+          >
+            <i className="fa-solid fa-tags"></i>
+            <div>Products</div>
+          </div>
+          <div
+            className="menuOption"
+            onClick={() => alert("Feature coming soon")}
+          >
+            <i className="fa-solid fa-registered"></i> <div>Reviews</div>
+          </div>
+          <div
+            className="menuOption"
+            style={{ borderBottom: "1px solid #e6e6e6" }}
+            onClick={() => alert("Feature coming soon")}
+          >
+            <i className="fa-solid fa-clock-rotate-left"></i>
+            <div>Order History</div>
+          </div>
         </div>
-        <div className="products">
-          <div>
-            <h2>All products you created</h2>
-            <div className="toChangeSize">
-              To create a product, go to the place detail page
+        <div id="placesAndProducts">
+          <div
+            className={selectedPage === "places" ? "places" : "places hidden"}
+          >
+            <div>
+              <h2 style={{ color: "#01b636" }}>All places you created </h2>
+              <NavLink exact to="/places/new">
+                <div className="toGreen link">
+                  Create a new place you want to go
+                </div>
+              </NavLink>
             </div>
-          </div>
-          {productsArr?.map((product) => (
-            <div key={product.id} className="productIndexInUserProfile">
-              <div className="userProductButtons">
-                <button className="updateButtonItem">
-                  <OpenModalMenuItem
-                    itemText="Update"
-                    modalComponent={
-                      <UpdateProductModal
-                        product={product}
-                        placeId={product.placeId}
-                      />
-                    }
-                  />
-                </button>
-                <button className="deleteButtonItem">
-                  <OpenModalMenuItem
-                    itemText="Delete"
-                    modalComponent={<DeleteProductModal product={product} />}
-                  />
-                </button>
+            {placesArr?.map((place) => (
+              <UserPlaceIndexItem key={place.id} place={place} />
+            ))}
+            {!placesArr?.length && (
+              <div>
+                It's your turn — create a place from your favorite restaurant to
+                your favorite travel place. Contribute to the YoloMap community
+                and help other users find all the great places that you love.
               </div>
-              <div className="productInformation">
-                <img src={product.cover_pic} alt="productCoverPic"></img>
-                <div>
-                  <h4>
-                    <div>{product.name}</div>
-                    <div
-                      className="placeForProduct"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        history.push(`/places/${product.place.id}`);
-                      }}
-                    >
-                      in {product?.place?.name}
-                    </div>
-                  </h4>
-                  <div>{product.description}</div>
-                  <div>${product.price}</div>
+            )}
+          </div>
+          <div
+            className={
+              selectedPage === "products" ? "products" : "products hidden"
+            }
+          >
+            <div>
+              <h2 style={{ color: "#01b636" }}>All products you created</h2>
+              <div className="toChangeSize">
+                To create a product, go to the place detail page
+              </div>
+            </div>
+            {productsArr?.map((product) => (
+              <div key={product.id} className="productIndexInUserProfile">
+                <div className="userProductButtons">
+                  <button className="updateButtonItem">
+                    <OpenModalMenuItem
+                      itemText="Update"
+                      modalComponent={
+                        <UpdateProductModal
+                          product={product}
+                          placeId={product.placeId}
+                        />
+                      }
+                    />
+                  </button>
+                  <button className="deleteButtonItem">
+                    <OpenModalMenuItem
+                      itemText="Delete"
+                      modalComponent={<DeleteProductModal product={product} />}
+                    />
+                  </button>
+                </div>
+                <div className="productInformation">
+                  <img src={product.cover_pic} alt="productCoverPic"></img>
+                  <div>
+                    <h4>
+                      <div>{product.name}</div>
+                      <div
+                        className="placeForProduct"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          history.push(`/places/${product.place.id}`);
+                        }}
+                      >
+                        in {product?.place?.name}
+                      </div>
+                    </h4>
+                    <div>{product.description}</div>
+                    <div>${product.price}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+            {!productsArr?.length && (
+              <div>
+                Did you know you can create a product in the place detail page
+                to help other users discover the businesses and show off your
+                own great taste? Welcome to YoloMap!
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

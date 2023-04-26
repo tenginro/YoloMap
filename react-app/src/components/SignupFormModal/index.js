@@ -13,6 +13,8 @@ function SignupFormModal() {
   const [profile_pic, setProfilePic] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [budget, setBudget] = useState(0);
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -27,6 +29,8 @@ function SignupFormModal() {
       formData.append("email", email);
       formData.append("password", password);
       formData.append("budget", budget);
+      if (lat) formData.append("lat", lat);
+      if (lng) formData.append("lng", lng);
       if (profile_pic) {
         formData.append("profile_pic", profile_pic);
         setImageLoading(true);
@@ -109,6 +113,30 @@ function SignupFormModal() {
           />
         </label>
         <label>
+          Latitude*: {"  "}
+          <input
+            className="signupModalInput"
+            type="text"
+            value={lat}
+            placeholder="Latitude is between -90 and 90"
+            onChange={(e) => setLat(e.target.value)}
+            required
+          ></input>
+        </label>
+
+        <label>
+          Longitude*: {"  "}
+          <input
+            className="signupModalInput"
+            type="text"
+            value={lng}
+            placeholder="Longitude is between -180 and 180"
+            onChange={(e) => setLng(e.target.value)}
+            required
+          ></input>
+        </label>
+
+        <label>
           Password*:{"  "}
           <input
             className="signupModalInput"
@@ -130,6 +158,7 @@ function SignupFormModal() {
             required
           />
         </label>
+
         <div>* - required field</div>
         <button type="submit">Sign Up</button>
       </form>

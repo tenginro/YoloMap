@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
 }
 
 #PlaceForm {
@@ -22,11 +23,29 @@
 }
 #PlaceForm select {
   width: 200px;
-  height: 20px;
+  height: 24px;
 }
 #categorySelect {
   margin-top: 3px;
 }
+
+#PlaceForm #cityAndState {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 387px;
+  column-gap: 20px;
+}
+
+#PlaceForm #cityAndState label {
+  width: 48%;
+}
+
+#PlaceForm #cityAndState input,
+#PlaceForm #cityAndState select {
+  width: 100%;
+}
+
 #PlaceForm .placeFormButtonContainer {
   display: flex;
   flex-direction: row;
