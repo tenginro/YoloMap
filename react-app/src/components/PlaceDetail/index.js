@@ -39,16 +39,25 @@ export default function PlaceDetail() {
 
   const closeMenu = () => setShowMenu(false);
 
-  if (typeof +placeId !== "number") {
-    return <NotFound />;
-  }
-
-  if (!place.creatorId)
+  if (!place.creatorId) {
+    if (+placeId < 1 || +placeId % 1 !== 0) {
+      return <NotFound />;
+    }
     return (
-      <div>
-        <i className="fas fa-solid fa-spinner"></i>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src="https://assets-global.website-files.com/5c7fdbdd4e3feeee8dd96dd2/6134707265a929f4cdfc1f6d_5.gif"
+          alt="Loading"
+        ></img>
       </div>
     );
+  }
 
   return (
     <div className="placeDetailPage">
