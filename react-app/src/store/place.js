@@ -1,6 +1,7 @@
 const LOAD_PLACES = "places/load_all";
 const LOAD_PLACE = "places/load_one";
 const LOAD_USER_PLACES = "places/load_user";
+
 const CLEAR_PLACES = "places/clear_all";
 const CLEAR_PLACE = "places/clear_one";
 const CREATE_PLACE = "places/create";

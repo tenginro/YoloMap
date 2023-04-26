@@ -15,6 +15,13 @@ class User(db.Model, UserMixin):
     budget = db.Column(db.Integer, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(255))
+    lat = db.Column(db.Numeric(10, 7))
+    lng = db.Column(db.Numeric(10, 7))
+
+    places = db.relationship("Place", back_populates="creator")
+    products = db.relationship("Product", back_populates="creator")
+    reviews = db.relationship("Review", back_populates="creator")
+    reviewImages = db.relationship("ReviewImage", back_populates="creator")
 
     @property
     def password(self):
@@ -34,4 +41,6 @@ class User(db.Model, UserMixin):
             "email": self.email,
             "profile_pic": self.profile_pic,
             "budget": self.budget,
+            "lat": self.lat,
+            "lng": self.lng,
         }

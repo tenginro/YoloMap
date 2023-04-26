@@ -18,6 +18,7 @@ export default function DeletePlaceModal({ place }) {
     await dispatch(thunkDeletePlace(place))
       .then(closeModal)
       .then(() => dispatch(thunkGetUserPlaces()))
+      .then(() => dispatch(thunkGetUserProducts()))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {

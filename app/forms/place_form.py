@@ -11,6 +11,14 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 from app.aws_helpers import ALLOWED_EXTENSIONS
 
+states_usa = [
+    'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 
+    'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 
+    'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 
+    'WI', 'WY'
+]
+
+
 
 class PlaceForm(FlaskForm):
     name = StringField("name", validators=[DataRequired(message="Name is required")])
@@ -19,7 +27,10 @@ class PlaceForm(FlaskForm):
         "address", validators=[DataRequired(message="Address is required")]
     )
     city = StringField("city", validators=[DataRequired(message="City is required")])
-    state = StringField("state", validators=[DataRequired(message="State is required")])
+    state = SelectField(
+        "state",
+        choices=[(state, state) for state in states_usa],
+    )
     website = StringField("website")
     phone = StringField(
         "phone",

@@ -62,9 +62,9 @@ export default function UserProfile() {
                 ? ` ${productsArr.length}  Products`
                 : " 0 Product"}{" "}
               <i className="fa-solid fa-sack-dollar"></i> Budget: ${user.budget}
-              <button className="updateBudgetButton">
+              <button style={{ padding: "5px" }} className="updateBudgetButton">
                 <OpenModalMenuItem
-                  itemText="Update"
+                  itemText="Update Budget"
                   modalComponent={<UpdateBudget />}
                 />
               </button>
