@@ -21,6 +21,7 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
     setSelectedPlace(selectedPlaceFromAllPlaces);
   }, [selectedPlaceFromAllPlaces]);
 
+  console.log(user.lat);
   //This sets the center of the map. This must be set BEFORE the map loads
   const [currentPosition, setCurrentPosition] = useState({
     lat: +user?.lat || 42.3770029,
@@ -82,7 +83,7 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={containerStyle}
-            zoom={11}
+            zoom={12}
             center={currentPosition}
             onUnmount={onUnmount}
           >

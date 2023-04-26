@@ -5,9 +5,12 @@ import { signUp } from "../../store/session";
 
 import logo from "../Navigation/logo.jpeg";
 import "./SignupForm.css";
+import { useHistory } from "react-router-dom";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [profile_pic, setProfilePic] = useState(null);
@@ -44,6 +47,7 @@ function SignupFormModal() {
       } else {
         setImageLoading(false);
         closeModal();
+        return history.push(`/places`);
       }
     } else {
       setErrors([

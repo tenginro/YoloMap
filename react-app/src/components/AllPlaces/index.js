@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllPlaces } from "../../store/place";
+import { actionClearPlaces, thunkGetAllPlaces } from "../../store/place";
 import PlaceIndexItem from "./PlaceIndexItem";
 import "./AllPlaces.css";
 import MapPage from "./Map";
@@ -14,6 +14,9 @@ export default function AllPlaces() {
 
   useEffect(() => {
     dispatch(thunkGetAllPlaces());
+    return () => {
+      dispatch(actionClearPlaces());
+    };
   }, [dispatch]);
 
   if (!placesObj)
