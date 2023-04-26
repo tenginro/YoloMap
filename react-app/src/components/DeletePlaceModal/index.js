@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { thunkDeletePlace, thunkGetUserPlaces } from "../../store/place";
 import { useModal } from "../../context/Modal";
 import "./DeletePlaceModal.css";
+import { thunkGetUserProducts } from "../../store/product";
 
 export default function DeletePlaceModal({ place }) {
   const dispatch = useDispatch();

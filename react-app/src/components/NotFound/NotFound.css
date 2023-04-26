@@ -1,11 +1,12 @@
 #notFoundPage {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   column-gap: 20px;
   max-width: 1140px;
   width: 100%;
-  margin-left: 100px;
+  margin-left: 15%;
+  padding-bottom: 100px;
 }
 
 #notFoundPage h1 {

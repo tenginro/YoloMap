@@ -83,21 +83,26 @@
   column-gap: 30px;
 }
 
-#placesAndProducts {
+/* #placesAndProducts {
   display: flex;
   flex-direction: row;
   align-items: space-between;
   column-gap: 30px;
-}
+} */
 
 #placesAndProducts .places {
-  width: 60%;
+  width: 90%;
+  height: 100%;
+  overflow-y: auto;
 }
 
 #placesAndProducts .products {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+  width: 90%;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .productIndexInUserProfile {
@@ -149,4 +154,47 @@
   color: #01b636;
   cursor: pointer;
   text-decoration: underline;
+}
+
+#userProfileSecondPart {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+#userProfileSecondPart .hidden {
+  display: none;
+}
+
+#userProfileMenu {
+  width: 20%;
+}
+
+#userProfileMenu .menuOption {
+  border-top: 1px solid #e6e6e6;
+  padding: 12px;
+  text-decoration: none;
+  color: #333;
+  text-align: -webkit-match-parent;
+  vertical-align: baseline;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 5px;
+}
+
+#userProfileMenu .fa-solid {
+  width: 20px;
+  height: 20px;
+}
+
+#placesAndProducts {
+  width: 70%;
+  padding-left: 10px;
 }

@@ -12,6 +12,7 @@ import {
 import ProductIndexItem from "./ProductIndexItem";
 import OpenModalButton from "../OpenModalButton";
 import CreateProductModal from "../CreateProductModal";
+import NotFound from "../NotFound";
 
 export default function PlaceDetail() {
   const { placeId } = useParams();
@@ -37,6 +38,10 @@ export default function PlaceDetail() {
   }, [dispatch, placeId]);
 
   const closeMenu = () => setShowMenu(false);
+
+  if (typeof +placeId !== "number") {
+    return <NotFound />;
+  }
 
   if (!place.creatorId)
     return (
@@ -128,6 +133,13 @@ export default function PlaceDetail() {
           {productsArr?.map((product) => (
             <ProductIndexItem key={product.id} product={product} />
           ))}
+          {!productsArr?.length && (
+            <div>
+              Did you know you can create a product in the place detail page to
+              help other users discover the businesses and show off your own
+              great taste? Welcome to YoloMap!
+            </div>
+          )}
         </div>
       </div>
     </div>
