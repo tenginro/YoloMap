@@ -83,7 +83,7 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={containerStyle}
-            zoom={12}
+            zoom={11}
             center={currentPosition}
             onUnmount={onUnmount}
           >

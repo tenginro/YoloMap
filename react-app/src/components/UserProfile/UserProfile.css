@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 }
 .userProfilePic {
   display: flex;
@@ -191,6 +192,11 @@
 
 #userProfileMenu .fa-solid {
   width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+#userProfileMenu .menuOption div {
   height: 20px;
 }
 

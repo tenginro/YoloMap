@@ -34,7 +34,8 @@ export default function LandingPage() {
           style={{
             fontSize: "100px",
             color: "white",
-            paddingLeft: "100px",
+            paddingLeft: "150px",
+            paddingTop: "100px",
             fontWeight: "900",
             zIndex: 2,
             textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)",
