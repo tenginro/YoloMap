@@ -27,7 +27,7 @@ export default function Footer() {
             <div>Events</div>
             <div>YoloMap Blog</div>
             <div>Support</div>
-            <div>Yelp Mobile</div>
+            <div>YoloMap Mobile</div>
             <div>Developers</div>
             <div>RSS</div>
           </div>
