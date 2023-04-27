@@ -12,12 +12,57 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from app.aws_helpers import ALLOWED_EXTENSIONS
 
 states_usa = [
-    'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 
-    'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 
-    'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 
-    'WI', 'WY'
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
 ]
-
 
 
 class PlaceForm(FlaskForm):
@@ -41,7 +86,8 @@ class PlaceForm(FlaskForm):
     )
     hours = StringField("hours")
     category = SelectField(
-        "category", choices=["Art", "Restaurant", "Bar", "Travel", "Bakery"]
+        "category",
+        choices=["Art", "Restaurant", "Bar", "Travel", "Bakery", "Coffee/Tea"],
     )
     cover_pic = FileField(
         "cover_pic", validators=[Optional(), FileAllowed(list(ALLOWED_EXTENSIONS))]

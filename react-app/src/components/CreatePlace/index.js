@@ -261,6 +261,7 @@ export default function CreatePlace() {
             <option value="Art">Art</option>
             <option value="Bakery">Bakery</option>
             <option value="Bar">Bar</option>
+            <option value="Coffee/Tea">Coffee/Tea</option>
             <option value="Restaurant">Restaurant</option>
             <option value="Travel">Travel</option>
           </select>

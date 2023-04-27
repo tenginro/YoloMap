@@ -17,13 +17,16 @@ const PlaceIndexItem = ({ place }) => {
         </div>
         <div className="placeRightPart">
           <h3>{place.name}</h3>
+          <div>{place.category}</div>
           <div className="placeRightPartSub">
             <div>{place.address}</div>
             <div>
               {place.city}, {place.state}
             </div>
           </div>
-          <div className="descriptionAllPins">{place.description}</div>
+          <div className="descriptionAllPins">
+            {place.description || "No description yet"}
+          </div>
         </div>
       </div>
     </NavLink>
