@@ -10,6 +10,7 @@ import "./LoginForm.css";
 function LoginFormModal() {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,6 +20,7 @@ function LoginFormModal() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
+      console.log(data);
       setErrors(data);
     } else {
       closeModal();
@@ -46,7 +48,7 @@ function LoginFormModal() {
         {errors.length ? (
           <ul className="errorContainerLogIn">
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li key={idx}>{error.split(" : ")[1]}</li>
             ))}
           </ul>
         ) : (

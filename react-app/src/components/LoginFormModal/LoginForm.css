@@ -17,13 +17,20 @@
 }
 
 .errorContainerLogIn {
-  height: 60px;
+  height: 70px;
   list-style-type: none;
   color: red;
   margin-left: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
+}
+
+.errorContainerLogIn li {
+  display: block;
+  text-align: left;
+  margin-left: -20px;
 }
 
 .loginModalInput {

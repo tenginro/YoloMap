@@ -81,7 +81,9 @@ class PlaceForm(FlaskForm):
         "phone",
         validators=[
             Optional(),
-            Length(min=10, max=10, message="Please provide a valid phone number."),
+            Length(
+                min=10, max=10, message="Please provide a valid 10-digit phone number."
+            ),
         ],
     )
     hours = StringField("hours")
@@ -96,14 +98,14 @@ class PlaceForm(FlaskForm):
         "lat",
         validators=[
             DataRequired(message="Please provide a valid latitude."),
-            NumberRange(min=-90, max=90, message="Please provide a valid latitude."),
+            NumberRange(min=-90, max=90, message="Please provide a valid latitude between -90 and 90."),
         ],
     )
     lng = FloatField(
         "lng",
         validators=[
             DataRequired(message="Please provide a valid longitude."),
-            NumberRange(min=-180, max=180, message="Please provide a valid longitude."),
+            NumberRange(min=-180, max=180, message="Please provide a valid longitude between -180 and 180."),
         ],
     )
     submit = SubmitField("Create Place")

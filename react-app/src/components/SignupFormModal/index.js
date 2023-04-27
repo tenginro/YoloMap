@@ -62,7 +62,7 @@ function SignupFormModal() {
       {errors.length ? (
         <ul className="errorContainerSignup">
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx}>{error.split(" : ")[1]}</li>
           ))}
         </ul>
       ) : (
