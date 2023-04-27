@@ -119,14 +119,9 @@ def update_place(id):
 @login_required
 def delete_place(id):
     place = Place.query.get(id)
-    # products = Product.query.filter(Product.placeId == place.id).all()
 
     if place:
-        # if len(products):
-        #     delete_products = [db.session.delete(product) for product in products]
-
         db.session.delete(place)
-
         db.session.commit()
         return {"message": "Place Deleted!"}
     return {"message": "Place not found"}
