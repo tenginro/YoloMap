@@ -21,7 +21,6 @@ const MapPage = ({ placesArr, selectedPlaceFromAllPlaces }) => {
     setSelectedPlace(selectedPlaceFromAllPlaces);
   }, [selectedPlaceFromAllPlaces]);
 
-  console.log(user.lat);
   //This sets the center of the map. This must be set BEFORE the map loads
   const [currentPosition, setCurrentPosition] = useState({
     lat: +user?.lat || 42.3770029,
