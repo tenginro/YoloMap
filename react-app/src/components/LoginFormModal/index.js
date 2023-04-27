@@ -46,11 +46,11 @@ function LoginFormModal() {
 
       <form className="loginForm" onSubmit={handleSubmit}>
         {errors.length ? (
-          <ul className="errorContainerLogIn">
+          <div className="errorContainerLogIn">
             {errors.map((error, idx) => (
-              <li key={idx}>{error.split(" : ")[1]}</li>
+              <div key={idx}>{error.split(" : ")[1]}</div>
             ))}
-          </ul>
+          </div>
         ) : (
           <div className="errorContainerLogIn">
             <img className="logo" src={logo} alt="icon"></img>

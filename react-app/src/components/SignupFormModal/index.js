@@ -60,11 +60,11 @@ function SignupFormModal() {
     <div id="signupModal">
       <h1>Sign Up</h1>
       {errors.length ? (
-        <ul className="errorContainerSignup">
+        <div className="errorContainerSignup">
           {errors.map((error, idx) => (
-            <li key={idx}>{error.split(" : ")[1]}</li>
+            <div key={idx}>{error.split(" : ")[1]}</div>
           ))}
-        </ul>
+        </div>
       ) : (
         <div className="errorContainerSignup">
           <img className="logo" src={logo} alt="icon"></img>
