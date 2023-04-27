@@ -223,7 +223,7 @@ export default function CreatePlace() {
           <input
             type="text"
             value={phone}
-            placeholder="Phone"
+            placeholder="Phone number needs to be 10-digit, e.g. xxxxxxxxxx"
             onChange={(e) => setPhone(e.target.value)}
           ></input>
         </label>
@@ -261,6 +261,7 @@ export default function CreatePlace() {
             <option value="Art">Art</option>
             <option value="Bakery">Bakery</option>
             <option value="Bar">Bar</option>
+            <option value="Coffee/Tea">Coffee/Tea</option>
             <option value="Restaurant">Restaurant</option>
             <option value="Travel">Travel</option>
           </select>

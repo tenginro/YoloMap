@@ -231,7 +231,7 @@ export default function UpdatePlaceForm({ place }) {
           <input
             type="text"
             value={phone}
-            placeholder="Phone"
+            placeholder="Phone number needs to be 10-digit, e.g. xxxxxxxxxx"
             onChange={(e) => setPhone(e.target.value)}
           ></input>
         </label>

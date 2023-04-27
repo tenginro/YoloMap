@@ -18,13 +18,20 @@
 }
 
 .errorContainerSignup {
-  height: 90px;
+  height: 95px;
   list-style-type: none;
   color: red;
   margin-left: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
+}
+
+.errorContainerSignup li {
+  display: block;
+  text-align: left;
+  margin-left: -30px;
 }
 
 .signupModalInput {

@@ -42,7 +42,9 @@ class SignUpForm(FlaskForm):
     password = PasswordField("password", validators=[DataRequired()])
     budget = IntegerField(
         "budget",
-        validators=[NumberRange(min=1, message="Not a valid integer value.")],
+        validators=[
+            NumberRange(min=1, message="Please provide a valid integer for budget.")
+        ],
     )
     profile_pic = FileField(
         "profile_pic", validators=[Optional(), FileAllowed(list(ALLOWED_EXTENSIONS))]
@@ -51,13 +53,21 @@ class SignUpForm(FlaskForm):
         "lat",
         validators=[
             DataRequired(message="Please provide a valid latitude."),
-            NumberRange(min=-90, max=90, message="Please provide a valid latitude."),
+            NumberRange(
+                min=-90,
+                max=90,
+                message="Please provide a valid latitude between -90 and 90.",
+            ),
         ],
     )
     lng = FloatField(
         "lng",
         validators=[
             DataRequired(message="Please provide a valid longitude."),
-            NumberRange(min=-180, max=180, message="Please provide a valid longitude."),
+            NumberRange(
+                min=-180,
+                max=180,
+                message="Please provide a valid longitude between -180 and 180.",
+            ),
         ],
     )
