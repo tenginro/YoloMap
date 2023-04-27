@@ -53,7 +53,7 @@ export default function AllPlaces({ selectedCategory }) {
           <input
             type="checkbox"
             onChange={() =>
-              !selectedCategoryForPlaces
+              selectedCategoryForPlaces !== "Art"
                 ? setSelectedCategoryForPlaces("Art")
                 : setSelectedCategoryForPlaces(null)
             }
@@ -65,7 +65,7 @@ export default function AllPlaces({ selectedCategory }) {
           <input
             type="checkbox"
             onChange={() =>
-              !selectedCategoryForPlaces
+              selectedCategoryForPlaces !== "Bakery"
                 ? setSelectedCategoryForPlaces("Bakery")
                 : setSelectedCategoryForPlaces(null)
             }
@@ -77,7 +77,7 @@ export default function AllPlaces({ selectedCategory }) {
           <input
             type="checkbox"
             onChange={() =>
-              !selectedCategoryForPlaces
+              selectedCategoryForPlaces !== "Bar"
                 ? setSelectedCategoryForPlaces("Bar")
                 : setSelectedCategoryForPlaces(null)
             }
@@ -89,7 +89,7 @@ export default function AllPlaces({ selectedCategory }) {
           <input
             type="checkbox"
             onChange={() =>
-              !selectedCategoryForPlaces
+              selectedCategoryForPlaces !== "Coffee/Tea"
                 ? setSelectedCategoryForPlaces("Coffee/Tea")
                 : setSelectedCategoryForPlaces(null)
             }
@@ -101,7 +101,7 @@ export default function AllPlaces({ selectedCategory }) {
           <input
             type="checkbox"
             onChange={() =>
-              !selectedCategoryForPlaces
+              selectedCategoryForPlaces !== "Restaurant"
                 ? setSelectedCategoryForPlaces("Restaurant")
                 : setSelectedCategoryForPlaces(null)
             }
@@ -113,7 +113,7 @@ export default function AllPlaces({ selectedCategory }) {
           <input
             type="checkbox"
             onChange={() =>
-              !selectedCategoryForPlaces
+              selectedCategoryForPlaces !== "Travel"
                 ? setSelectedCategoryForPlaces("Travel")
                 : setSelectedCategoryForPlaces(null)
             }
