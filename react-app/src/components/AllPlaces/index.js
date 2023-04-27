@@ -5,12 +5,14 @@ import PlaceIndexItem from "./PlaceIndexItem";
 import "./AllPlaces.css";
 import MapPage from "./Map";
 
-export default function AllPlaces() {
+export default function AllPlaces({ selectedCategory }) {
   const dispatch = useDispatch();
   const placesObj = useSelector((state) => state.places.allPlaces);
-  const placesArr = Object.values(placesObj);
+  let placesArr = Object.values(placesObj);
   const [selectedPlaceFromAllPlaces, setSelectedPlaceFromAllPlaces] =
     useState(null);
+  const [selectedCategoryForPlaces, setSelectedCategoryForPlaces] =
+    useState(selectedCategory);
 
   useEffect(() => {
     dispatch(thunkGetAllPlaces());
@@ -18,6 +20,13 @@ export default function AllPlaces() {
       dispatch(actionClearPlaces());
     };
   }, [dispatch]);
+
+  if (selectedCategoryForPlaces && placesArr.length) {
+    let filteredPlacesArr = placesArr.filter(
+      (el) => el.category === selectedCategoryForPlaces
+    );
+    placesArr = filteredPlacesArr;
+  }
 
   if (!placesObj) {
     return (
@@ -38,25 +47,79 @@ export default function AllPlaces() {
 
   return (
     <div className="allPinsPage">
-      <div className="filters" onClick={(e) => alert("Feature coming soon")}>
+      <div className="filters">
         <h2>Categories</h2>
         <label>
-          <input type="checkbox"></input> Art
+          <input
+            type="checkbox"
+            onChange={() =>
+              !selectedCategoryForPlaces
+                ? setSelectedCategoryForPlaces("Art")
+                : setSelectedCategoryForPlaces(null)
+            }
+            checked={selectedCategoryForPlaces === "Art"}
+          ></input>{" "}
+          Art
         </label>
         <label>
-          <input type="checkbox"></input> Bakery
+          <input
+            type="checkbox"
+            onChange={() =>
+              !selectedCategoryForPlaces
+                ? setSelectedCategoryForPlaces("Bakery")
+                : setSelectedCategoryForPlaces(null)
+            }
+            checked={selectedCategoryForPlaces === "Bakery"}
+          ></input>{" "}
+          Bakery
         </label>
         <label>
-          <input type="checkbox"></input> Bar
+          <input
+            type="checkbox"
+            onChange={() =>
+              !selectedCategoryForPlaces
+                ? setSelectedCategoryForPlaces("Bar")
+                : setSelectedCategoryForPlaces(null)
+            }
+            checked={selectedCategoryForPlaces === "Bar"}
+          ></input>{" "}
+          Bar
         </label>
         <label>
-          <input type="checkbox"></input> Coffee/Tea
+          <input
+            type="checkbox"
+            onChange={() =>
+              !selectedCategoryForPlaces
+                ? setSelectedCategoryForPlaces("Coffee/Tea")
+                : setSelectedCategoryForPlaces(null)
+            }
+            checked={selectedCategoryForPlaces === "Coffee/Tea"}
+          ></input>{" "}
+          Coffee/Tea
         </label>
         <label>
-          <input type="checkbox"></input> Restaurant
+          <input
+            type="checkbox"
+            onChange={() =>
+              !selectedCategoryForPlaces
+                ? setSelectedCategoryForPlaces("Restaurant")
+                : setSelectedCategoryForPlaces(null)
+            }
+            checked={selectedCategoryForPlaces === "Restaurant"}
+          ></input>{" "}
+          Restaurant
         </label>
         <label>
-          <input type="checkbox"></input> Travel
+          <input
+            type="checkbox"
+            onChange={() =>
+              !selectedCategoryForPlaces
+                ? setSelectedCategoryForPlaces("Travel")
+                : setSelectedCategoryForPlaces(null)
+            }
+            checked={selectedCategoryForPlaces === "Travel"}
+          ></input>{" "}
+          Travel
         </label>
       </div>
       <div className="places">
