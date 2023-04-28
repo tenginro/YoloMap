@@ -6,6 +6,7 @@ from wtforms.validators import (
     Length,
     NumberRange,
     Optional,
+    Regexp,
 )
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
@@ -84,6 +85,10 @@ class PlaceForm(FlaskForm):
             Length(
                 min=10, max=10, message="Please provide a valid 10-digit phone number."
             ),
+            Regexp(
+                "^[0-9]*$",
+                message="Please provide a valid 10-digit phone number.",
+            ),
         ],
     )
     hours = StringField("hours")
@@ -98,14 +103,22 @@ class PlaceForm(FlaskForm):
         "lat",
         validators=[
             DataRequired(message="Please provide a valid latitude."),
-            NumberRange(min=-90, max=90, message="Please provide a valid latitude between -90 and 90."),
+            NumberRange(
+                min=-90,
+                max=90,
+                message="Please provide a valid latitude between -90 and 90.",
+            ),
         ],
     )
     lng = FloatField(
         "lng",
         validators=[
             DataRequired(message="Please provide a valid longitude."),
-            NumberRange(min=-180, max=180, message="Please provide a valid longitude between -180 and 180."),
+            NumberRange(
+                min=-180,
+                max=180,
+                message="Please provide a valid longitude between -180 and 180.",
+            ),
         ],
     )
     submit = SubmitField("Create Place")

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import image1 from "./backgroundImages/background1.jpeg";
-import image2 from "./backgroundImages/background2.jpeg";
-import image3 from "./backgroundImages/background3.jpeg";
-import image4 from "./backgroundImages/background4.jpeg";
+import image1 from "./backgroundImages/spring.gif";
+import image2 from "./backgroundImages/summer.gif";
+import image3 from "./backgroundImages/autumn.gif";
+import image4 from "./backgroundImages/winter.gif";
 import "./LandingPage.css";
 
 export default function LandingPage() {
@@ -14,7 +14,7 @@ export default function LandingPage() {
   useEffect(() => {
     const intervalFunc = setInterval(() => {
       setIndex((index + 1) % length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(intervalFunc);
   }, [index, length]);
 
@@ -25,6 +25,7 @@ export default function LandingPage() {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     zIndex: 0,
+    backgroundPosition: "center",
   };
 
   return (
