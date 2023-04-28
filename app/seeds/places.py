@@ -28,7 +28,7 @@ def seed_places():
         description="It's a great place to hang out with friends, grab a quick pick-me-up, or simply indulge in a sweet treat. Many bubble tea stores also offer snacks and desserts to complement their drinks, creating a fun and relaxing atmosphere for customers to enjoy.",
         website="http://www.charedefine.com/",
         phone="2132668404",
-        hours="11:30AM-7PM",
+        hours="Mon-Sun: 11:30AM-7PM",
         category="Coffee/Tea",
         cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/DxQ0k_ywz9RPxUbMif1UNA/o.jpg",
         lat=33.9665211,
