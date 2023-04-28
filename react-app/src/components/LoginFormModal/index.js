@@ -23,6 +23,7 @@ function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal();
+      return history.push("/places");
     }
   };
 
