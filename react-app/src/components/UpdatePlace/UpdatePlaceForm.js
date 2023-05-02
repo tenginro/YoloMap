@@ -276,7 +276,7 @@ export default function UpdatePlaceForm({ place }) {
 
         <label>
           <div className="inputLabel">
-            Latitude: (optional){"  "}
+            Latitude: {"  "}
             {errorMessage?.lat && (
               <div className="errors">{errorMessage.lat}</div>
             )}
@@ -292,7 +292,7 @@ export default function UpdatePlaceForm({ place }) {
 
         <label>
           <div className="inputLabel">
-            Longitude: (optional){"  "}
+            Longitude: {"  "}
             {errorMessage?.lng && (
               <div className="errors">{errorMessage.lng}</div>
             )}

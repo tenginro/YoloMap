@@ -74,7 +74,7 @@ def seed_places():
         website="http://www.mfa.org",
         phone="6172679300",
         hours="Sat-Mon: 10AM-5PM; Tue: Closed; Wed: 10AM-5PM; Thu-Fri: 10AM-10PM",
-        category="Museum",
+        category="Art",
         cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/wlKSKQ27U8CkuLDRr4eqEQ/o.jpg",
         lat=42.339381,
         lng=-71.0966229,
