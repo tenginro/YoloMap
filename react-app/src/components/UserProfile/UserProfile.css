@@ -178,6 +178,7 @@
   padding: 12px;
   text-decoration: none;
   color: #333;
+  /* sets the horizontal alignment of text within its parent element. */
   text-align: -webkit-match-parent;
   vertical-align: baseline;
   cursor: pointer;

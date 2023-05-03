@@ -33,14 +33,19 @@ function ProfileButton({ user }) {
     setShowCart(true);
   };
 
+  // close a menu when the user clicks outside of it
   useEffect(() => {
     if (!showMenu) return;
+
+    // closeMenu function is called when a click event occurs on the document.
     const closeMenu = (e) => {
       if (!ulRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
+    // When the user clicks anywhere on the document, the closeMenu function will be executed.
     document.addEventListener("click", closeMenu);
+    // returns a cleanup function that removes the event listener when the component is unmounted or when showMenu is false.
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
