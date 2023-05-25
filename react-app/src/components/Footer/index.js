@@ -41,6 +41,8 @@ export default function Footer() {
             <div>Javascript</div>
             <div>React</div>
             <div>Redux</div>
+            <div>Flask</div>
+            <div>PostgreSQL</div>
           </div>
           <div className="footerSection">
             <h3>Additional Tech Used</h3>
