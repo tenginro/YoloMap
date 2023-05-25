@@ -2,14 +2,38 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer id="footer" onClick={(e) => alert("Feature coming soon")}>
+    <footer id="footer">
       <div id="toAlign">
         <div id="footerPart">
           <div className="footerSection">
             <h3>About Me</h3>
-            <div>GitHub</div>
-            <div>LinkedIn</div>
-            <div>Portfolio</div>
+            <div>
+              <a
+                href="https://github.com/tenginro"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <i className="fa-brands fa-github fa-2x"></i> GitHub
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.linkedin.com/in/luotengzhong/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <i className="fa-brands fa-linkedin fa-2x"></i> LinkedIn
+              </a>
+            </div>
+            <div>
+              <a
+                href="http://tenginro.me/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <i className="fa-regular fa-user fa-2x"></i> Portfolio
+              </a>
+            </div>
           </div>
           <div className="footerSection">
             <h3>Technologies Used</h3>
