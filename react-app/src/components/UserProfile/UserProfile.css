@@ -205,3 +205,10 @@
   width: 70%;
   padding-left: 10px;
 }
+
+@media screen and (max-width: 1000px) {
+  .userProfilePage {
+    overflow: scroll;
+    align-items: flex-start;
+  }
+}

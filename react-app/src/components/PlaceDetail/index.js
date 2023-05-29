@@ -127,7 +127,7 @@ export default function PlaceDetail() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="listingPlaceProducts">
         <div className="addProductContainer">
           <h3>Products</h3>
           <div>
