@@ -26,6 +26,13 @@ export default function PlaceDetail() {
     6
   )}-${place?.phone?.slice(6)}`;
 
+  let productsImages = `url(${place?.cover_pic})`;
+  if (productsArr?.length)
+    productsImages +=
+      ", " + productsArr.map((p) => `url(${p.cover_pic})`).join(",");
+
+  console.log(productsImages);
+
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
@@ -62,16 +69,45 @@ export default function PlaceDetail() {
   return (
     <div className="placeDetailPage">
       <div
-        className="backgroundPart"
         style={{
-          backgroundImage: `url(${place.cover_pic})`,
-          height: "300px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-start",
           width: "100%",
-          backgroundSize: "300px 300px",
-          backgroundRepeat: "repeat-x",
+          overflowX: "hidden",
         }}
       >
-        <h2>{place.name}</h2>
+        <div
+          className="backgroundPart"
+          style={{
+            backgroundImage: `url(${place.cover_pic})`,
+            // backgroundImage: `${productsImages}`,
+            height: "300px",
+            width: "500px",
+            backgroundSize: "500px",
+            /*  instructs the browser to scale the image or video to cover the entire available space within its container, while maintaining the aspect ratio */
+            objectFit: "cover",
+            backgroundPosition: "center",
+            // backgroundRepeat: productsArr.length ? null : "repeat-x",
+          }}
+        >
+          <h2>{place.name}</h2>
+        </div>
+        {productsArr.length
+          ? productsArr.map((p) => (
+              <div
+                className="backgroundPart"
+                style={{
+                  backgroundImage: `url(${p.cover_pic})`,
+                  height: "300px",
+                  width: "500px",
+                  backgroundSize: "500px",
+                  objectFit: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+            ))
+          : null}
       </div>
       <div className="secondPart">
         <div className="descriptionContainerInPlaceDetail">
