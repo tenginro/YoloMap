@@ -2,46 +2,52 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer id="footer" onClick={(e) => alert("Feature coming soon")}>
+    <footer id="footer">
       <div id="toAlign">
         <div id="footerPart">
           <div className="footerSection">
-            <h3>About</h3>
-            <div>About YoloMap</div>
-            <div>Careers</div>
-            <div>Press</div>
-            <div>Investor Relations</div>
-            <div>Trust & Safety</div>
-            <div>Content Guidelines</div>
-            <div>Accessibility Statement</div>
-            <div>Terms of Service</div>
-            <div>Privacy Policy</div>
-            <div>Ad Choices</div>
-            <div>Your Privacy Choices</div>
+            <h3>About Me</h3>
+            <div>
+              <a
+                href="https://github.com/tenginro"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <i className="fa-brands fa-github fa-2x"></i> GitHub
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.linkedin.com/in/luotengzhong/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <i className="fa-brands fa-linkedin fa-2x"></i> LinkedIn
+              </a>
+            </div>
+            <div>
+              <a
+                href="http://tenginro.me/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <i className="fa-regular fa-user fa-2x"></i> Portfolio
+              </a>
+            </div>
           </div>
           <div className="footerSection">
-            <h3>Discover</h3>
-            <div>YoloMap Project Cost Guides</div>
-            <div>Collections</div>
-            <div>Talk</div>
-            <div>Events</div>
-            <div>YoloMap Blog</div>
-            <div>Support</div>
-            <div>YoloMap Mobile</div>
-            <div>Developers</div>
-            <div>RSS</div>
+            <h3>Technologies Used</h3>
+            <div>Python</div>
+            <div>Javascript</div>
+            <div>React</div>
+            <div>Redux</div>
+            <div>Flask</div>
+            <div>PostgreSQL</div>
           </div>
           <div className="footerSection">
-            <h3>YoloMap for Business</h3>
-            <div>YoloMap for Business</div>
-            <div>Business Owner Login</div>
-            <div>Claim your Business Page</div>
-            <div>Advertise on YoloMap</div>
-            <div>YoloMap for Restaurant Owners</div>
-            <div>Table Management</div>
-            <div>Business Success Stories</div>
-            <div>Business Support</div>
-            <div>YoloMap Blog for Business</div>
+            <h3>Additional Tech Used</h3>
+            <div>AWS S3</div>
+            <div>Google Maps API</div>
           </div>
           <div className="footerSection">
             <h3>Language</h3>
@@ -52,7 +58,7 @@ export default function Footer() {
         </div>
         <div className="copyrightLine">
           Copyright © 2023 YoloMap Inc. YoloMap, YoloMap logo and related marks
-          are registered trademarks of YoloMap.{" "}
+          are registered trademarks of YoloMap.
         </div>
       </div>
     </footer>
