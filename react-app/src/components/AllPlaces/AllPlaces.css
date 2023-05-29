@@ -52,3 +52,11 @@
   overflow-wrap: break-word;
   overflow-y: auto;
 }
+
+@media screen and (max-width: 1000px) {
+  .allPinsPage,
+  .placeIndexItem {
+    display: flex;
+    flex-direction: column;
+  }
+}

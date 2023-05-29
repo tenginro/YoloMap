@@ -168,3 +168,24 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 1000px) {
+  .secondPart {
+    width: 100%;
+  }
+  .descriptionInPlaceDetail {
+    width: 350px;
+    height: 60px;
+    overflow-y: scroll;
+  }
+  .locationLine {
+    flex-direction: column;
+  }
+  .secondSecondPart {
+    flex-direction: column;
+  }
+
+  .listingPlaceProducts {
+    width: 100%;
+  }
+}

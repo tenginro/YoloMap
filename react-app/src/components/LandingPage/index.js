@@ -31,19 +31,9 @@ export default function LandingPage() {
   return (
     <>
       <div className="main-page-container" style={backgroundStyle1}>
-        <h2
-          style={{
-            fontSize: "100px",
-            color: "white",
-            paddingLeft: "150px",
-            paddingTop: "100px",
-            fontWeight: "900",
-            zIndex: 2,
-            textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          <div>You only live once. </div>
-          <div>So plan it better.</div>
+        <h2>
+          <div className="slogan">You only live once. </div>
+          <div className="slogan">So plan it better.</div>
         </h2>
       </div>
       <div className="categoriesContainer">

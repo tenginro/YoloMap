@@ -194,3 +194,26 @@
   margin: 0 auto;
   height: 18px;
 }
+
+@media screen and (max-width: 605px) {
+  .loginSignUpButtons button {
+    font-size: 10px;
+    width: 50px;
+  }
+
+  .navButtons {
+    column-gap: 10px;
+  }
+
+  .navLine {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .projectName {
+    font-size: medium;
+  }
+  .profile-dropdown {
+    right: auto;
+  }
+}

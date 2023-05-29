@@ -141,7 +141,7 @@ function ProfileButton({ user }) {
             {!cartItemArr?.length && (
               <div style={{ margin: "0 auto" }}>
                 <img
-                  style={{ width: "350px", height: "300px" }}
+                  style={{ width: "380px", height: "350px" }}
                   src="https://mir-s3-cdn-cf.behance.net/projects/404/95974e121862329.Y3JvcCw5MjIsNzIxLDAsMTM5.png"
                   alt="Your Cart is Empty"
                 ></img>

@@ -102,14 +102,14 @@ export default function UserProfile() {
           >
             <i className="fa-solid fa-registered"></i> <div>Reviews</div>
           </div>
-          <div
+          {/* <div
             className="menuOption"
             style={{ borderBottom: "1px solid #e6e6e6" }}
             onClick={() => alert("Feature coming soon")}
           >
             <i className="fa-solid fa-clock-rotate-left"></i>
             <div>Order History</div>
-          </div>
+          </div> */}
         </div>
         <div id="placesAndProducts">
           <div

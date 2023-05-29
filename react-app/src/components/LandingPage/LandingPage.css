@@ -6,6 +6,16 @@
   margin-bottom: 48px;
 }
 
+.slogan {
+  font-size: 100px;
+  color: "white";
+  padding-left: 150px;
+  padding-top: 100px;
+  font-weight: 900;
+  z-index: 2;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
 .categoriesContainer {
   display: flex;
   flex-direction: column;
@@ -52,4 +62,25 @@
 
 .eachCateContainer:hover {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+}
+
+@media screen and (max-width: 1000px) {
+  .slogan {
+    font-size: 50px;
+  }
+  .allCateContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .slogan {
+    font-size: 35px;
+    padding-left: 50px;
+    padding-top: 50px;
+  }
+
+  .allCateContainer {
+    grid-template-columns: 1fr;
+  }
 }
