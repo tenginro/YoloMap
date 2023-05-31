@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from ..models import Place, db, Product
+from ..models import Place, db, Product, Review, User
 from ..forms import PlaceForm
 from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
@@ -29,6 +29,21 @@ def get_all_places():
 def get_one_place(id):
     place = Place.query.get(id)
     return {**place.to_dict()}
+
+
+@place_routes.route("/<int:id>/reviews")
+def get_all_reviews(id):
+    reviews = Review.query.all()
+
+    return [
+        {
+            **review.to_dict(),
+            "reviewOwner": User.query.get(review.creatorId).to_dict(),
+            "reviewImages": [image.to_dict() for image in review.reviewImages],
+        }
+        for review in reviews
+        if Product.query.get(review.productId).placeId == id
+    ]
 
 
 @place_routes.route("/current")

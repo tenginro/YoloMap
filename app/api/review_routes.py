@@ -19,24 +19,13 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@review_routes.route("/")
-def get_all_reviews():
-    reviews = Review.query.all()
-    return [
-        {
-            **review.to_dict(),
-            "reviewOwner": User.query.get(review.creatorId).to_dict(),
-        }
-        for review in reviews
-    ]
-
-
 @review_routes.route("/<int:id>")
 def get_one_review(id):
     review = Review.query.get(id)
     return {
         **review.to_dict(),
         "reviewOwner": User.query.get(review.creatorId).to_dict(),
+        "reviewImages": [image.to_dict() for image in review.reviewImages],
     }
 
 
@@ -47,7 +36,11 @@ def get_user_reviews():
     reviews = Review.query.filter(Review.creatorId == user["id"])
 
     return [
-        {**review.to_dict(), "product": Place.query.get(review.productId).to_dict()}
+        {
+            **review.to_dict(),
+            "product": Place.query.get(review.productId).to_dict(),
+            "reviewImages": [image.to_dict() for image in review.reviewImages],
+        }
         for review in reviews
     ]
 
@@ -72,7 +65,8 @@ def create_review():
         db.session.commit()
         return {
             **new_review.to_dict(),
-            "reviewOwner": User.query.get(review.creatorId).to_dict(),
+            "reviewOwner": User.query.get(new_review.creatorId).to_dict(),
+            "reviewImages": [image.to_dict() for image in new_review.reviewImages],
         }
 
     if form.errors:
@@ -100,7 +94,10 @@ def update_review(id):
             updated_review = Review.query.get(id)
             return {
                 **updated_review.to_dict(),
-                "reviewOwner": User.query.get(review.creatorId).to_dict(),
+                "reviewOwner": User.query.get(updated_review.creatorId).to_dict(),
+                "reviewImages": [
+                    image.to_dict() for image in updated_review.reviewImages
+                ],
             }
 
         if form.errors:
