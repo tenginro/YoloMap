@@ -38,7 +38,10 @@ def get_user_reviews():
     return [
         {
             **review.to_dict(),
-            "product": Place.query.get(review.productId).to_dict(),
+            "product": Product.query.get(review.productId).to_dict(),
+            "place": Place.query.get(
+                Product.query.get(review.productId).placeId
+            ).to_dict(),
             "reviewImages": [image.to_dict() for image in review.reviewImages],
         }
         for review in reviews

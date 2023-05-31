@@ -48,6 +48,7 @@ export const thunkGetAllReviewsForPlace = (placeId) => async (dispatch) => {
 
 export const thunkGetUserReviews = () => async (dispatch) => {
   const response = await fetch("/api/reviews/current");
+
   if (response.ok) {
     const reviews = await response.json();
     await dispatch(actionLoadUserReviews(reviews));
