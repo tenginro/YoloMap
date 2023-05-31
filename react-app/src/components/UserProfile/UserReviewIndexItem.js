@@ -7,6 +7,22 @@ export default function UserReviewIndexItem({ review }) {
 
   return (
     <div className="reviewIndexInUserProfile">
+      <div className="userProductButtons">
+        <button className="updateButtonItem">
+          <OpenModalMenuItem
+            itemText="Update"
+            // modalComponent={
+            //   <UpdateProductModal review={review} productId={review.productId} />
+            // }
+          />
+        </button>
+        <button className="deleteButtonItem">
+          <OpenModalMenuItem
+            itemText="Delete"
+            // modalComponent={<DeleteProductModal review={review} />}
+          />
+        </button>
+      </div>
       <div
         style={{
           width: "100%",
