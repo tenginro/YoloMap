@@ -1,36 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { actionClearPlaces, thunkGetUserPlaces } from "../../store/place";
 import UserPlaceIndexItem from "./UserPlaceIndexItem";
 import "./UserProfile.css";
 import { actionClearProducts, thunkGetUserProducts } from "../../store/product";
 import OpenModalMenuItem from "../OpenModalMenuItem";
-import DeleteProductModal from "../DeleteProductModal";
-import UpdateProductModal from "../UpdateProductModal";
+
 import UpdateBudget from "../UpdateBudgetModal";
+import UserProductIndexItem from "./UserProductIndexItem";
+import { actionClearReviews, thunkGetUserReviews } from "../../store/review";
+import UserReviewIndexItem from "./UserReviewIndexItem";
 
 const defaultProfilePic =
   "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
-  const history = useHistory();
+
   const user = useSelector((state) => state.session.user);
   const placesObj = useSelector((state) => state.places.allPlaces);
   const placesArr = Object.values(placesObj);
   const productsObj = useSelector((state) => state.products.allProducts);
   const productsArr = Object.values(productsObj);
+  const reviewsObj = useSelector((state) => state.reviews.allReviews);
+  const reviewsArr = Object.values(reviewsObj);
 
   const [selectedPage, setSelectedPage] = useState("places");
 
   useEffect(() => {
     dispatch(thunkGetUserPlaces());
     dispatch(thunkGetUserProducts());
+    dispatch(thunkGetUserReviews());
     return () => {
       dispatch(actionClearPlaces());
       dispatch(actionClearProducts());
+      dispatch(actionClearReviews());
     };
   }, [dispatch]);
 
@@ -98,7 +104,7 @@ export default function UserProfile() {
           </div>
           <div
             className="menuOption"
-            onClick={() => alert("Feature coming soon")}
+            onClick={() => setSelectedPage("reviews")}
           >
             <i className="fa-solid fa-registered"></i> <div>Reviews</div>
           </div>
@@ -146,55 +152,8 @@ export default function UserProfile() {
               </div>
             </div>
             {productsArr?.map((product) => (
-              <div key={product.id} className="productIndexInUserProfile">
-                <div className="userProductButtons">
-                  <button className="updateButtonItem">
-                    <OpenModalMenuItem
-                      itemText="Update"
-                      modalComponent={
-                        <UpdateProductModal
-                          product={product}
-                          placeId={product.placeId}
-                        />
-                      }
-                    />
-                  </button>
-                  <button className="deleteButtonItem">
-                    <OpenModalMenuItem
-                      itemText="Delete"
-                      modalComponent={<DeleteProductModal product={product} />}
-                    />
-                  </button>
-                </div>
-                <div className="productInformation">
-                  <img src={product.cover_pic} alt="productCoverPic"></img>
-                  <div>
-                    <h4>
-                      <div>{product.name}</div>
-                      <div
-                        className="placeForProduct"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          history.push(`/places/${product.place.id}`);
-                        }}
-                      >
-                        in {product?.place?.name}
-                      </div>
-                    </h4>
-                    <div
-                      style={{
-                        width: "330px",
-                        height: "30px",
-                        overflowWrap: "break-word",
-                        overflowY: "auto",
-                        marginBottom: "5px",
-                      }}
-                    >
-                      {product.description}
-                    </div>
-                    <div>${product.price}</div>
-                  </div>
-                </div>
+              <div key={product.id}>
+                <UserProductIndexItem product={product} />
               </div>
             ))}
             {!productsArr?.length && (
@@ -202,6 +161,31 @@ export default function UserProfile() {
                 Did you know you can create a product in the place detail page
                 to help other users discover the businesses and show off your
                 own great taste? Welcome to YoloMap!
+              </div>
+            )}
+          </div>
+          <div
+            className={
+              selectedPage === "reviews" ? "reviews" : "reviews hidden"
+            }
+            style={{ width: "90%", height: "100%", overflowY: "auto" }}
+          >
+            <div>
+              <h2 style={{ color: "#01b636" }}>All reviews you posted</h2>
+              <div className="toChangeSize" style={{ marginBottom: "10px" }}>
+                To create a review, go to the place detail page
+              </div>
+            </div>
+            {reviewsArr?.map((review) => (
+              <div key={review.id}>
+                <UserReviewIndexItem review={review} />
+              </div>
+            ))}
+            {!reviewsArr?.length && (
+              <div>
+                Did you know you can post a review for a product in the place
+                detail page to help other users discover the businesses and show
+                off your own great taste? Welcome to YoloMap!
               </div>
             )}
           </div>

@@ -33,6 +33,11 @@ def seed_reviewimages():
         reviewId=5,
         url="https://s3-media0.fl.yelpcdn.com/bphoto/q2MofMEg0TPJfj3b7YtRQA/o.jpg",
     )
+    reviewimage7 = ReviewImage(
+        creatorId=1,
+        reviewId=6,
+        url="https://s3-media0.fl.yelpcdn.com/bphoto/rENk9pX12yYGWpkfVaBktA/o.jpg",
+    )
 
     all_reviewimages = [
         reviewimage1,
@@ -41,6 +46,7 @@ def seed_reviewimages():
         reviewimage4,
         reviewimage5,
         reviewimage6,
+        reviewimage7,
     ]
     add_reviewimages = [db.session.add(reviewimage) for reviewimage in all_reviewimages]
     db.session.commit()

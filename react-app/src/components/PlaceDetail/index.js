@@ -31,7 +31,6 @@ export default function PlaceDetail() {
   reviewsArr.forEach((review) => {
     review.reviewImages.forEach((i) => reviewImages.push(i));
   });
-  console.log("reviewImagesUrl", reviewImages);
 
   const formattedPhone = `(${place?.phone?.slice(0, 3)}) ${place?.phone?.slice(
     3,
