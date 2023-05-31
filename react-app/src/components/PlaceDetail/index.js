@@ -13,34 +13,41 @@ import ProductIndexItem from "./ProductIndexItem";
 import OpenModalButton from "../OpenModalButton";
 import CreateProductModal from "../CreateProductModal";
 import NotFound from "../NotFound";
+import {
+  actionClearReviews,
+  thunkGetAllReviewsForPlace,
+} from "../../store/review";
 
 export default function PlaceDetail() {
   const { placeId } = useParams();
   const dispatch = useDispatch();
+
   const place = useSelector((state) => state.places.singlePlace);
   const productsObj = useSelector((state) => state.products.allProducts);
   const productsArr = Object.values(productsObj);
+  const reviewsObj = useSelector((state) => state.reviews.allReviews);
+  const reviewsArr = Object.values(reviewsObj);
+  let reviewImages = [];
+  reviewsArr.forEach((review) => {
+    review.reviewImages.forEach((i) => reviewImages.push(i));
+  });
+  console.log("reviewImagesUrl", reviewImages);
 
   const formattedPhone = `(${place?.phone?.slice(0, 3)}) ${place?.phone?.slice(
     3,
     6
   )}-${place?.phone?.slice(6)}`;
 
-  let productsImages = `url(${place?.cover_pic})`;
-  if (productsArr?.length)
-    productsImages +=
-      ", " + productsArr.map((p) => `url(${p.cover_pic})`).join(",");
-
-  console.log(productsImages);
-
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     dispatch(thunkGetPlaceDetail(placeId));
     dispatch(thunkGetAllProductsForPlace(placeId));
+    dispatch(thunkGetAllReviewsForPlace(placeId));
     return () => {
       dispatch(actionClearPlace());
       dispatch(actionClearProducts());
+      dispatch(actionClearReviews());
     };
   }, [dispatch, placeId]);
 
@@ -93,12 +100,29 @@ export default function PlaceDetail() {
         >
           <h2>{place.name}</h2>
         </div>
-        {productsArr.length
+        {productsArr?.length
           ? productsArr.map((p) => (
               <div
+                key={p.id}
                 className="backgroundPart"
                 style={{
                   backgroundImage: `url(${p.cover_pic})`,
+                  height: "300px",
+                  width: "500px",
+                  backgroundSize: "500px",
+                  objectFit: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+            ))
+          : null}
+        {reviewImages?.length
+          ? reviewImages.map((i) => (
+              <div
+                key={i.id}
+                className="backgroundPart"
+                style={{
+                  backgroundImage: `url(${i.url})`,
                   height: "300px",
                   width: "500px",
                   backgroundSize: "500px",
@@ -176,7 +200,11 @@ export default function PlaceDetail() {
         </div>
         <div className="productsListing">
           {productsArr?.map((product) => (
-            <ProductIndexItem key={product.id} product={product} />
+            <ProductIndexItem
+              key={product.id}
+              product={product}
+              reviews={reviewsArr.filter((el) => el.productId === product.id)}
+            />
           ))}
           {!productsArr?.length && (
             <div>

@@ -85,23 +85,23 @@
   align-items: flex-start;
   row-gap: 20px;
   padding-bottom: 50px;
-  height: 400px;
-  overflow-y: auto;
-  width: 800px;
+  /* height: 400px;
+  overflow-y: auto; */
+  width: 95%;
 }
 
 .productIndex {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 600px;
-  column-gap: 10px;
+  width: 100%;
+  row-gap: 10px;
 }
 
 .productIndex img {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
 }
 
 .addProductContainer {
@@ -167,6 +167,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.listingPlaceProducts {
+  width: 800px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 @media screen and (max-width: 1000px) {
