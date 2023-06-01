@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { actionClearPlaces, thunkGetAllPlaces } from "../../store/place";
 import PlaceIndexItem from "./PlaceIndexItem";
 import "./AllPlaces.css";
 import MapPage from "./Map";
 
-export default function AllPlaces({ selectedCategory }) {
+export default function AllPlaces() {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const { selectedCategory } = location.state || {};
+
+  const user = useSelector((state) => state.session.user);
+
   const placesObj = useSelector((state) => state.places.allPlaces);
   let placesArr = Object.values(placesObj);
+
   const [selectedPlaceFromAllPlaces, setSelectedPlaceFromAllPlaces] =
     useState(null);
   const [selectedCategoryForPlaces, setSelectedCategoryForPlaces] =

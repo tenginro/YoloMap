@@ -14,7 +14,7 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
   const onClick = async (e) => {
     e.preventDefault();
 
-    if (user.budget - product.price > 0) {
+    if (user?.budget - product.price > 0) {
       const formData = new FormData();
       formData.append("productId", productId);
       await dispatch(thunkAddToCart(formData)).then(() =>
@@ -45,7 +45,7 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
             <div
               style={{
                 maxWidth: "300px",
-                width: "50%",
+                // width: "70%",
                 height: "30px",
                 overflowWrap: "break-word",
                 overflowY: "auto",
@@ -56,21 +56,23 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
             </div>
           </div>
           <div style={{ marginTop: "20px" }}>
-            {user.budget - product.price > 0 ? (
-              <button className="CartButton" onClick={onClick}>
-                <OpenModalMenuItem
-                  itemText="Add to Cart"
-                  modalComponent={<AddCartConfirm />}
-                />
-              </button>
-            ) : (
-              <button className="CartButton" onClick={onClick}>
-                <OpenModalMenuItem
-                  itemText="Add to Cart"
-                  modalComponent={<BetterPlanAlert />}
-                />
-              </button>
-            )}
+            {user ? (
+              user?.budget - product.price > 0 ? (
+                <button className="CartButton" onClick={onClick}>
+                  <OpenModalMenuItem
+                    itemText="Add to Cart"
+                    modalComponent={<AddCartConfirm />}
+                  />
+                </button>
+              ) : (
+                <button className="CartButton" onClick={onClick}>
+                  <OpenModalMenuItem
+                    itemText="Add to Cart"
+                    modalComponent={<BetterPlanAlert />}
+                  />
+                </button>
+              )
+            ) : null}
           </div>
         </div>
       </div>
@@ -85,16 +87,21 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
           }}
         >
           <h3>Reviews for the product:</h3>
-          <div>
-            <button className="CartButton">
-              <OpenModalMenuItem
-                itemText="Post Your Review"
-                modalComponent={
-                  <CreateReviewModal placeId={placeId} productId={product.id} />
-                }
-              />
-            </button>
-          </div>
+          {user ? (
+            <div>
+              <button className="CartButton">
+                <OpenModalMenuItem
+                  itemText="Post Your Review"
+                  modalComponent={
+                    <CreateReviewModal
+                      placeId={placeId}
+                      productId={product.id}
+                    />
+                  }
+                />
+              </button>
+            </div>
+          ) : null}
           {reviews.map((review) => (
             <div key={review.id}>
               <h4
@@ -153,22 +160,29 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
       ) : (
         <div
           style={{
-            width: "600px",
+            width: "85%",
+            maxHeight: "350px",
+            height: "auto",
             marginLeft: "50px",
             overflowY: "auto",
           }}
         >
           <h3>Reviews for the product:</h3>
-          <div>
-            <button className="CartButton">
-              <OpenModalMenuItem
-                itemText="Post Your Review"
-                modalComponent={
-                  <CreateReviewModal placeId={placeId} productId={product.id} />
-                }
-              />
-            </button>
-          </div>
+          {user ? (
+            <div>
+              <button className="CartButton">
+                <OpenModalMenuItem
+                  itemText="Post Your Review"
+                  modalComponent={
+                    <CreateReviewModal
+                      placeId={placeId}
+                      productId={product.id}
+                    />
+                  }
+                />
+              </button>
+            </div>
+          ) : null}
           <div>No reviews for this product yet.</div>
         </div>
       )}
