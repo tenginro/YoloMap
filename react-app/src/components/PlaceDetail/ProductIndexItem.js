@@ -119,6 +119,7 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
                 style={{
                   width: "100%",
                   height: "40px",
+                  overflowY: "auto",
                   overflowWrap: "break-word",
                 }}
               >

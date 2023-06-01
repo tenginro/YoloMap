@@ -1,12 +1,19 @@
 #createReviewForm {
-  width: 300px;
+  width: 500px;
   height: 300px;
 }
 
 #createReviewForm textarea {
   height: 100px;
-  width: 200px;
+  width: 400px;
 }
+
+#createReviewForm form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
 .rating-input {
   display: flex;
   flex-direction: row;

@@ -83,6 +83,33 @@ export const thunkCreateReview = (review) => async (dispatch) => {
   }
 };
 
+export const thunkAddReviewImage = (image, placeId) => async (dispatch) => {
+  // for (let image of images) {
+  const response = await fetch(`/api/reviewimages/new`, {
+    method: "POST",
+    body: image,
+  });
+  if (response.ok) {
+    const newReviewImage = await response.json();
+    await dispatch(thunkGetAllReviewsForPlace(placeId));
+    // return newReviewImage;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      const errorsArr = data.errors;
+      let errorsObj = {};
+      errorsArr.forEach((err) => {
+        const [key, value] = err.split(": ");
+        errorsObj[key] = value;
+      });
+      return { errors: errorsObj };
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+// };
+
 export const thunkUpdateReview = (review, reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}/edit`, {
     method: "PATCH",
