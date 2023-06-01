@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
 
-import { thunkCreateReview, thunkUpdateReview } from "../../store/review";
+import {
+  thunkAddReviewImage,
+  thunkCreateReview,
+  thunkUpdateReview,
+} from "../../store/review";
 
 import "./CreateReviewModal.css";
 
@@ -17,9 +21,10 @@ export default function CreateReviewModal({
   const history = useHistory();
   const { closeModal } = useModal();
 
-  const [review, setReview] = useState(orireview.review);
-  const [activeRating, setActiveRating] = useState(orireview.rating);
-  const [realRating, setRealRating] = useState(orireview.rating);
+  const [review, setReview] = useState(orireview?.review || "");
+  const [activeRating, setActiveRating] = useState(orireview?.rating || 0);
+  const [realRating, setRealRating] = useState(orireview?.rating || 0);
+  const [url, setUrl] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState({});
 
@@ -44,6 +49,21 @@ export default function CreateReviewModal({
       setImageLoading(false);
       setErrorMessage(response.errors);
     } else {
+      if (url.length) {
+        for (let el of url) {
+          const imagesData = new FormData();
+          imagesData.append("reviewId", response.id);
+          imagesData.append("url", el);
+          setImageLoading(true);
+          let imageResponse = await dispatch(
+            thunkAddReviewImage(imagesData, placeId)
+          );
+          // if (imageResponse.errors) {
+          //   setImageLoading(false);
+          //   setErrorMessage(imageResponse.errors);
+          // }
+        }
+      }
       setImageLoading(false);
       setErrorMessage({});
       closeModal();
@@ -148,6 +168,25 @@ export default function CreateReviewModal({
             <i className="fas fa-regular fa-star"></i>
           </div>
         </div>
+        {!page ? (
+          <div>
+            <label style={{ margin: "0 auto", textAlign: "center" }}>
+              Image(optional):{" "}
+              <input
+                id="coverPicProductInput"
+                type="file"
+                //   "accept" attribute restricts the types of files that can be selected to only images
+                accept="image/*"
+                onChange={(e) => setUrl(Array.from(e.target.files))}
+                // to allow multiple files upload, need to change to Array.from(e.target.files) above
+                multiple
+              />
+            </label>
+            {errorMessage?.url && (
+              <div className="errors">{errorMessage.url}</div>
+            )}
+          </div>
+        ) : null}
 
         <div className="submitReview">
           <button
