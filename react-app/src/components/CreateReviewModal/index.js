@@ -3,18 +3,23 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
 
-import { thunkCreateReview } from "../../store/review";
+import { thunkCreateReview, thunkUpdateReview } from "../../store/review";
 
 import "./CreateReviewModal.css";
 
-export default function CreateReviewModal({ placeId, productId }) {
+export default function CreateReviewModal({
+  placeId,
+  productId,
+  orireview,
+  page,
+}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
 
-  const [review, setReview] = useState("");
-  const [activeRating, setActiveRating] = useState(0);
-  const [realRating, setRealRating] = useState(0);
+  const [review, setReview] = useState(orireview.review);
+  const [activeRating, setActiveRating] = useState(orireview.rating);
+  const [realRating, setRealRating] = useState(orireview.rating);
   const [imageLoading, setImageLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState({});
 
@@ -27,7 +32,13 @@ export default function CreateReviewModal({ placeId, productId }) {
     formData.append("rating", realRating);
     formData.append("productId", productId);
 
-    let response = await dispatch(thunkCreateReview(formData));
+    let response;
+
+    if (!page) {
+      response = await dispatch(thunkCreateReview(formData));
+    } else {
+      response = await dispatch(thunkUpdateReview(formData, orireview.id));
+    }
 
     if (response.errors) {
       setImageLoading(false);

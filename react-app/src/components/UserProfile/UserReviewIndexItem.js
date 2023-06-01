@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 
 import OpenModalMenuItem from "../OpenModalMenuItem";
+import CreateReviewModal from "../CreateReviewModal";
 import DeleteReviewModal from "../DeleteReviewModal";
 
 export default function UserReviewIndexItem({ review }) {
@@ -12,9 +13,14 @@ export default function UserReviewIndexItem({ review }) {
         <button className="updateButtonItem">
           <OpenModalMenuItem
             itemText="Update"
-            // modalComponent={
-            //   <UpdateProductModal review={review} productId={review.productId} />
-            // }
+            modalComponent={
+              <CreateReviewModal
+                orireview={review}
+                placeId={review.place?.id}
+                productId={review.productId}
+                page="update"
+              />
+            }
           />
         </button>
         <button className="deleteButtonItem">
