@@ -3,11 +3,10 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { useModal } from "../../context/Modal";
-import { thunkDelateProduct, thunkGetUserProducts } from "../../store/product";
-import "./DeleteProductModal.css";
-import { thunkGetUserReviews } from "../../store/review";
+import { thunkDelateReview, thunkGetUserReviews } from "../../store/review";
+import "./DeleteReviewModal.css";
 
-export default function DeleteProductModal({ product }) {
+export default function DeleteReviewModal({ review }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [errors, setErrors] = useState([]);
@@ -15,9 +14,8 @@ export default function DeleteProductModal({ product }) {
 
   const onClick = async (e) => {
     e.preventDefault();
-    await dispatch(thunkDelateProduct(product))
+    await dispatch(thunkDelateReview(review))
       .then(closeModal)
-      .then(() => dispatch(thunkGetUserProducts()))
       .then(() => dispatch(thunkGetUserReviews()))
       .catch(async (res) => {
         const data = await res.json();
@@ -29,15 +27,15 @@ export default function DeleteProductModal({ product }) {
   };
 
   return (
-    <div className="deleteProductModal">
+    <div className="deleteReviewModal">
       <h2>Confirm Delete</h2>
-      <h3>Are you sure you want to remove this product from the listings?</h3>
-      <div className="deleteProductModalButton">
+      <h3>Are you sure you want to remove this review from the listings?</h3>
+      <div className="deleteReviewModalButton">
         <button className="yesButton" type="button" onClick={onClick}>
-          Yes (Delete product)
+          Yes (Delete review)
         </button>
         <button className="noButton" type="button" onClick={closeModal}>
-          No (Keep product){" "}
+          No (Keep review){" "}
         </button>
       </div>
     </div>

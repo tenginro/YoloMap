@@ -62,6 +62,7 @@ export const thunkCreateReview = (review) => async (dispatch) => {
     method: "POST",
     body: review,
   });
+
   if (response.ok) {
     const newReview = await response.json();
     await dispatch(actionCreateReview(newReview));

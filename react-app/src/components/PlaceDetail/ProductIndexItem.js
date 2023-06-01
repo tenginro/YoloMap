@@ -3,8 +3,9 @@ import { thunkAddToCart, thunkGetUserCart } from "../../store/cart";
 import OpenModalMenuItem from "../OpenModalMenuItem";
 import AddCartConfirm from "./AddCartConfirm";
 import BetterPlanAlert from "../Navigation/BetterPlanAlert";
+import CreateReviewModal from "../CreateReviewModal";
 
-export default function ProductIndexItem({ product, reviews }) {
+export default function ProductIndexItem({ product, reviews, placeId }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
@@ -43,7 +44,8 @@ export default function ProductIndexItem({ product, reviews }) {
             </h4>
             <div
               style={{
-                width: "300px",
+                maxWidth: "300px",
+                width: "50%",
                 height: "30px",
                 overflowWrap: "break-word",
                 overflowY: "auto",
@@ -76,7 +78,8 @@ export default function ProductIndexItem({ product, reviews }) {
         <div
           style={{
             width: "85%",
-            height: "350px",
+            maxHeight: "350px",
+            height: "auto",
             marginLeft: "50px",
             overflowY: "auto",
           }}
@@ -86,7 +89,9 @@ export default function ProductIndexItem({ product, reviews }) {
             <button className="CartButton">
               <OpenModalMenuItem
                 itemText="Post Your Review"
-                // modalComponent={<CreateReviewModal />}
+                modalComponent={
+                  <CreateReviewModal placeId={placeId} productId={product.id} />
+                }
               />
             </button>
           </div>
@@ -152,7 +157,18 @@ export default function ProductIndexItem({ product, reviews }) {
             overflowY: "auto",
           }}
         >
-          No reviews for this product yet.
+          <h3>Reviews for the product:</h3>
+          <div>
+            <button className="CartButton">
+              <OpenModalMenuItem
+                itemText="Post Your Review"
+                modalComponent={
+                  <CreateReviewModal placeId={placeId} productId={product.id} />
+                }
+              />
+            </button>
+          </div>
+          <div>No reviews for this product yet.</div>
         </div>
       )}
     </div>

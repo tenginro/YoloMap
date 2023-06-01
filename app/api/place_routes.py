@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from ..models import Place, db, Product, Review, User
+from ..models import Place, db, Product, Review, User, ReviewImage
 from ..forms import PlaceForm
 from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
@@ -136,6 +136,16 @@ def delete_place(id):
     place = Place.query.get(id)
 
     if place:
+        # products_for_place = Product.query.filter(Product.placeId == place.id)
+        # reviews_for_place = [
+        #     Review.query.filter(Review.productId == product.id)
+        #     for product in products_for_place
+        # ]
+        # reviewImages_for_place = [
+        #     ReviewImage.query.filter(ReviewImage.reviewId == review.id)
+        #     for review in reviews_for_place
+        # ]
+
         db.session.delete(place)
         db.session.commit()
         return {"message": "Place Deleted!"}

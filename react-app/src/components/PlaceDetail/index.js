@@ -203,6 +203,7 @@ export default function PlaceDetail() {
               key={product.id}
               product={product}
               reviews={reviewsArr.filter((el) => el.productId === product.id)}
+              placeId={placeId}
             />
           ))}
           {!productsArr?.length && (

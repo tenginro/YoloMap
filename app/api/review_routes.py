@@ -69,6 +69,8 @@ def create_review():
         return {
             **new_review.to_dict(),
             "reviewOwner": User.query.get(new_review.creatorId).to_dict(),
+            "product": Product.query.get(product.id).to_dict(),
+            "place": Place.query.get(Product.query.get(product.id).placeId).to_dict(),
             "reviewImages": [image.to_dict() for image in new_review.reviewImages],
         }
 

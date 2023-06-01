@@ -205,6 +205,11 @@
   width: 70%;
   padding-left: 10px;
 }
+.reviewIndexInUserProfile {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
 
 @media screen and (max-width: 1000px) {
   .userProfilePage {
