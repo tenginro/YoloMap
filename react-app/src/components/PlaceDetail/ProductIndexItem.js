@@ -152,7 +152,16 @@ export default function ProductIndexItem({ product, reviews }) {
             overflowY: "auto",
           }}
         >
-          No reviews for this product yet.
+          <h3>Reviews for the product:</h3>
+          <div>
+            <button className="CartButton">
+              <OpenModalMenuItem
+                itemText="Post Your Review"
+                // modalComponent={<CreateReviewModal />}
+              />
+            </button>
+          </div>
+          <div>No reviews for this product yet.</div>
         </div>
       )}
     </div>
