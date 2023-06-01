@@ -100,7 +100,7 @@ function ProfileButton({ user }) {
             <i className="fas fa-user-circle fa-2x" title={user.username} />
           </div>
           <div className={ulClassName} ref={ulRef}>
-            <div>Budget: ${user.budget}</div>
+            <div>Budget: ${user?.budget}</div>
             <div
               className="viewProfileLine"
               onClick={(e) => history.push("/current")}
@@ -156,8 +156,8 @@ function ProfileButton({ user }) {
                 disabled={isDisabled}
                 onClick={async (e) => {
                   e.preventDefault();
-                  if (totalPrice < user.budget) {
-                    const newBudget = user.budget - totalPrice;
+                  if (totalPrice < user?.budget) {
+                    const newBudget = user?.budget - totalPrice;
                     const formData = new FormData();
                     formData.append("budget", Math.round(newBudget));
 
