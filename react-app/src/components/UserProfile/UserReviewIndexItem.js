@@ -38,10 +38,10 @@ export default function UserReviewIndexItem({ review }) {
           className="placeForProduct"
           onClick={(e) => {
             e.preventDefault();
-            history.push(`/places/${review.place.id}`);
+            history.push(`/places/${review.place?.id}`);
           }}
         >
-          {review.place.name}
+          {review.place?.name}
         </span>
         : {review.review}
       </div>

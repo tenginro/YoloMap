@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkDelateProduct, thunkGetUserProducts } from "../../store/product";
 import "./DeleteProductModal.css";
+import { thunkGetUserReviews } from "../../store/review";
 
 export default function DeleteProductModal({ product }) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function DeleteProductModal({ product }) {
     await dispatch(thunkDelateProduct(product))
       .then(closeModal)
       .then(() => dispatch(thunkGetUserProducts()))
+      .then(() => dispatch(thunkGetUserReviews()))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {

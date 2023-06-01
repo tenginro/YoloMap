@@ -1,0 +1,56 @@
+#createReviewForm {
+  width: 300px;
+  height: 300px;
+}
+
+#createReviewForm textarea {
+  height: 100px;
+  width: 200px;
+}
+.rating-input {
+  display: flex;
+  flex-direction: row;
+  margin-right: 4px;
+  justify-content: center;
+}
+
+.rating-input .filled {
+  color: blue;
+}
+
+.reviewStar:hover {
+  color: blue;
+}
+
+.rating-input .empty {
+  color: gray;
+}
+
+.errors {
+  color: red;
+}
+
+#createReviewForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.submitReview {
+  display: flex;
+  justify-content: center;
+}
+
+.submitReviewButton {
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #0052ff;
+  color: white;
+}
+
+.submitReviewButtonDisabled {
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #c6d6fa;
+  color: white;
+}

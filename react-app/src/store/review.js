@@ -62,6 +62,7 @@ export const thunkCreateReview = (review) => async (dispatch) => {
     method: "POST",
     body: review,
   });
+
   if (response.ok) {
     const newReview = await response.json();
     await dispatch(actionCreateReview(newReview));
@@ -112,7 +113,6 @@ export const thunkDelateReview = (review) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${review.id}`, {
     method: "DELETE",
   });
-  console.log("response from backend", response);
   if (response.ok) {
     await dispatch(actionDeleteReview(review.id));
     return await response.json();
