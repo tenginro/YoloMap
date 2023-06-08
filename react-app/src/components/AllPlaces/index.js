@@ -131,7 +131,7 @@ export default function AllPlaces() {
         </label>
       </div>
       <div className="places">
-        <h2>All places</h2>
+        <h2>Explore All {selectedCategoryForPlaces} Places</h2>
         {placesArr?.map((place) => (
           <div
             key={place.id}

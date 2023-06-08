@@ -4,6 +4,9 @@ import OpenModalMenuItem from "../OpenModalMenuItem";
 import AddCartConfirm from "./AddCartConfirm";
 import BetterPlanAlert from "../Navigation/BetterPlanAlert";
 import CreateReviewModal from "../CreateReviewModal";
+import DeleteReviewModal from "../DeleteReviewModal";
+import DeleteProductModal from "../DeleteProductModal";
+import UpdateProductModal from "../UpdateProductModal";
 
 export default function ProductIndexItem({ product, reviews, placeId }) {
   const dispatch = useDispatch();
@@ -55,6 +58,37 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
               {product.description}
             </div>
           </div>
+          {product?.creatorId === user?.id ? (
+            <div className="userProductButtons">
+              <button
+                className="updateButtonItem"
+                style={{
+                  fontSize: "16px",
+                  border: "none",
+                  backgroundColor: "#38de6f",
+                }}
+              >
+                <OpenModalMenuItem
+                  itemText="Update Product"
+                  modalComponent={
+                    <UpdateProductModal
+                      product={product}
+                      placeId={product.placeId}
+                    />
+                  }
+                />
+              </button>
+              <button
+                className="deleteButtonItem"
+                style={{ fontSize: "16px", border: "none" }}
+              >
+                <OpenModalMenuItem
+                  itemText="Delete Product"
+                  modalComponent={<DeleteProductModal product={product} />}
+                />
+              </button>
+            </div>
+          ) : null}
           <div style={{ marginTop: "20px" }}>
             {user ? (
               user?.budget - product.price > 0 ? (
@@ -116,11 +150,49 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
                 <div>
                   <img
                     style={{ width: "30px", height: "30px" }}
-                    src={review.reviewOwner.profile_pic}
+                    src={review?.reviewOwner?.profile_pic}
                     alt="profilePic"
                   ></img>
                 </div>
-                <div>{review.reviewOwner.username}</div>
+                <div>{review?.reviewOwner?.username}</div>
+                <div>
+                  {review?.reviewOwner?.id === user?.id ? (
+                    <div className="userProductButtons">
+                      <button
+                        className="updateButtonItem"
+                        style={{
+                          fontSize: "13px",
+                          border: "none",
+                          backgroundColor: "#38de6f",
+                        }}
+                      >
+                        <OpenModalMenuItem
+                          itemText="Update Review"
+                          modalComponent={
+                            <CreateReviewModal
+                              orireview={review}
+                              placeId={review.place?.id}
+                              productId={review.productId}
+                              page="update"
+                            />
+                          }
+                        />
+                      </button>
+                      <button
+                        className="deleteButtonItem"
+                        style={{
+                          fontSize: "13px",
+                          border: "none",
+                        }}
+                      >
+                        <OpenModalMenuItem
+                          itemText="Delete Review"
+                          modalComponent={<DeleteReviewModal review={review} />}
+                        />
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
               </h4>
               <div
                 style={{
@@ -130,11 +202,22 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
                   overflowWrap: "break-word",
                 }}
               >
-                <i className="fas fa-sharp fa-solid fa-star">
-                  {" "}
-                  {review.rating}
-                </i>{" "}
-                review: {review.review}
+                {review?.rating >= 1 ? (
+                  <i className="fas fa-sharp fa-solid fa-star"></i>
+                ) : null}
+                {review?.rating >= 2 ? (
+                  <i className="fas fa-sharp fa-solid fa-star"></i>
+                ) : null}
+                {review?.rating >= 3 ? (
+                  <i className="fas fa-sharp fa-solid fa-star"></i>
+                ) : null}
+                {review?.rating >= 4 ? (
+                  <i className="fas fa-sharp fa-solid fa-star"></i>
+                ) : null}
+                {review?.rating >= 5 ? (
+                  <i className="fas fa-sharp fa-solid fa-star"></i>
+                ) : null}
+                : {review.review}
               </div>
               <div
                 style={{
@@ -183,7 +266,7 @@ export default function ProductIndexItem({ product, reviews, placeId }) {
               </button>
             </div>
           ) : null}
-          <div>No reviews for this product yet.</div>
+          <div style={{ margin: "4px" }}>No reviews for this product yet.</div>
         </div>
       )}
     </div>

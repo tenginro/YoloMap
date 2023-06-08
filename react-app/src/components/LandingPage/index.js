@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import image1 from "./backgroundImages/spring.gif";
 import image2 from "./backgroundImages/summer.gif";
@@ -8,6 +8,19 @@ import image4 from "./backgroundImages/winter.gif";
 import "./LandingPage.css";
 
 export default function LandingPage() {
+  const history = useHistory();
+
+  useEffect(() => {
+    // Whenever a route change occurs (including redirects), the callback function inside the useEffect will be triggered, and it will scroll the window to the top using window.scrollTo(0, 0). This ensures that the page is scrolled to the top
+    const unListen = history.listen(() => {
+      window.scrollTo(0, 0);
+    });
+
+    return () => {
+      unListen();
+    };
+  }, [history]);
+
   const allBackgroundImages = [image1, image2, image3, image4];
   const [index, setIndex] = useState(0);
 
@@ -41,72 +54,72 @@ export default function LandingPage() {
       <div className="categoriesContainer">
         <h3>Categories</h3>
         <div className="allCateContainer">
-          <div className="eachCateContainer">
-            <i className="fa-solid fa-palette fa-2x"></i>
-            <NavLink
-              to={{
-                pathname: "/places",
-                state: { selectedCategory: "Art" },
-              }}
-            >
+          <NavLink
+            to={{
+              pathname: "/places",
+              state: { selectedCategory: "Art" },
+            }}
+          >
+            <div className="eachCateContainer">
+              <i className="fa-solid fa-palette fa-2x"></i>
               <div style={{ color: "black" }}>Art</div>
-            </NavLink>
-          </div>
-          <div className="eachCateContainer">
-            <i className="fa-solid fa-cake-candles fa-2x"></i>
-            <NavLink
-              to={{
-                pathname: "/places",
-                state: { selectedCategory: "Bakery" },
-              }}
-            >
+            </div>
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: "/places",
+              state: { selectedCategory: "Bakery" },
+            }}
+          >
+            <div className="eachCateContainer">
+              <i className="fa-solid fa-cake-candles fa-2x"></i>
               <div style={{ color: "black" }}>Bakery</div>
-            </NavLink>
-          </div>
-          <div className="eachCateContainer">
-            <i className="fa-solid fa-wine-glass fa-2x"></i>
-            <NavLink
-              to={{
-                pathname: "/places",
-                state: { selectedCategory: "Bar" },
-              }}
-            >
+            </div>
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: "/places",
+              state: { selectedCategory: "Bar" },
+            }}
+          >
+            <div className="eachCateContainer">
+              <i className="fa-solid fa-wine-glass fa-2x"></i>
               <div style={{ color: "black" }}>Bar</div>
-            </NavLink>
-          </div>
-          <div className="eachCateContainer">
-            <i className="fa-solid fa-mug-saucer fa-2x"></i>
-            <NavLink
-              to={{
-                pathname: "/places",
-                state: { selectedCategory: "Coffee/Tea" },
-              }}
-            >
+            </div>
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: "/places",
+              state: { selectedCategory: "Coffee/Tea" },
+            }}
+          >
+            <div className="eachCateContainer">
+              <i className="fa-solid fa-mug-saucer fa-2x"></i>
               <div style={{ color: "black" }}>Coffee/Tea</div>
-            </NavLink>
-          </div>
-          <div className="eachCateContainer">
-            <i className="fa-solid fa-utensils fa-2x"></i>
-            <NavLink
-              to={{
-                pathname: "/places",
-                state: { selectedCategory: "Restaurant" },
-              }}
-            >
+            </div>
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: "/places",
+              state: { selectedCategory: "Restaurant" },
+            }}
+          >
+            <div className="eachCateContainer">
+              <i className="fa-solid fa-utensils fa-2x"></i>
               <div style={{ color: "black" }}>Restaurant</div>
-            </NavLink>
-          </div>
-          <div className="eachCateContainer">
-            <i className="fa-solid fa-plane fa-2x"></i>
-            <NavLink
-              to={{
-                pathname: "/places",
-                state: { selectedCategory: "Travel" },
-              }}
-            >
+            </div>
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: "/places",
+              state: { selectedCategory: "Travel" },
+            }}
+          >
+            <div className="eachCateContainer">
+              <i className="fa-solid fa-plane fa-2x"></i>
               <div style={{ color: "black" }}>Travel</div>
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
         </div>
       </div>
     </>
