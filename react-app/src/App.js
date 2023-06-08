@@ -12,17 +12,24 @@ import CreatePlace from "./components/CreatePlace";
 import UpdatePlaceWrapper from "./components/UpdatePlace";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import SearchPlaces from "./components/SearchPlaces";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation
+        isLoaded={isLoaded}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       {isLoaded && (
         <Switch>
           <Route exact path="/places/new">
@@ -36,6 +43,13 @@ function App() {
           </Route>
           <Route exact path="/places">
             <AllPlaces />
+          </Route>
+          <Route exact path="/places/search/:searchInput">
+            <SearchPlaces
+              clearSearchQuery={() => setSearchQuery("")}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
           </Route>
           <Route exact path="/current">
             <UserProfile />

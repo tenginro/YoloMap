@@ -56,6 +56,17 @@ export const thunkGetAllPlaces = () => async (dispatch) => {
   return await response.json();
 };
 
+export const thunkGetSearchedPlaces = (searchQuery) => async (dispatch) => {
+  const response = await fetch(`/api/places/search/${searchQuery}`);
+
+  if (response.ok) {
+    const places = await response.json();
+    await dispatch(actionLoadAllPlaces(places));
+    return places;
+  }
+  // return await response.json();
+};
+
 export const thunkGetPlaceDetail = (id) => async (dispatch) => {
   const response = await fetch(`/api/places/${id}`);
 
