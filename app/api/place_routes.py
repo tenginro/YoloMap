@@ -25,6 +25,23 @@ def get_all_places():
     return [{**place.to_dict()} for place in places]
 
 
+@place_routes.route("/search/<string:searchQuery>")
+def get_searched_places(searchQuery):
+    places = Place.query.filter(
+        db.or_(
+            # ilike - case insensitive
+            Place.name.ilike(f"%{searchQuery}%"),
+            Place.description.ilike(f"%{searchQuery}%"),
+            Place.website.ilike(f"%{searchQuery}%"),
+            Place.category.ilike(f"%{searchQuery}%"),
+            Place.city.ilike(f"%{searchQuery}%"),
+            Place.state.ilike(f"%{searchQuery}%"),
+            Place.address.ilike(f"%{searchQuery}%"),
+        )
+    ).all()
+    return [{**place.to_dict()} for place in places]
+
+
 @place_routes.route("/<int:id>")
 def get_one_place(id):
     place = Place.query.get(id)

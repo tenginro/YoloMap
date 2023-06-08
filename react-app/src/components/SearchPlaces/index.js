@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { actionClearPlaces, thunkGetAllPlaces } from "../../store/place";
-import PlaceIndexItem from "./PlaceIndexItem";
-import "./AllPlaces.css";
-import MapPage from "./Map";
 
-export default function AllPlaces() {
+import { actionClearPlaces, thunkGetSearchedPlaces } from "../../store/place";
+import NotFound from "../NotFound";
+import PlaceIndexItem from "../AllPlaces/PlaceIndexItem";
+import "../AllPlaces/AllPlaces.css";
+import MapPage from "../AllPlaces/Map";
+
+export default function SearchPlaces() {
   const dispatch = useDispatch();
+  const { searchInput } = useParams();
   const location = useLocation();
 
   const { selectedCategory } = location.state || {};
-
-  const user = useSelector((state) => state.session.user);
-
-  const placesObj = useSelector((state) => state.places.allPlaces);
-  let placesArr = Object.values(placesObj);
 
   const [selectedPlaceFromAllPlaces, setSelectedPlaceFromAllPlaces] =
     useState(null);
   const [selectedCategoryForPlaces, setSelectedCategoryForPlaces] =
     useState(selectedCategory);
 
+  const user = useSelector((state) => state.session.user);
+  const userId = user.id;
+  const placesObj = useSelector((state) => state.places.allPlaces);
+  let placesArr = Object.values(placesObj);
+
   useEffect(() => {
-    dispatch(thunkGetAllPlaces());
+    dispatch(thunkGetSearchedPlaces(searchInput));
     return () => {
       dispatch(actionClearPlaces());
     };
-  }, [dispatch]);
+  }, [dispatch, userId, searchInput]);
 
   if (selectedCategoryForPlaces && placesArr.length) {
     let filteredPlacesArr = placesArr.filter(
@@ -36,21 +39,8 @@ export default function AllPlaces() {
     placesArr = filteredPlacesArr;
   }
 
-  if (!placesObj) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <img
-          src="https://assets-global.website-files.com/5c7fdbdd4e3feeee8dd96dd2/6134707265a929f4cdfc1f6d_5.gif"
-          alt="Loading"
-        ></img>
-      </div>
-    );
+  if (!placesArr.length) {
+    return <NotFound />;
   }
 
   return (
