@@ -124,8 +124,32 @@ def seed_places():
         lat=42.362574,
         lng=-71.1164871,
     )
+    place9 = Place(
+        creatorId=3,
+        name="Lakon Paris Patisserie",
+        address="1410 Beacon St",
+        city="Brookline",
+        state="MA",
+        description="From flaky croissants and buttery danishes to decadent cakes and artisanal bread, our menu is a celebration of the finest ingredients and artisanal techniques. Savor the simplicity of a classic chocolate chip cookie or indulge in the sophisticated elegance of a meticulously designed wedding cake. Whatever your cravings, we have the perfect treat to satisfy your sweet tooth. ",
+        phone="6174875316",
+        hours="Wed-Sun: 7AM-3PM; Mon-Tue: Closed",
+        category="Bakery",
+        cover_pic="https://s3-media0.fl.yelpcdn.com/bphoto/VTQ4mzcTKwzdBAcgMm7O7A/348s.jpg",
+        lat=42.3218784,
+        lng=-71.4949508,
+    )
 
-    all_places = [place1, place2, place3, place4, place5, place6, place7, place8]
+    all_places = [
+        place1,
+        place2,
+        place3,
+        place4,
+        place5,
+        place6,
+        place7,
+        place8,
+        place9,
+    ]
     add_places = [db.session.add(place) for place in all_places]
     db.session.commit()
 

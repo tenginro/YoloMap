@@ -17,11 +17,13 @@ import {
   actionClearReviews,
   thunkGetAllReviewsForPlace,
 } from "../../store/review";
+import LoginFormModal from "../LoginFormModal";
 
 export default function PlaceDetail() {
   const { placeId } = useParams();
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.session.user);
   const place = useSelector((state) => state.places.singlePlace);
   const productsObj = useSelector((state) => state.products.allProducts);
   const productsArr = Object.values(productsObj);
@@ -189,13 +191,23 @@ export default function PlaceDetail() {
       <div className="listingPlaceProducts">
         <div className="addProductContainer">
           <h3>Products</h3>
-          <div>
-            <OpenModalButton
-              buttonText="Want to add a new product?"
-              onItemClick={closeMenu}
-              modalComponent={<CreateProductModal placeId={placeId} />}
-            />
-          </div>
+          {user ? (
+            <div>
+              <OpenModalButton
+                buttonText="Want to add a new product?"
+                onItemClick={closeMenu}
+                modalComponent={<CreateProductModal placeId={placeId} />}
+              />
+            </div>
+          ) : (
+            <div>
+              <OpenModalButton
+                buttonText="Please log in to add a new product"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </div>
+          )}
         </div>
         <div className="productsListing">
           {productsArr?.map((product) => (

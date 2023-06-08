@@ -1,6 +1,6 @@
 # YoloMap
 
-YoloMap is a clone of Yelp + additional features. You only live once so plan it better. YoloMap is a website to help you make plans within your budget.
+YoloMap is a clone of Yelp plus additional features. You only live once so plan it better with our App. YoloMap is a website to help you make plans within your budget.
 
 Check out [YoloMap](https://yolomap.onrender.com/)
 
@@ -44,9 +44,8 @@ Check out [YoloMap](https://yolomap.onrender.com/)
 
 4. Set up your database with information from your .env and then run the following to create your database, migrate, and seed:
 
-   - `npx dotenv sequelize db:create`
-   - `npx dotenv sequelize db:migrate`
-   - `npx dotenv sequelize db:seed:all`
+   - `flask db upgrade`
+   - `flask seed all`
 
 5. Start the app for both backend and frontend using:
 

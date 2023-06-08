@@ -49,7 +49,7 @@ export default function CreateReviewModal({
       setImageLoading(false);
       setErrorMessage(response.errors);
     } else {
-      if (url.length) {
+      if (url?.length) {
         for (let el of url) {
           const imagesData = new FormData();
           imagesData.append("reviewId", response.id);
@@ -73,7 +73,7 @@ export default function CreateReviewModal({
 
   return (
     <div id="createReviewForm">
-      <h2>How was your stay?</h2>
+      <h2>How was your visit?</h2>
       <form>
         {errorMessage?.review && (
           <div className="errors">{errorMessage.review}</div>

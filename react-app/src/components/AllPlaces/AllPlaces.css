@@ -46,14 +46,14 @@
   border-radius: 5px;
 }
 .descriptionAllPins {
-  height: 50px;
+  height: 47px;
   font-size: small;
-  width: 330px;
+  width: 70%;
   overflow-wrap: break-word;
   overflow-y: auto;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1095px) {
   .allPinsPage,
   .placeIndexItem {
     display: flex;

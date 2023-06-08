@@ -14,8 +14,8 @@ def seed_users():
         lng=-71.1188488,
     )
     user2 = User(
-        username="UserTwo",
-        email="usertwo@aa.io",
+        username="JohnSmith",
+        email="johnsmith@aa.io",
         budget=50000,
         profile_pic="https://funkylife.in/wp-content/uploads/2023/01/whatsapp-dp-by-funkylife-561-1.jpg",
         password="password",
@@ -23,8 +23,8 @@ def seed_users():
         lng=-71.1588488,
     )
     user3 = User(
-        username="UserThree",
-        email="userthree@aa.io",
+        username="JoeDoe",
+        email="joedoe@aa.io",
         budget=50000,
         profile_pic="https://funylife.in/wp-content/uploads/2022/12/41_Whatsapp-Dp-images-FunyLife.in_-1024x1024.jpg",
         password="password",
