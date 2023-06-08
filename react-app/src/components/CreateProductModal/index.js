@@ -116,7 +116,7 @@ export default function CreateProductModal({ placeId }) {
             required
           />
         </label>
-
+        <div>* - required</div>
         <div className="buttonContainer">
           <button>Create Product</button>
         </div>

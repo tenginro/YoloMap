@@ -78,15 +78,18 @@ export default function CreateReviewModal({
         {errorMessage?.review && (
           <div className="errors">{errorMessage.review}</div>
         )}
+        <div style={{ textAlign: "center" }}>
+          Review(minimum 10 characters):{" "}
+        </div>
         <textarea
           type="text"
           value={review}
           onChange={(e) => setReview(e.target.value)}
-          placeholder="Leave your review here... (minimum 10 characters)"
+          placeholder="Leave your review here..."
         ></textarea>
 
         <div className="rating-input">
-          <div>Rating*: </div>
+          <div>Rating(required): </div>
           <div
             className={
               activeRating >= 1 ? "reviewStar filled" : "reviewStar empty"
@@ -169,7 +172,7 @@ export default function CreateReviewModal({
           </div>
         </div>
         {!page ? (
-          <div>
+          <div style={{ textAlign: "center" }}>
             <label style={{ margin: "0 auto", textAlign: "center" }}>
               Image(optional):{" "}
               <input

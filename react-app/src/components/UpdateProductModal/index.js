@@ -91,7 +91,7 @@ export default function UpdateProductModal({ product, placeId }) {
             required
           ></input>
         </label>
-
+        <div>* - required</div>
         <div className="buttonContainer">
           <button>Update Product</button>
         </div>
