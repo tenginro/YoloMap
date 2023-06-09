@@ -30,7 +30,7 @@ export default function SearchPlaces() {
     return () => {
       dispatch(actionClearPlaces());
     };
-  }, [dispatch, userId, searchInput]);
+  }, [dispatch, searchInput]);
 
   if (selectedCategoryForPlaces && placesArr.length) {
     let filteredPlacesArr = placesArr.filter(
