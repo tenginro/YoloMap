@@ -18,16 +18,19 @@ Check out [YoloMap](https://yolomap.onrender.com/)
 
 ## Splash Page
 
-![Screenshot 2023-04-24 at 14 03 17](https://user-images.githubusercontent.com/108156588/234081442-4e9c39f9-28bc-4651-ad65-eec34990c0e0.png)
-![Screenshot 2023-04-24 at 14 14 58](https://user-images.githubusercontent.com/108156588/234081514-9b2ee038-9c9c-44dc-83d6-1fa174f22b77.png)
+![Screenshot 2023-06-09 at 13 25 18](https://github.com/tenginro/YoloMap/assets/108156588/56c6a935-dfbe-4643-bc84-7245a5dd5e3d)
+![Screenshot 2023-06-09 at 13 25 25](https://github.com/tenginro/YoloMap/assets/108156588/38ee1da2-d0eb-4acb-b710-c74a575d7f57)
+
 
 ## Places
 
 ![Screenshot 2023-04-24 at 14 15 21](https://user-images.githubusercontent.com/108156588/234081585-c0c237ba-d851-4c3e-824d-cf57dd1c4fd7.png)
 
-## Place Detail Page with products
+## Place Detail Page with products, reviews
+![Screenshot 2023-06-09 at 13 26 20](https://github.com/tenginro/YoloMap/assets/108156588/dbc19c63-a782-4ddb-9c05-a4adb194624b)
+![Screenshot 2023-06-09 at 13 26 28](https://github.com/tenginro/YoloMap/assets/108156588/81565f59-aa79-46c7-824d-cebd9245fdc5)
 
-![Screenshot 2023-04-24 at 14 15 46](https://user-images.githubusercontent.com/108156588/234081658-6bb78c01-6e31-40c6-b3c5-42cb94f960e9.png)
+
 
 ## Getting started
 
