@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
             <div style={{ cursor: "pointer" }}>
               <a
-                href="http://tenginro.me/"
+                href="https://tenginro.github.io/"
                 target="_blank"
                 rel="noreferrer noopener"
               >
