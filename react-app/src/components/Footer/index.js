@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
             <div style={{ cursor: "pointer" }}>
               <a
-                href="http://tenginro.me/"
+                href="https://tenginro.github.io/"
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -57,7 +57,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="copyrightLine">
-          Copyright © 2023 YoloMap Inc. YoloMap, YoloMap logo and related marks
+          Copyright © 2024 YoloMap Inc. YoloMap, YoloMap logo and related marks
           are registered trademarks of YoloMap.
         </div>
       </div>
